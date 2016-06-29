@@ -1,0 +1,505 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3DFAF9D41D248139009D80B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFAF9D31D248139009D80B3 /* AppDelegate.swift */; };
+		3DFAF9D61D248139009D80B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFAF9D51D248139009D80B3 /* ViewController.swift */; };
+		3DFAF9D91D248139009D80B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DFAF9D71D248139009D80B3 /* Main.storyboard */; };
+		3DFAF9DB1D248139009D80B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DFAF9DA1D248139009D80B3 /* Assets.xcassets */; };
+		3DFAF9DE1D248139009D80B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DFAF9DC1D248139009D80B3 /* LaunchScreen.storyboard */; };
+		3DFAF9E91D248139009D80B3 /* WitherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFAF9E81D248139009D80B3 /* WitherTests.swift */; };
+		3DFAF9F41D248139009D80B3 /* WitherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFAF9F31D248139009D80B3 /* WitherUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3DFAF9E51D248139009D80B3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3DFAF9C81D248139009D80B3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3DFAF9CF1D248139009D80B3;
+			remoteInfo = Wither;
+		};
+		3DFAF9F01D248139009D80B3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3DFAF9C81D248139009D80B3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3DFAF9CF1D248139009D80B3;
+			remoteInfo = Wither;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3DFAF9D01D248139009D80B3 /* Wither.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wither.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DFAF9D31D248139009D80B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3DFAF9D51D248139009D80B3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3DFAF9D81D248139009D80B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3DFAF9DA1D248139009D80B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3DFAF9DD1D248139009D80B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3DFAF9DF1D248139009D80B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3DFAF9E41D248139009D80B3 /* WitherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WitherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DFAF9E81D248139009D80B3 /* WitherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WitherTests.swift; sourceTree = "<group>"; };
+		3DFAF9EA1D248139009D80B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3DFAF9EF1D248139009D80B3 /* WitherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WitherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DFAF9F31D248139009D80B3 /* WitherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WitherUITests.swift; sourceTree = "<group>"; };
+		3DFAF9F51D248139009D80B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3DFAF9CD1D248139009D80B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DFAF9E11D248139009D80B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DFAF9EC1D248139009D80B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3DFAF9C71D248139009D80B3 = {
+			isa = PBXGroup;
+			children = (
+				3DFAF9D21D248139009D80B3 /* Wither */,
+				3DFAF9E71D248139009D80B3 /* WitherTests */,
+				3DFAF9F21D248139009D80B3 /* WitherUITests */,
+				3DFAF9D11D248139009D80B3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3DFAF9D11D248139009D80B3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3DFAF9D01D248139009D80B3 /* Wither.app */,
+				3DFAF9E41D248139009D80B3 /* WitherTests.xctest */,
+				3DFAF9EF1D248139009D80B3 /* WitherUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3DFAF9D21D248139009D80B3 /* Wither */ = {
+			isa = PBXGroup;
+			children = (
+				3DFAF9D31D248139009D80B3 /* AppDelegate.swift */,
+				3DFAF9D51D248139009D80B3 /* ViewController.swift */,
+				3DFAF9D71D248139009D80B3 /* Main.storyboard */,
+				3DFAF9DA1D248139009D80B3 /* Assets.xcassets */,
+				3DFAF9DC1D248139009D80B3 /* LaunchScreen.storyboard */,
+				3DFAF9DF1D248139009D80B3 /* Info.plist */,
+			);
+			path = Wither;
+			sourceTree = "<group>";
+		};
+		3DFAF9E71D248139009D80B3 /* WitherTests */ = {
+			isa = PBXGroup;
+			children = (
+				3DFAF9E81D248139009D80B3 /* WitherTests.swift */,
+				3DFAF9EA1D248139009D80B3 /* Info.plist */,
+			);
+			path = WitherTests;
+			sourceTree = "<group>";
+		};
+		3DFAF9F21D248139009D80B3 /* WitherUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3DFAF9F31D248139009D80B3 /* WitherUITests.swift */,
+				3DFAF9F51D248139009D80B3 /* Info.plist */,
+			);
+			path = WitherUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3DFAF9CF1D248139009D80B3 /* Wither */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3DFAF9F81D248139009D80B3 /* Build configuration list for PBXNativeTarget "Wither" */;
+			buildPhases = (
+				3DFAF9CC1D248139009D80B3 /* Sources */,
+				3DFAF9CD1D248139009D80B3 /* Frameworks */,
+				3DFAF9CE1D248139009D80B3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Wither;
+			productName = Wither;
+			productReference = 3DFAF9D01D248139009D80B3 /* Wither.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3DFAF9E31D248139009D80B3 /* WitherTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3DFAF9FB1D248139009D80B3 /* Build configuration list for PBXNativeTarget "WitherTests" */;
+			buildPhases = (
+				3DFAF9E01D248139009D80B3 /* Sources */,
+				3DFAF9E11D248139009D80B3 /* Frameworks */,
+				3DFAF9E21D248139009D80B3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3DFAF9E61D248139009D80B3 /* PBXTargetDependency */,
+			);
+			name = WitherTests;
+			productName = WitherTests;
+			productReference = 3DFAF9E41D248139009D80B3 /* WitherTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3DFAF9EE1D248139009D80B3 /* WitherUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3DFAF9FE1D248139009D80B3 /* Build configuration list for PBXNativeTarget "WitherUITests" */;
+			buildPhases = (
+				3DFAF9EB1D248139009D80B3 /* Sources */,
+				3DFAF9EC1D248139009D80B3 /* Frameworks */,
+				3DFAF9ED1D248139009D80B3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3DFAF9F11D248139009D80B3 /* PBXTargetDependency */,
+			);
+			name = WitherUITests;
+			productName = WitherUITests;
+			productReference = 3DFAF9EF1D248139009D80B3 /* WitherUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3DFAF9C81D248139009D80B3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Amy Joscelyn";
+				TargetAttributes = {
+					3DFAF9CF1D248139009D80B3 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					3DFAF9E31D248139009D80B3 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 3DFAF9CF1D248139009D80B3;
+					};
+					3DFAF9EE1D248139009D80B3 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 3DFAF9CF1D248139009D80B3;
+					};
+				};
+			};
+			buildConfigurationList = 3DFAF9CB1D248139009D80B3 /* Build configuration list for PBXProject "Wither" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3DFAF9C71D248139009D80B3;
+			productRefGroup = 3DFAF9D11D248139009D80B3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3DFAF9CF1D248139009D80B3 /* Wither */,
+				3DFAF9E31D248139009D80B3 /* WitherTests */,
+				3DFAF9EE1D248139009D80B3 /* WitherUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3DFAF9CE1D248139009D80B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DFAF9DE1D248139009D80B3 /* LaunchScreen.storyboard in Resources */,
+				3DFAF9DB1D248139009D80B3 /* Assets.xcassets in Resources */,
+				3DFAF9D91D248139009D80B3 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DFAF9E21D248139009D80B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DFAF9ED1D248139009D80B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3DFAF9CC1D248139009D80B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DFAF9D61D248139009D80B3 /* ViewController.swift in Sources */,
+				3DFAF9D41D248139009D80B3 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DFAF9E01D248139009D80B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DFAF9E91D248139009D80B3 /* WitherTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DFAF9EB1D248139009D80B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DFAF9F41D248139009D80B3 /* WitherUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3DFAF9E61D248139009D80B3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3DFAF9CF1D248139009D80B3 /* Wither */;
+			targetProxy = 3DFAF9E51D248139009D80B3 /* PBXContainerItemProxy */;
+		};
+		3DFAF9F11D248139009D80B3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3DFAF9CF1D248139009D80B3 /* Wither */;
+			targetProxy = 3DFAF9F01D248139009D80B3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3DFAF9D71D248139009D80B3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3DFAF9D81D248139009D80B3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3DFAF9DC1D248139009D80B3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3DFAF9DD1D248139009D80B3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3DFAF9F61D248139009D80B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3DFAF9F71D248139009D80B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3DFAF9F91D248139009D80B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Wither/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AMY.Wither;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3DFAF9FA1D248139009D80B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Wither/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AMY.Wither;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		3DFAF9FC1D248139009D80B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = WitherTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AMY.WitherTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wither.app/Wither";
+			};
+			name = Debug;
+		};
+		3DFAF9FD1D248139009D80B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = WitherTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AMY.WitherTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wither.app/Wither";
+			};
+			name = Release;
+		};
+		3DFAF9FF1D248139009D80B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = WitherUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AMY.WitherUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Wither;
+			};
+			name = Debug;
+		};
+		3DFAFA001D248139009D80B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = WitherUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AMY.WitherUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Wither;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3DFAF9CB1D248139009D80B3 /* Build configuration list for PBXProject "Wither" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DFAF9F61D248139009D80B3 /* Debug */,
+				3DFAF9F71D248139009D80B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3DFAF9F81D248139009D80B3 /* Build configuration list for PBXNativeTarget "Wither" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DFAF9F91D248139009D80B3 /* Debug */,
+				3DFAF9FA1D248139009D80B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3DFAF9FB1D248139009D80B3 /* Build configuration list for PBXNativeTarget "WitherTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DFAF9FC1D248139009D80B3 /* Debug */,
+				3DFAF9FD1D248139009D80B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3DFAF9FE1D248139009D80B3 /* Build configuration list for PBXNativeTarget "WitherUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DFAF9FF1D248139009D80B3 /* Debug */,
+				3DFAFA001D248139009D80B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3DFAF9C81D248139009D80B3 /* Project object */;
+}
