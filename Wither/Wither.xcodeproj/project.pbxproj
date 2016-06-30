@@ -15,6 +15,11 @@
 		3DFAF9E91D248139009D80B3 /* WitherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFAF9E81D248139009D80B3 /* WitherTests.swift */; };
 		3DFAF9F41D248139009D80B3 /* WitherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFAF9F31D248139009D80B3 /* WitherUITests.swift */; };
 		3DFAFA021D2482E7009D80B3 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFAFA011D2482E7009D80B3 /* Card.swift */; };
+		3DFAFA041D257072009D80B3 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFAFA031D257072009D80B3 /* Deck.swift */; };
+		3DFAFA061D25738D009D80B3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFAFA051D25738D009D80B3 /* Player.swift */; };
+		3DFAFA081D257A94009D80B3 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFAFA071D257A94009D80B3 /* Game.swift */; };
+		3DFAFA0A1D258B7F009D80B3 /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DFAFA091D258B7F009D80B3 /* CardView.xib */; };
+		3DFAFA0C1D258C70009D80B3 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFAFA0B1D258C70009D80B3 /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,11 @@
 		3DFAF9F31D248139009D80B3 /* WitherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WitherUITests.swift; sourceTree = "<group>"; };
 		3DFAF9F51D248139009D80B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DFAFA011D2482E7009D80B3 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		3DFAFA031D257072009D80B3 /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		3DFAFA051D25738D009D80B3 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		3DFAFA071D257A94009D80B3 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		3DFAFA091D258B7F009D80B3 /* CardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
+		3DFAFA0B1D258C70009D80B3 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +111,13 @@
 			children = (
 				3DFAF9D31D248139009D80B3 /* AppDelegate.swift */,
 				3DFAF9D51D248139009D80B3 /* ViewController.swift */,
+				3DFAFA0B1D258C70009D80B3 /* CardView.swift */,
 				3DFAFA011D2482E7009D80B3 /* Card.swift */,
+				3DFAFA031D257072009D80B3 /* Deck.swift */,
+				3DFAFA051D25738D009D80B3 /* Player.swift */,
+				3DFAFA071D257A94009D80B3 /* Game.swift */,
 				3DFAF9D71D248139009D80B3 /* Main.storyboard */,
+				3DFAFA091D258B7F009D80B3 /* CardView.xib */,
 				3DFAF9DA1D248139009D80B3 /* Assets.xcassets */,
 				3DFAF9DC1D248139009D80B3 /* LaunchScreen.storyboard */,
 				3DFAF9DF1D248139009D80B3 /* Info.plist */,
@@ -234,6 +249,7 @@
 			files = (
 				3DFAF9DE1D248139009D80B3 /* LaunchScreen.storyboard in Resources */,
 				3DFAF9DB1D248139009D80B3 /* Assets.xcassets in Resources */,
+				3DFAFA0A1D258B7F009D80B3 /* CardView.xib in Resources */,
 				3DFAF9D91D248139009D80B3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,8 +275,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DFAFA0C1D258C70009D80B3 /* CardView.swift in Sources */,
+				3DFAFA041D257072009D80B3 /* Deck.swift in Sources */,
+				3DFAFA081D257A94009D80B3 /* Game.swift in Sources */,
 				3DFAF9D61D248139009D80B3 /* ViewController.swift in Sources */,
 				3DFAFA021D2482E7009D80B3 /* Card.swift in Sources */,
+				3DFAFA061D25738D009D80B3 /* Player.swift in Sources */,
 				3DFAF9D41D248139009D80B3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
