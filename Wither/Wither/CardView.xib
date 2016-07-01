@@ -17,7 +17,7 @@
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="♤A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wT3-9v-1at">
                     <rect key="frame" x="0.0" y="0.0" width="60" height="80"/>
-                    <color key="backgroundColor" red="1" green="0.70182943289999999" blue="0.69140465790000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.70906170664645907" green="1" blue="0.74428995584830515" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                     <color key="textColor" red="0.245713141" green="0.245713141" blue="0.245713141" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
