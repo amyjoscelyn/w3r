@@ -1,10 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="tHW-67-kxN">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="qXx-Lk-CZZ">
+            <objects>
+                <viewController id="tHW-67-kxN" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ISZ-zu-axu"/>
+                        <viewControllerLayoutGuide type="bottom" id="FO1-cd-wx1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ddk-zg-Kaa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgY-hp-d7p">
+                                <rect key="frame" x="89" y="341" width="237" height="54"/>
+                                <color key="backgroundColor" red="0.40694346749999999" green="0.5739182692" blue="0.42716160330000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="PLAY"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="1GH-fR-E0e"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gNF-K8-AV7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-417" y="255"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -14,107 +44,91 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aK9-8X-bu5" customClass="CardView" customModule="Wither" customModuleProvider="target">
-                                <rect key="frame" x="55" y="500" width="60" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mDT-Mm-qhl" customClass="CardView" customModule="Wither" customModuleProvider="target">
-                                <rect key="frame" x="170" y="500" width="60" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tQq-RX-FAV" customClass="CardView" customModule="Wither" customModuleProvider="target">
-                                <rect key="frame" x="283" y="500" width="60" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nP0-2f-Ey8" customClass="CardView" customModule="Wither" customModuleProvider="target">
-                                <rect key="frame" x="55" y="20" width="60" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d8D-a1-zB8" customClass="CardView" customModule="Wither" customModuleProvider="target">
-                                <rect key="frame" x="170" y="20" width="60" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="saA-5z-P2r" customClass="CardView" customModule="Wither" customModuleProvider="target">
-                                <rect key="frame" x="283" y="20" width="60" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bzn-dU-Oep" customClass="CardView" customModule="Wither" customModuleProvider="target">
-                                <rect key="frame" x="55" y="201" width="60" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JhV-8Y-atc" customClass="CardView" customModule="Wither" customModuleProvider="target">
-                                <rect key="frame" x="170" y="201" width="60" height="80"/>
+                                <rect key="frame" x="177" y="244" width="60" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1tb-O2-g3Q" customClass="CardView" customModule="Wither" customModuleProvider="target">
-                                <rect key="frame" x="283" y="201" width="60" height="80"/>
+                                <rect key="frame" x="291" y="244" width="60" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MFc-9n-LGx" customClass="CardView" customModule="Wither" customModuleProvider="target">
-                                <rect key="frame" x="55" y="310" width="60" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cUe-xw-qvG" customClass="CardView" customModule="Wither" customModuleProvider="target">
-                                <rect key="frame" x="170" y="310" width="60" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVs-15-7sl">
-                                <rect key="frame" x="0.0" y="298" width="400" height="4"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="4" id="jdd-er-1OE"/>
-                                </constraints>
-                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="sHg-3v-hor">
+                                <rect key="frame" x="110" y="414" width="180" height="80"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MFc-9n-LGx" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="60" height="80"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cUe-xw-qvG" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                                        <rect key="frame" x="60" y="0.0" width="60" height="80"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="als-s4-u8Y" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                                        <rect key="frame" x="120" y="0.0" width="60" height="80"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                            </stackView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kvU-YA-pYH" customClass="CardView" customModule="Wither" customModuleProvider="target">
-                                <rect key="frame" x="320" y="412" width="60" height="80"/>
+                                <rect key="frame" x="20" y="636" width="60" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uMs-Jh-NGm" customClass="CardView" customModule="Wither" customModuleProvider="target">
-                                <rect key="frame" x="20" y="412" width="60" height="80"/>
+                                <rect key="frame" x="242" y="636" width="60" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uwr-LI-udl" customClass="CardView" customModule="Wither" customModuleProvider="target">
-                                <rect key="frame" x="20" y="108" width="60" height="80"/>
+                                <rect key="frame" x="110" y="28" width="60" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="thy-S7-ZWt" customClass="CardView" customModule="Wither" customModuleProvider="target">
-                                <rect key="frame" x="320" y="108" width="60" height="80"/>
+                                <rect key="frame" x="334" y="28" width="60" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="als-s4-u8Y" customClass="CardView" customModule="Wither" customModuleProvider="target">
-                                <rect key="frame" x="283" y="310" width="60" height="80"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bzn-dU-Oep" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                                <rect key="frame" x="63" y="244" width="60" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="biY-ud-goV">
+                                <rect key="frame" x="63" y="353" width="288" height="30"/>
+                                <color key="backgroundColor" red="0.40694346745635118" green="0.57391826923076916" blue="0.42716160326630487" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="PLAY"/>
+                                <connections>
+                                    <action selector="playGameButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bUK-7d-tyU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2EN-4w-U8a">
+                                <rect key="frame" x="20" y="20" width="35" height="33"/>
+                                <color key="backgroundColor" red="0.40694346749999999" green="0.5739182692" blue="0.42716160330000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="≣">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="settingsButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nn5-TZ-8RC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="vVs-15-7sl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6NX-Rj-jqW"/>
-                            <constraint firstItem="vVs-15-7sl" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="LqO-Kn-a9G"/>
-                            <constraint firstItem="vVs-15-7sl" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="vEX-Df-DPB"/>
-                        </constraints>
                     </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="400" height="600"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
-                        <outlet property="houseDeckView" destination="uwr-LI-udl" id="RtB-c6-YXI"/>
-                        <outlet property="houseDiscardView" destination="thy-S7-ZWt" id="Esk-Eq-WnG"/>
-                        <outlet property="houseHand1View" destination="saA-5z-P2r" id="iRd-bw-DnC"/>
-                        <outlet property="houseHand2View" destination="d8D-a1-zB8" id="Te4-sA-K6B"/>
-                        <outlet property="houseHand3View" destination="nP0-2f-Ey8" id="qXI-DW-qvc"/>
-                        <outlet property="houseWar1View" destination="bzn-dU-Oep" id="akd-z3-SFl"/>
-                        <outlet property="houseWar2View" destination="JhV-8Y-atc" id="Rf3-lu-pMX"/>
-                        <outlet property="houseWar3View" destination="1tb-O2-g3Q" id="Myq-2b-JFZ"/>
+                        <outlet property="aiDeckView" destination="thy-S7-ZWt" id="wHB-9J-q3C"/>
+                        <outlet property="aiDiscardView" destination="uwr-LI-udl" id="T0c-b6-d8b"/>
+                        <outlet property="aiWar1View" destination="bzn-dU-Oep" id="Oy0-LP-isw"/>
+                        <outlet property="aiWar2View" destination="JhV-8Y-atc" id="EVn-tj-jqg"/>
+                        <outlet property="aiWar3View" destination="1tb-O2-g3Q" id="wOB-SK-syp"/>
+                        <outlet property="playGameButton" destination="biY-ud-goV" id="izx-bM-HU5"/>
                         <outlet property="playerDeckView" destination="kvU-YA-pYH" id="ggu-Ud-7sx"/>
                         <outlet property="playerDiscardView" destination="uMs-Jh-NGm" id="zgK-Ft-Eor"/>
-                        <outlet property="playerHand1View" destination="aK9-8X-bu5" id="Rfq-de-QPC"/>
-                        <outlet property="playerHand2View" destination="mDT-Mm-qhl" id="MN2-Bi-dcz"/>
-                        <outlet property="playerHand3View" destination="tQq-RX-FAV" id="LhG-gN-dV8"/>
                         <outlet property="playerWar1View" destination="MFc-9n-LGx" id="7sC-v4-AsY"/>
                         <outlet property="playerWar2View" destination="cUe-xw-qvG" id="ilj-oJ-yyt"/>
                         <outlet property="playerWar3View" destination="als-s4-u8Y" id="n5d-9d-u45"/>
+                        <outlet property="settingsButton" destination="2EN-4w-U8a" id="EU7-63-ykv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

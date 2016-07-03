@@ -12,28 +12,20 @@ class ViewController: UIViewController
 {
     @IBOutlet weak var playerDeckView: CardView!
     @IBOutlet weak var playerDiscardView: CardView!
-    @IBOutlet weak var playerHand1View: CardView!
-    @IBOutlet weak var playerHand2View: CardView!
-    @IBOutlet weak var playerHand3View: CardView!
     
-    @IBOutlet weak var houseDeckView: CardView!
-    @IBOutlet weak var houseDiscardView: CardView!
-    @IBOutlet weak var houseHand1View: CardView!
-    @IBOutlet weak var houseHand2View: CardView!
-    @IBOutlet weak var houseHand3View: CardView!
+    @IBOutlet weak var aiDeckView: CardView!
+    @IBOutlet weak var aiDiscardView: CardView!
     
     @IBOutlet weak var playerWar1View: CardView!
     @IBOutlet weak var playerWar2View: CardView!
     @IBOutlet weak var playerWar3View: CardView!
     
-    @IBOutlet weak var houseWar1View: CardView!
-    @IBOutlet weak var houseWar2View: CardView!
-    @IBOutlet weak var houseWar3View: CardView!
+    @IBOutlet weak var aiWar1View: CardView!
+    @IBOutlet weak var aiWar2View: CardView!
+    @IBOutlet weak var aiWar3View: CardView!
     
-    
-    
-    
-    
+    @IBOutlet weak var playGameButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
     
     let game: Game = Game.init()
 
@@ -41,8 +33,20 @@ class ViewController: UIViewController
     {
         super.viewDidLoad()
         
-        self.houseDeckView.faceUp = false
+        self.aiDeckView.faceUp = false
         self.playerDeckView.faceUp = false
+        
+        self.game.deal()
+    }
+    
+    @IBAction func playGameButtonTapped(sender: AnyObject)
+    {
+        
+    }
+    
+    @IBAction func settingsButtonTapped(sender: AnyObject)
+    {
+        
     }
 }
 

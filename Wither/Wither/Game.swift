@@ -10,6 +10,26 @@ import Foundation
 
 class Game
 {
+    let aiDeck: Deck
+    let playerDeck: Deck
+    let aiPlayer: AIPlayer
+    let player: Player
+    var cardsInPlay: [Card] = []
+    
+    init()
+    {
+        self.aiDeck = Deck.init()
+        self.playerDeck = Deck.init()
+        self.aiPlayer = AIPlayer.init(name: "AI")
+        self.player = Player.init(name: "Player")
+    }
+    
+    func deal()
+    {
+        self.aiDeck.shuffle()
+        self.playerDeck.shuffle()
+    }
+    
     /*
      W3r ?? w3r ?? W3R [Wither] or {Wither}
      
