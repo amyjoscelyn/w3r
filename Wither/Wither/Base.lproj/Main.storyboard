@@ -3,6 +3,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -55,26 +58,30 @@
                                 <rect key="frame" x="291" y="244" width="60" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="sHg-3v-hor">
-                                <rect key="frame" x="110" y="414" width="180" height="80"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="sHg-3v-hor">
+                                <rect key="frame" x="62" y="414" width="290" height="80"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MFc-9n-LGx" customClass="CardView" customModule="Wither" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="80"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cUe-xw-qvG" customClass="CardView" customModule="Wither" customModuleProvider="target">
-                                        <rect key="frame" x="60" y="0.0" width="60" height="80"/>
+                                        <rect key="frame" x="115" y="0.0" width="60" height="80"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="als-s4-u8Y" customClass="CardView" customModule="Wither" customModuleProvider="target">
-                                        <rect key="frame" x="120" y="0.0" width="60" height="80"/>
+                                        <rect key="frame" x="230" y="0.0" width="60" height="80"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kvU-YA-pYH" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kvU-YA-pYH" customClass="CardView" customModule="Wither" customModuleProvider="target">
                                 <rect key="frame" x="20" y="636" width="60" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="kvU-YA-pYH" secondAttribute="height" multiplier="3:4" id="SSe-SE-xbh"/>
+                                    <constraint firstAttribute="width" constant="60" id="peW-Qm-k32"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uMs-Jh-NGm" customClass="CardView" customModule="Wither" customModuleProvider="target">
                                 <rect key="frame" x="242" y="636" width="60" height="80"/>
@@ -84,7 +91,7 @@
                                 <rect key="frame" x="110" y="28" width="60" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="thy-S7-ZWt" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="thy-S7-ZWt" customClass="CardView" customModule="Wither" customModuleProvider="target">
                                 <rect key="frame" x="334" y="28" width="60" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -92,8 +99,8 @@
                                 <rect key="frame" x="63" y="244" width="60" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="biY-ud-goV">
-                                <rect key="frame" x="63" y="353" width="288" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="biY-ud-goV">
+                                <rect key="frame" x="62" y="353" width="290" height="30"/>
                                 <color key="backgroundColor" red="0.40694346745635118" green="0.57391826923076916" blue="0.42716160326630487" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="WAR"/>
@@ -101,9 +108,13 @@
                                     <action selector="playGameButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bUK-7d-tyU"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2EN-4w-U8a">
-                                <rect key="frame" x="20" y="20" width="35" height="33"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2EN-4w-U8a">
+                                <rect key="frame" x="20" y="20" width="36" height="36"/>
                                 <color key="backgroundColor" red="0.40694346749999999" green="0.5739182692" blue="0.42716160330000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="36" id="2sS-dc-liQ"/>
+                                    <constraint firstAttribute="width" secondItem="2EN-4w-U8a" secondAttribute="height" multiplier="1:1" id="9XT-9K-EQr"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="≣">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -114,6 +125,22 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="2EN-4w-U8a" secondAttribute="leading" id="9tj-kI-Ikk"/>
+                            <constraint firstItem="2EN-4w-U8a" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="EyZ-FW-qoX"/>
+                            <constraint firstItem="thy-S7-ZWt" firstAttribute="width" secondItem="kvU-YA-pYH" secondAttribute="width" id="LWE-pj-gD5"/>
+                            <constraint firstItem="thy-S7-ZWt" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="OLT-D2-8te"/>
+                            <constraint firstItem="thy-S7-ZWt" firstAttribute="height" secondItem="kvU-YA-pYH" secondAttribute="height" id="UUD-nl-JZh"/>
+                            <constraint firstItem="biY-ud-goV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="W7o-86-wZs"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="kvU-YA-pYH" secondAttribute="leading" id="Wr7-hp-yED"/>
+                            <constraint firstItem="sHg-3v-hor" firstAttribute="top" secondItem="biY-ud-goV" secondAttribute="bottom" constant="31" id="Xbz-7Q-PBB"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kvU-YA-pYH" secondAttribute="bottom" constant="20" id="acn-98-0IP"/>
+                            <constraint firstItem="biY-ud-goV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dha-Ts-B7p"/>
+                            <constraint firstItem="sHg-3v-hor" firstAttribute="width" secondItem="biY-ud-goV" secondAttribute="width" id="g7H-dX-LEV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="thy-S7-ZWt" secondAttribute="trailing" id="hed-SZ-15Y"/>
+                            <constraint firstItem="sHg-3v-hor" firstAttribute="centerX" secondItem="biY-ud-goV" secondAttribute="centerX" id="nl9-Ie-qbi"/>
+                            <constraint firstItem="biY-ud-goV" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.7" id="tFL-It-QRw"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>

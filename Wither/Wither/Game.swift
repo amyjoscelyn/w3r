@@ -13,16 +13,10 @@ let deck_size = 52
 class Game
 {
     let deck1: Deck
-    let deck2: Deck
+    let deck2: Deck //two decks are only used when longer gameplay is requested
     let player: Player
     let ai: AIPlayer
     var cardsInPlay: [Card] = []
-    
-//    let aiDeck: Deck
-//    let playerDeck: Deck
-//    let aiPlayer: AIPlayer
-//    let player: Player
-//    var cardsInPlay: [Card] = []
     
     init()
     {
@@ -31,14 +25,6 @@ class Game
         self.player = Player.init(name: "Player")
         self.ai = AIPlayer.init(name: "AI")
     }
-    
-//    init()
-//    {
-//        self.aiDeck = Deck.init()
-//        self.playerDeck = Deck.init()
-//        self.aiPlayer = AIPlayer.init(name: "AI")
-//        self.player = Player.init(name: "Player")
-//    }
     
     func deal()
     {
@@ -49,6 +35,7 @@ class Game
         
         for i in 0..<deck_size
         { //change this!!!  it doesn't need to alternate
+            //except when shorter gameplay is requested
             //can I do a card in deck kind of loop?
             if i % 2 == 0
             {
@@ -65,21 +52,6 @@ class Game
         print("cards dealt out: \(self.ai.deck.count)")
     }
     
-//    func deal()
-//    {
-//        self.aiDeck.shuffle()
-//        self.playerDeck.shuffle()
-//        
-//        for _ in 0..<52
-//        {
-//            self.aiPlayer.deck.append(self.aiDeck.drawCard())
-//            self.player.deck.append(self.playerDeck.drawCard())
-//        }
-//        print("player deck contains \(self.playerDeck) cards")
-//        print("but the player's deck has \(self.player.deck.count) cards in it")
-//        print("card 1: \(self.player.deck[0])")
-//    }
-    
     func round()
     {//as long as there is still at least a single card left in their deck this can be called
         if self.ai.hand.count == 0
@@ -92,7 +64,7 @@ class Game
             self.player.drawCardsToHand()
         }
     }
-
+    
     /*
      W3r ?? w3r ?? W3R [Wither] or {Wither}
      
@@ -103,6 +75,10 @@ class Game
      
      Jokers can be switched on and off.
      
+     Jokers can be played as Assassins or Berserkers.
+     Assassins can kill any face card they come across, but are killed by numbered cards.  When two jokers face off, it can either be treated as they cross paths in the night (safely, both jokers returned and each war hand resolved individually) or they cancel each other out.
+     Berserkers play like superpowered Aces--they kill any card they face, but are discarded at the end of the round.  Two jokers facing each other would negate each other and both be discarded, the remaining faceoffs resolved individually.
+     
      Cards at the end less than three can be played one at a time to reduce the points of the other player.
      
      Play comes in Campaigns: Short, Medium, and Long.
@@ -111,13 +87,18 @@ class Game
      Medium-26 points
      Long-52 points
      
-     Points are the amount of cards remaining at the end of the battle.  The winner and loser can both have points remaining.
+     Points are the amount of cards remaining at the end of the battle.  The winner and loser can both have points remaining.  Cumulative until the campaign point total is reached or surpassed by one player.
      
-     Duels: the winner survives, the loser is killed, and for ties both are taken back into the hand.
+     Duels: the winner survives, the loser is killed, and for ties both are taken back into the hand.  Can be played with the One-Shot variant, or To The Death.  Also the Challenger/Upstart mode.
+     One-Shot: with the roll of a single die per face-card duel, the winner of the roll wins the duel, getting their shot off successfully.  In a tie, both would be misfires, returning the cards back into their players' deck, or they would both hit.  An option.  In a tie, the other faceoffs would be resolved individually.
+     To The Death: Same as above, but in a tie, the dice are rolled again until there is a clear winner.  This means there will always be best 2/3 for each round.
+     Upstart: Duels are played whenever face cards are played against each other.  Dice are awarded based on face card value: 1 for J, 2 for Q, 3 for K, 4 for A.  All appropriate dice are rolled at the same time, and the collective total dice value for each side is pitted against the other.  This is weighted towards the higher value card side, but with a really good roll, there is a possibility for a J to take an A.  Tied values can have the same options of play as One-Shot.
      
      Hands are played best two out of three--loser discards all cards from the round.  Winner keeps all cards unless one hand was beaten out, in which case that single card (or war) is destroyed.
      
      When there's a war, the outcome is treated as the outcome for a normal hand, once it's been resolved.
+     
+     If the war isn't needed to determine the winner of the round, the round's loser gets to decide whether they want to push for the war.  Logically, it only makes sense if the war is for good cards--the loser is going to lose that card regardless of how the war turns out, but if they win the war it means the round's winner must discard that card.
      
      Classes:
      Card (sets up card labels)
