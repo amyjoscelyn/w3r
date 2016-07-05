@@ -96,7 +96,7 @@
                                 <rect key="frame" x="63" y="353" width="288" height="30"/>
                                 <color key="backgroundColor" red="0.40694346745635118" green="0.57391826923076916" blue="0.42716160326630487" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="PLAY"/>
+                                <state key="normal" title="WAR"/>
                                 <connections>
                                     <action selector="playGameButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bUK-7d-tyU"/>
                                 </connections>

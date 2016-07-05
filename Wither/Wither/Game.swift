@@ -8,28 +8,91 @@
 
 import Foundation
 
+let deck_size = 52
+
 class Game
 {
-    let aiDeck: Deck
-    let playerDeck: Deck
-    let aiPlayer: AIPlayer
+    let deck1: Deck
+    let deck2: Deck
     let player: Player
+    let ai: AIPlayer
     var cardsInPlay: [Card] = []
+    
+//    let aiDeck: Deck
+//    let playerDeck: Deck
+//    let aiPlayer: AIPlayer
+//    let player: Player
+//    var cardsInPlay: [Card] = []
     
     init()
     {
-        self.aiDeck = Deck.init()
-        self.playerDeck = Deck.init()
-        self.aiPlayer = AIPlayer.init(name: "AI")
+        self.deck1 = Deck.init()
+        self.deck2 = Deck.init()
         self.player = Player.init(name: "Player")
+        self.ai = AIPlayer.init(name: "AI")
     }
+    
+//    init()
+//    {
+//        self.aiDeck = Deck.init()
+//        self.playerDeck = Deck.init()
+//        self.aiPlayer = AIPlayer.init(name: "AI")
+//        self.player = Player.init(name: "Player")
+//    }
     
     func deal()
     {
-        self.aiDeck.shuffle()
-        self.playerDeck.shuffle()
+        self.player.deck.removeAll()
+        
+        self.deck1.shuffle()
+        self.deck2.shuffle()
+        
+        for i in 0..<deck_size
+        { //change this!!!  it doesn't need to alternate
+            //can I do a card in deck kind of loop?
+            if i % 2 == 0
+            {
+                self.player.deck.append(self.deck1.drawCard())
+                self.ai.deck.append(self.deck2.drawCard())
+            }
+            else
+            {
+                self.player.deck.append(self.deck1.drawCard())
+                self.ai.deck.append(self.deck2.drawCard())
+            }
+        }
+        print("cards dealt out: \(self.player.deck.count)")
+        print("cards dealt out: \(self.ai.deck.count)")
     }
     
+//    func deal()
+//    {
+//        self.aiDeck.shuffle()
+//        self.playerDeck.shuffle()
+//        
+//        for _ in 0..<52
+//        {
+//            self.aiPlayer.deck.append(self.aiDeck.drawCard())
+//            self.player.deck.append(self.playerDeck.drawCard())
+//        }
+//        print("player deck contains \(self.playerDeck) cards")
+//        print("but the player's deck has \(self.player.deck.count) cards in it")
+//        print("card 1: \(self.player.deck[0])")
+//    }
+    
+    func round()
+    {//as long as there is still at least a single card left in their deck this can be called
+        if self.ai.hand.count == 0
+        {
+            self.ai.drawCardsToHand()
+        }
+        
+        if self.player.hand.count == 0
+        {
+            self.player.drawCardsToHand()
+        }
+    }
+
     /*
      W3r ?? w3r ?? W3R [Wither] or {Wither}
      

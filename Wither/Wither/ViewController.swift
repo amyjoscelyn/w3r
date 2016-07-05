@@ -32,13 +32,59 @@ class ViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+
         self.aiDeckView.faceUp = false
         self.playerDeckView.faceUp = false
         
+        self.aiWar1View.card = nil
+        self.aiWar2View.card = nil
+        self.aiWar3View.card = nil
+        
+        self.playerWar1View.card = nil
+        self.playerWar2View.card = nil
+        self.playerWar3View.card = nil
+        
+        self.aiDiscardView.card = nil;
+        self.playerDiscardView.card = nil;
+        
+        let deckTapGesture = UITapGestureRecognizer(target: self, action: #selector(ViewController.deckTapped))
+        self.playerDeckView.addGestureRecognizer(deckTapGesture)
+
+        self.playerDeckView.userInteractionEnabled = true
+        
         self.game.deal()
     }
-    
+
+    func deckTapped()
+    {
+        print("Deck has been tapped!")
+        self.newRound()
+    }
+
+    func newRound()
+    {
+        //decks are not getting instantiated
+        self.game.round()
+        
+        if self.game.player.hand.count == 3
+        {
+            self.playerWar1View.card = self.game.player.hand[0]
+            self.playerWar2View.card = self.game.player.hand[1]
+            self.playerWar3View.card = self.game.player.hand[2]
+            
+            self.game.player.hand.removeAll()
+        }
+        
+        if self.game.ai.hand.count == 3
+        {
+            self.aiWar1View.card = self.game.ai.hand[0]
+            self.aiWar2View.card = self.game.ai.hand[1]
+            self.aiWar3View.card = self.game.ai.hand[2]
+            
+            self.game.ai.hand.removeAll()
+        }
+    }
+
     @IBAction func playGameButtonTapped(sender: AnyObject)
     {
         

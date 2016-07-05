@@ -43,16 +43,16 @@ class Player
         //does this cover what happens if there are no cards left?  i feel like that condition should be satisfied elsewhere, in a gameIsOver kind of way
     }
     
-    func supportingCardForWar()
-    {
-        if self.deck.count > 1
-        {
-            self.cardForWar = self.deck.removeFirst()
-        }
-    }
+    //    func supportingCardForWar()
+    //    {
+    //        if self.deck.count > 1
+    //        {
+    //            self.cardForWar = self.deck.removeFirst()
+    //        }
+    //    }
     
-    func didWin(cards: [Card])
-    {
-        self.deck.appendContentsOf(cards)
-    }
+        func didWin(cards: [Card])
+        {
+            self.deck.appendContentsOf(cards)
+        }
 }

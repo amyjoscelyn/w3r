@@ -12,6 +12,9 @@ class Deck
 {
     private var dealtCards: [Card] = []
     private var undealtCards: [Card] = []
+    var description: String {
+        return "Cards Remaining: \(undealtCards.count) Cards Dealt: \(dealtCards.count)"
+    }
     
     init()
     {
@@ -30,6 +33,14 @@ class Deck
         }
     }
     
+    func drawCard() -> Card
+    {
+        let lastIndex = self.undealtCards.count - 1
+        let card = self.undealtCards.removeAtIndex(lastIndex)
+        self.dealtCards.append(card)
+        return card
+    }
+    
     func shuffle()
     {
         self.dealtCards.appendContentsOf(self.undealtCards)
@@ -45,13 +56,5 @@ class Deck
             
             self.undealtCards.append(card)
         }
-    }
-    
-    func drawCard() -> Card
-    {
-        let lastIndex = self.undealtCards.count - 1
-        let card = self.undealtCards.removeAtIndex(lastIndex)
-        self.dealtCards.append(card)
-        return card
     }
 }
