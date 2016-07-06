@@ -58,7 +58,7 @@
                                 <rect key="frame" x="291" y="244" width="60" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="sHg-3v-hor">
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="sHg-3v-hor">
                                 <rect key="frame" x="62" y="414" width="290" height="80"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MFc-9n-LGx" customClass="CardView" customModule="Wither" customModuleProvider="target">
@@ -123,6 +123,36 @@
                                     <action selector="settingsButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nn5-TZ-8RC"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4RD-Hb-tDd">
+                                <rect key="frame" x="121" y="513" width="38" height="30"/>
+                                <color key="backgroundColor" red="0.40694346749999999" green="0.5739182692" blue="0.42716160330000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Swap">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="swapCards1And2ButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h46-mO-PNr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t2z-BY-gpk">
+                                <rect key="frame" x="188" y="560" width="38" height="30"/>
+                                <color key="backgroundColor" red="0.40694346749999999" green="0.5739182692" blue="0.42716160330000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Swap">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="swapCards1And3ButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xKb-72-cLU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O28-Y0-29L">
+                                <rect key="frame" x="247" y="513" width="38" height="30"/>
+                                <color key="backgroundColor" red="0.40694346749999999" green="0.5739182692" blue="0.42716160330000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Swap">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="swapCards2And3ButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MDT-ok-TdB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -156,6 +186,9 @@
                         <outlet property="playerWar2View" destination="cUe-xw-qvG" id="ilj-oJ-yyt"/>
                         <outlet property="playerWar3View" destination="als-s4-u8Y" id="n5d-9d-u45"/>
                         <outlet property="settingsButton" destination="2EN-4w-U8a" id="EU7-63-ykv"/>
+                        <outlet property="swapCards1And2Button" destination="4RD-Hb-tDd" id="f3P-83-VM1"/>
+                        <outlet property="swapCards1And3Button" destination="t2z-BY-gpk" id="SN7-ca-mIV"/>
+                        <outlet property="swapCards2And3Button" destination="O28-Y0-29L" id="xZm-TX-boP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

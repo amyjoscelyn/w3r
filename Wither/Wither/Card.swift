@@ -10,19 +10,19 @@ import Foundation
 
 class Card
 {
-    class func validSuits() -> [String]
+    class func allSuits() -> [String]
     {
         let spades = "♠️"
+        let clubs = "♣️"
         let hearts = "♥️"
         let diamonds = "♦️"
-        let clubs = "♣️"
         
-        return [spades, hearts, diamonds, clubs]
+        return [ spades, clubs, hearts, diamonds ]
     }
     
-    class func validRanks() -> [String]
+    class func allRanks() -> [String]
     {
-        return ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+        return [ "A", "K", "Q", "J", "10", "9", "8", "7", "6", "5", "4", "3", "2" ]
     }
     
     let suit: String
@@ -30,35 +30,23 @@ class Card
     let cardLabel: String
     let cardValue: Int
     
-    var description: String
-    {
-        return self.cardLabel
-    }
-    
     init(suit: String, rank: String)
     {
         self.suit = suit
         self.rank = rank
-        self.cardLabel = "\(suit)\(rank)"
+        self.cardLabel = suit + rank
         
-        if rank == "J"
+        switch rank
         {
-            self.cardValue = 11
-        }
-        else if rank == "Q"
-        {
-            self.cardValue = 12
-        }
-        else if rank == "K"
-        {
-            self.cardValue = 13
-        }
-        else if rank == "A"
-        {
+        case "A":
             self.cardValue = 14
-        }
-        else
-        {
+        case "K":
+            self.cardValue = 13
+        case "Q":
+            self.cardValue = 12
+        case "J":
+            self.cardValue = 11
+        default:
             self.cardValue = Int(rank)!
         }
     }

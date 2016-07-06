@@ -27,10 +27,14 @@ class ViewController: UIViewController
     @IBOutlet weak var playGameButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
     
+    @IBOutlet weak var swapCards1And2Button: UIButton!
+    @IBOutlet weak var swapCards2And3Button: UIButton!
+    @IBOutlet weak var swapCards1And3Button: UIButton!
+    
     var lastLocation: CGPoint = CGPointMake(0, 0)
     var deckOriginalCenter: CGPoint = CGPointMake(0, 0)
     
-    let game: Game = Game.init()
+    let game = Game.init()
     
     override func viewDidLoad()
     {
@@ -66,7 +70,7 @@ class ViewController: UIViewController
         
         self.panGestures()
         
-        self.game.deal()
+        self.game.startGame()
     }
     
     func panGestures()
@@ -136,40 +140,23 @@ class ViewController: UIViewController
     
     func newRound()
     {
-        self.game.round()
-        
-        if self.game.player.hand.count == 3
-        {
-            self.playerWar1View.card = self.game.player.hand[0]
-            self.playerWar2View.card = self.game.player.hand[1]
-            self.playerWar3View.card = self.game.player.hand[2]
-            
-            self.game.player.hand.removeAll()
-        }
-        
-        if self.game.ai.hand.count == 3
-        {
-            self.aiWar1View.card = self.game.ai.hand[0]
-            self.aiWar2View.card = self.game.ai.hand[1]
-            self.aiWar3View.card = self.game.ai.hand[2]
-            
-            self.game.ai.hand.removeAll()
-            
-            //***************************************
-            //for testing purposes, this code can be commented out
-            self.aiWar1View.faceUp = false
-            self.aiWar2View.faceUp = false
-            self.aiWar3View.faceUp = false
-            //***************************************
-        }
+        self.game.drawHands()
     }
     
-    /*
-     Next steps: more simple autolayout of views.
-     Then put a pan gesture recognizer on a single view, adjusting its center point.
-     Make sure it can be moved around.
-     Play around with it.
-     */
+    func awardRound(cardResult1: String, cardResult2: String, cardResult3: String)
+    {
+        /*
+         i guess to start I can put them all in an array.  If any of them are wars, I can do contains War, right?
+         
+         if all three are the same (and not wars), then that player is the winner wholeheartedly of the round.  the other is the loser.
+         
+         if two of the three are the same (and not wars), then that player is the winner, the other the loser.
+         if the third is a war, then the loser decides if she wants to press the war
+         if the third result is for the loser, the winner has to discard that card
+         
+         else there is a war or more that needs to be resolved.
+         */
+    }
     
     @IBAction func playGameButtonTapped(sender: AnyObject)
     {
@@ -187,5 +174,20 @@ class ViewController: UIViewController
     {
         
     }
+    
+    @IBAction func swapCards1And2ButtonTapped(sender: AnyObject)
+    {
+        
+    }
+    
+    @IBAction func swapCards2And3ButtonTapped(sender: AnyObject)
+    {
+        
+    }
+    
+    @IBAction func swapCards1And3ButtonTapped(sender: AnyObject)
+    {
+        
+    }    
 }
 

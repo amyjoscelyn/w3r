@@ -10,51 +10,38 @@ import Foundation
 
 class Deck
 {
-    private var dealtCards: [Card] = []
-    private var undealtCards: [Card] = []
-    var description: String {
-        return "Cards Remaining: \(undealtCards.count) Cards Dealt: \(dealtCards.count)"
-    }
+    var cards: [Card] = []
     
     init()
     {
-        let suits = Card.validSuits()
-        let ranks = Card.validRanks()
-        
-        var card: Card
+        let suits = Card.allSuits()
+        let ranks = Card.allRanks()
         
         for suit in suits
         {
             for rank in ranks
             {
-                card = Card.init(suit: suit, rank: rank)
-                self.undealtCards.append(card)
+                let card = (Card.init(suit: suit, rank: rank))
+                cards.append(card)
             }
         }
     }
     
-    func drawCard() -> Card
-    {
-        let lastIndex = self.undealtCards.count - 1
-        let card = self.undealtCards.removeAtIndex(lastIndex)
-        self.dealtCards.append(card)
-        return card
-    }
-    
     func shuffle()
     {
-        self.dealtCards.appendContentsOf(self.undealtCards)
-        self.undealtCards.removeAll()
+        var shuffledCards: [Card] = []
         
-        while self.dealtCards.count > 0
+        while self.cards.count > 0
         {
-            let lastIndex = self.dealtCards.count - 1
-            
-            let randomIndex = arc4random_uniform(UInt32(lastIndex))
-            
-            let card = self.dealtCards.removeAtIndex(Int(randomIndex))
-            
-            self.undealtCards.append(card)
+            let lastIndex = self.cards.count - 1
+            let i = Int(arc4random_uniform(UInt32(lastIndex)))
+            shuffledCards.append(self.cards.removeAtIndex(i))
         }
+        self.cards.appendContentsOf(shuffledCards)
+    }
+    
+    func drawCard() -> Card
+    {
+        return self.cards.removeAtIndex(0)
     }
 }
