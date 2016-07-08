@@ -41,6 +41,10 @@ class ViewController: UIViewController
     @IBOutlet weak var war2ResultLabel: UILabel!
     @IBOutlet weak var war3ResultLabel: UILabel!
     
+    @IBOutlet weak var playerCardsRemainingInDeckLabel: UILabel!
+    @IBOutlet weak var aiCardsRemainingInDeckLabel: UILabel!
+    
+    
     var lastLocation: CGPoint = CGPointMake(0, 0)
     var deckOriginalCenter: CGPoint = CGPointMake(0, 0)
     
@@ -55,6 +59,13 @@ class ViewController: UIViewController
     {
         super.viewDidLoad()
         
+        self.createGameSpace()
+        self.resetGame()
+        self.game.startGame()
+    }
+    
+    func createGameSpace()
+    {
         self.view.backgroundColor = UIColor.blackColor()
         
         self.playGameButton.layer.cornerRadius = 8
@@ -71,20 +82,6 @@ class ViewController: UIViewController
         self.swapCards2And3Button.hidden = true
         self.swapCards1And3Button.hidden = true
         
-        self.aiDeckView.faceUp = false
-        self.playerDeckView.faceUp = false
-        
-        self.aiWar1View.card = nil
-        self.aiWar2View.card = nil
-        self.aiWar3View.card = nil
-        
-        self.playerWar1View.card = nil
-        self.playerWar2View.card = nil
-        self.playerWar3View.card = nil
-        
-        self.aiDiscardView.card = nil;
-        self.playerDiscardView.card = nil;
-        
         self.deckOriginalCenter = self.playerDeckView.center
         
         self.panGestures()
@@ -95,8 +92,32 @@ class ViewController: UIViewController
         self.war1ResultLabel.hidden = true
         self.war2ResultLabel.hidden = true
         self.war3ResultLabel.hidden = true
+    }
+    
+    func resetGame()
+    {
+        self.aiDeckView.faceUp = false
+        self.playerDeckView.faceUp = false
         
-        self.game.startGame()
+        self.clearAllCardViewsAndTempHands()
+        
+        self.aiDiscardView.card = nil;
+        self.playerDiscardView.card = nil;
+    }
+    
+    func clearAllCardViewsAndTempHands()
+    {
+        self.playerWar1View.card = nil
+        self.playerWar2View.card = nil
+        self.playerWar3View.card = nil
+        self.aiWar1View.card = nil
+        self.aiWar2View.card = nil
+        self.aiWar3View.card = nil
+        
+        self.discardPlayerCards.removeAll()
+        self.discardAICards.removeAll()
+        self.savePlayerCards.removeAll()
+        self.saveAICards.removeAll()
     }
     
     func panGestures()
@@ -140,6 +161,7 @@ class ViewController: UIViewController
     func newRound()
     {
         self.game.drawHands()
+        self.cardsRemaining()
         
         if self.game.player.hand.count == 3
         {
@@ -174,6 +196,12 @@ class ViewController: UIViewController
         }
     }
     
+    func cardsRemaining()
+    {
+        self.playerCardsRemainingInDeckLabel.text = "Cards: \(self.game.player.deck.cards.count + self.game.player.hand.count)"
+        self.aiCardsRemainingInDeckLabel.text = "Cards: \(self.game.aiPlayer.deck.cards.count + self.game.aiPlayer.hand.count)"
+    }
+    
     @IBAction func playGameButtonTapped(button: UIButton)
     {
         if button.titleLabel?.text == "READY!"
@@ -183,6 +211,10 @@ class ViewController: UIViewController
             self.aiWar3View.faceUp = true
             
             self.judgeRound()
+        }
+        else if button.titleLabel?.text == "END ROUND"
+        {
+            self.endRound()
         }
     }
     
@@ -222,12 +254,17 @@ class ViewController: UIViewController
         self.war3ResultLabel.hidden = false
         
         self.playGameButton.setTitle("", forState: UIControlState.Normal)
+        self.playGameButton.enabled = false
         
         self.roundSpoils()
     }
     
     func roundSpoils()
     {
+        self.swapCards1And2Button.hidden = true
+        self.swapCards2And3Button.hidden = true
+        self.swapCards1And3Button.hidden = true
+        
         let resultsArray = [self.war1ResultLabel, self.war2ResultLabel, self.war3ResultLabel]
         
         var winCount = 0
@@ -263,6 +300,11 @@ class ViewController: UIViewController
             self.discardAICards.append(self.aiWar1View.card!)
             self.discardAICards.append(self.aiWar2View.card!)
             self.discardAICards.append(self.aiWar3View.card!)
+            
+            self.playGameButton.setTitle("END ROUND", forState: UIControlState.Normal)
+            self.playGameButton.enabled = true
+            
+            //round is over
         }
         if lossCount == 3
         {
@@ -273,6 +315,11 @@ class ViewController: UIViewController
             self.saveAICards.append(self.aiWar1View.card!)
             self.saveAICards.append(self.aiWar2View.card!)
             self.saveAICards.append(self.aiWar3View.card!)
+            
+            self.playGameButton.setTitle("END ROUND", forState: UIControlState.Normal)
+            self.playGameButton.enabled = true
+            
+            //round is over
         }
         if winCount == 2
         {
@@ -302,6 +349,15 @@ class ViewController: UIViewController
                     
                     self.discardPlayerCards.append(self.playerWar3View.card!)
                 }
+                
+                self.discardAICards.append(self.aiWar1View.card!)
+                self.discardAICards.append(self.aiWar2View.card!)
+                self.discardAICards.append(self.aiWar3View.card!)
+                
+                self.playGameButton.setTitle("END ROUND", forState: UIControlState.Normal)
+                self.playGameButton.enabled = true
+                
+                //round is over
             }
             if warCount == 1
             {
@@ -319,10 +375,15 @@ class ViewController: UIViewController
                     {
                         //this means the war will be played out
                         //and should be resolved right here
+                        //if resolved right here, I can add that extra card here
+                        
+                        //method must be repeated??
                     }
                     else
                     {
                         self.savePlayerCards.append(self.playerWar1View.card!)
+                        
+                        //round is over
                     }
                 }
                 if column == second_column
@@ -340,6 +401,8 @@ class ViewController: UIViewController
                     else
                     {
                         self.savePlayerCards.append(self.playerWar2View.card!)
+                        
+                        //round is over
                     }
                 }
                 if column == third_column
@@ -357,6 +420,8 @@ class ViewController: UIViewController
                     else
                     {
                         self.savePlayerCards.append(self.playerWar3View.card!)
+                        
+                        //round is over
                     }
                 }
                 self.discardAICards.append(self.aiWar1View.card!)
@@ -369,7 +434,35 @@ class ViewController: UIViewController
             //player loses
             if winCount == 1
             {
-                //AI loses this card but keeps others
+                column = self.columnOfResult(loss_emoji)
+                
+                if column == first_column
+                {
+                    self.saveAICards.append(self.aiWar2View.card!)
+                    self.saveAICards.append(self.aiWar3View.card!)
+                    
+                    self.discardAICards.append(self.aiWar1View.card!)
+                }
+                if column == second_column
+                {
+                    self.saveAICards.append(self.aiWar1View.card!)
+                    self.saveAICards.append(self.aiWar3View.card!)
+                    
+                    self.discardAICards.append(self.aiWar2View.card!)
+                }
+                if column == third_column
+                {
+                    self.saveAICards.append(self.aiWar1View.card!)
+                    self.saveAICards.append(self.aiWar2View.card!)
+                    
+                    self.discardAICards.append(self.aiWar3View.card!)
+                }
+                self.discardPlayerCards.append(self.playerWar1View.card!)
+                self.discardPlayerCards.append(self.playerWar2View.card!)
+                self.discardPlayerCards.append(self.playerWar3View.card!)
+                
+                self.playGameButton.setTitle("END ROUND", forState: UIControlState.Normal)
+                self.playGameButton.enabled = true
             }
             if warCount == 1
             {
@@ -399,24 +492,57 @@ class ViewController: UIViewController
     
     func columnOfResult(result: String) -> String
     {
+        var column = ""
+        
         if self.war1ResultLabel.text == result
         {
-            return first_column
+            column = first_column
         }
         if self.war2ResultLabel.text == result
         {
-            return second_column
+            column = second_column
         }
         if self.war3ResultLabel.text == result
         {
-            return third_column
+            column = third_column
         }
+        
+        return column
     }
     
     //call this when there is a clear winner and all wars have been dealt with
     func endRound()
     {
-        //award the spoils--take care of saved and discarded cards, then empty those arrays
+        
+        
+        self.war1ResultLabel.text = ""
+        self.war2ResultLabel.text = ""
+        self.war3ResultLabel.text = ""
+        
+        print("Player saves \(self.savePlayerCards.count) cards and discards \(self.discardPlayerCards.count) cards, AI saves \(self.saveAICards.count) cards and discards \(self.discardAICards.count) cards.")
+        
+        self.game.player.discard.appendContentsOf(self.discardPlayerCards)
+        self.game.aiPlayer.discard.appendContentsOf(self.discardAICards)
+        self.game.player.deck.cards.appendContentsOf(self.savePlayerCards)
+        self.game.aiPlayer.deck.cards.appendContentsOf(self.saveAICards)
+        
+        self.clearAllCardViewsAndTempHands()
+        self.cardsRemaining()
+        
+        if let lastAICardDiscarded = self.game.aiPlayer.discard.last
+        {
+            self.aiDiscardView.card = lastAICardDiscarded
+        }
+        
+        if let lastPlayerCardDiscarded = self.game.player.discard.last
+        {
+            self.playerDiscardView.card = lastPlayerCardDiscarded
+        }
+        
+        self.playGameButton.setTitle("", forState: UIControlState.Normal)
+        self.playGameButton.enabled = false
+        
+        
         //nil out the cardViews
         //clear out the emoji labels
         //maybe change the button title and enable it
