@@ -8,7 +8,12 @@
 
 import Foundation
 
+let ace_value = 14
+
 class AIPlayer: Player
 {
-    //AI logic goes here
+    func shouldResolveWar(cardValue: Int) -> Bool
+    {
+        return cardValue == ace_value
+    }
 }

@@ -14,6 +14,7 @@ class Player
 {
     var deck: Deck
     var hand: [Card] = []
+    var discard: [Card] = []
     
     init()
     {
