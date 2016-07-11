@@ -124,9 +124,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4RD-Hb-tDd">
-                                <rect key="frame" x="121" y="513" width="38" height="30"/>
+                                <rect key="frame" x="109" y="513" width="62" height="30"/>
                                 <color key="backgroundColor" red="0.40694346749999999" green="0.5739182692" blue="0.42716160330000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Swap">
+                                <state key="normal" title="   Swap   ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -134,9 +134,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t2z-BY-gpk">
-                                <rect key="frame" x="188" y="560" width="38" height="30"/>
+                                <rect key="frame" x="176" y="560" width="62" height="30"/>
                                 <color key="backgroundColor" red="0.40694346749999999" green="0.5739182692" blue="0.42716160330000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Swap">
+                                <state key="normal" title="   Swap   ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -144,9 +144,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O28-Y0-29L">
-                                <rect key="frame" x="247" y="513" width="38" height="30"/>
+                                <rect key="frame" x="235" y="513" width="62" height="30"/>
                                 <color key="backgroundColor" red="0.40694346749999999" green="0.5739182692" blue="0.42716160330000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Swap">
+                                <state key="normal" title="   Swap   ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -171,14 +171,30 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cards: 52" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94D-hn-VzE">
-                                <rect key="frame" x="13" y="607" width="110" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cards: 52" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJG-cg-RNr">
+                                <rect key="frame" x="313" y="116" width="103" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cards: 52" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJG-cg-RNr">
-                                <rect key="frame" x="298" y="116" width="103" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tap Sword to Resolve War" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MZ5-Kf-vOM">
+                                <rect key="frame" x="107" y="189" width="200" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wTr-fB-XSM">
+                                <rect key="frame" x="112" y="528" width="185" height="30"/>
+                                <color key="backgroundColor" red="0.40694346749999999" green="0.5739182692" blue="0.42716160330000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="  Tap Here to Pass on War  ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="skipWarButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OdU-VV-elM"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cards: 52" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94D-hn-VzE">
+                                <rect key="frame" x="13" y="607" width="110" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -217,7 +233,9 @@
                         <outlet property="playerWar1View" destination="MFc-9n-LGx" id="7sC-v4-AsY"/>
                         <outlet property="playerWar2View" destination="cUe-xw-qvG" id="ilj-oJ-yyt"/>
                         <outlet property="playerWar3View" destination="als-s4-u8Y" id="n5d-9d-u45"/>
+                        <outlet property="resolveWarGuideLabel" destination="MZ5-Kf-vOM" id="haK-7H-Jtg"/>
                         <outlet property="settingsButton" destination="2EN-4w-U8a" id="EU7-63-ykv"/>
+                        <outlet property="skipWarButton" destination="wTr-fB-XSM" id="Cp4-Yq-GyH"/>
                         <outlet property="swapCards1And2Button" destination="4RD-Hb-tDd" id="f3P-83-VM1"/>
                         <outlet property="swapCards1And3Button" destination="t2z-BY-gpk" id="SN7-ca-mIV"/>
                         <outlet property="swapCards2And3Button" destination="O28-Y0-29L" id="xZm-TX-boP"/>

@@ -8,12 +8,22 @@
 
 import Foundation
 
+let king_value = 13
 let ace_value = 14
+
+let half_deck_count = 26
 
 class AIPlayer: Player
 {
     func shouldResolveWar(cardValue: Int) -> Bool
     {
-        return cardValue == ace_value
+        if self.deck.cards.count > half_deck_count
+        {
+            return cardValue == king_value
+        }
+        else
+        {
+            return cardValue == ace_value
+        }
     }
 }
