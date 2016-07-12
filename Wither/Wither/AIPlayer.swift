@@ -17,6 +17,10 @@ class AIPlayer: Player
 {
     func shouldResolveWar(cardValue: Int) -> Bool
     {
+        if self.deck.cards.count > 40
+        {
+            return cardValue >= 10
+        }
         if self.deck.cards.count > half_deck_count
         {
             return cardValue == king_value

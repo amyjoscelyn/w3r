@@ -61,4 +61,16 @@ class Game
         
         return cardWinner
     }
+    
+    func war()
+    {
+        self.player.dealCardForWar()
+        self.aiPlayer.dealCardForWar()
+    }
+    
+    func warIsDone()
+    {
+        self.player.clearCardsForWar()
+        self.aiPlayer.clearCardsForWar()
+    }
 }

@@ -199,18 +199,42 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pP4-6q-XMZ" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                                <rect key="frame" x="313" y="458" width="60" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eA3-Pc-RnF" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                                <rect key="frame" x="322" y="207" width="60" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yxs-Tn-bBd" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                                <rect key="frame" x="41" y="450" width="60" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a25-TV-gba" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                                <rect key="frame" x="38" y="197" width="60" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EaU-Qc-yTD" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                                <rect key="frame" x="196" y="463" width="60" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PIH-Lk-ccC" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                                <rect key="frame" x="166" y="197" width="60" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kvU-YA-pYH" secondAttribute="bottom" constant="20" id="0Q4-mI-Tex"/>
                             <constraint firstAttribute="leadingMargin" secondItem="2EN-4w-U8a" secondAttribute="leading" id="9tj-kI-Ikk"/>
-                            <constraint firstItem="2EN-4w-U8a" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="EyZ-FW-qoX"/>
                             <constraint firstItem="thy-S7-ZWt" firstAttribute="width" secondItem="kvU-YA-pYH" secondAttribute="width" id="LWE-pj-gD5"/>
-                            <constraint firstItem="thy-S7-ZWt" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="OLT-D2-8te"/>
                             <constraint firstItem="thy-S7-ZWt" firstAttribute="height" secondItem="kvU-YA-pYH" secondAttribute="height" id="UUD-nl-JZh"/>
                             <constraint firstItem="biY-ud-goV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="W7o-86-wZs"/>
+                            <constraint firstItem="2EN-4w-U8a" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="WGz-md-iWE"/>
                             <constraint firstAttribute="leadingMargin" secondItem="kvU-YA-pYH" secondAttribute="leading" id="Wr7-hp-yED"/>
                             <constraint firstItem="sHg-3v-hor" firstAttribute="top" secondItem="biY-ud-goV" secondAttribute="bottom" constant="31" id="Xbz-7Q-PBB"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kvU-YA-pYH" secondAttribute="bottom" constant="20" id="acn-98-0IP"/>
+                            <constraint firstItem="thy-S7-ZWt" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="cD7-wY-jZ5"/>
                             <constraint firstItem="biY-ud-goV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dha-Ts-B7p"/>
                             <constraint firstItem="sHg-3v-hor" firstAttribute="width" secondItem="biY-ud-goV" secondAttribute="width" id="g7H-dX-LEV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="thy-S7-ZWt" secondAttribute="trailing" id="hed-SZ-15Y"/>
@@ -223,15 +247,21 @@
                         <outlet property="aiCardsRemainingInDeckLabel" destination="qJG-cg-RNr" id="Fwq-Yt-PpN"/>
                         <outlet property="aiDeckView" destination="thy-S7-ZWt" id="wHB-9J-q3C"/>
                         <outlet property="aiDiscardView" destination="uwr-LI-udl" id="T0c-b6-d8b"/>
+                        <outlet property="aiWar1AView" destination="a25-TV-gba" id="ApH-dP-W6L"/>
                         <outlet property="aiWar1View" destination="bzn-dU-Oep" id="Oy0-LP-isw"/>
+                        <outlet property="aiWar2AView" destination="PIH-Lk-ccC" id="KZb-5g-ZGv"/>
                         <outlet property="aiWar2View" destination="JhV-8Y-atc" id="EVn-tj-jqg"/>
+                        <outlet property="aiWar3AView" destination="eA3-Pc-RnF" id="zmb-gZ-Z1z"/>
                         <outlet property="aiWar3View" destination="1tb-O2-g3Q" id="wOB-SK-syp"/>
                         <outlet property="playGameButton" destination="biY-ud-goV" id="izx-bM-HU5"/>
                         <outlet property="playerCardsRemainingInDeckLabel" destination="94D-hn-VzE" id="9MF-Kw-XdK"/>
                         <outlet property="playerDeckView" destination="kvU-YA-pYH" id="ggu-Ud-7sx"/>
                         <outlet property="playerDiscardView" destination="uMs-Jh-NGm" id="zgK-Ft-Eor"/>
+                        <outlet property="playerWar1AView" destination="yxs-Tn-bBd" id="5Ec-Lf-ZTt"/>
                         <outlet property="playerWar1View" destination="MFc-9n-LGx" id="7sC-v4-AsY"/>
+                        <outlet property="playerWar2AView" destination="EaU-Qc-yTD" id="KtM-2W-R3y"/>
                         <outlet property="playerWar2View" destination="cUe-xw-qvG" id="ilj-oJ-yyt"/>
+                        <outlet property="playerWar3AView" destination="pP4-6q-XMZ" id="hn1-uc-HzI"/>
                         <outlet property="playerWar3View" destination="als-s4-u8Y" id="n5d-9d-u45"/>
                         <outlet property="resolveWarGuideLabel" destination="MZ5-Kf-vOM" id="haK-7H-Jtg"/>
                         <outlet property="settingsButton" destination="2EN-4w-U8a" id="EU7-63-ykv"/>

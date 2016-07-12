@@ -15,6 +15,8 @@ class Player
     var deck: Deck
     var hand: [Card] = []
     var discard: [Card] = []
+//    var warCard: Card?
+    var warCards: [Card] = []
     
     init()
     {
@@ -35,5 +37,15 @@ class Player
     func fillHandWithSingleCard()
     {
         self.hand.append(self.deck.drawCard())
+    }
+    
+    func dealCardForWar()
+    {
+        self.warCards.append(self.deck.drawCard())
+    }
+    
+    func clearCardsForWar()
+    {
+        self.warCards.removeAll()
     }
 }
