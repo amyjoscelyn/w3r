@@ -32,13 +32,20 @@ class Game
         
         if playerDeckCount >= 3 && aiPlayerDeckCount >= 3
         {
+            print("PLAYERS HAVE THREE OR MORE CARDS IN HAND")
             self.player.fillHand()
             self.aiPlayer.fillHand()
         }
-        else
+        else if playerDeckCount > 0 && aiPlayerDeckCount > 0
         {
+            print("IT'S DOWN TO THE END!!!! (less than three cards in a player's hand)")
             self.player.fillHandWithSingleCard()
             self.aiPlayer.fillHandWithSingleCard()
+        }
+        else
+        {
+            print("[inside drawHands()] PLAYER DECK COUNT: \(playerDeckCount) || AI DECK COUNT: \(aiPlayerDeckCount)")
+            print("~~==ooo==~~ game is over! ~~==ooo==~~")
         }
     }
     
@@ -63,7 +70,7 @@ class Game
     }
     
     func war()
-    {
+    {//what happens when there are no many cards left to draw?
         self.player.dealCardForWar()
         self.aiPlayer.dealCardForWar()
     }
