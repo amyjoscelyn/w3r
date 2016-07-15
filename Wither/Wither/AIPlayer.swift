@@ -23,7 +23,7 @@ class AIPlayer: Player
         }
         if self.deck.cards.count > half_deck_count
         {
-            return cardValue == king_value
+            return cardValue >= king_value
         }
         else
         {
