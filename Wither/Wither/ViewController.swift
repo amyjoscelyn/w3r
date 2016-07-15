@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore //I imported this to rotate the cards a bit.  Is this how this works?
 
 let winning_emoji = "👑"
 let loss_emoji = "❌"

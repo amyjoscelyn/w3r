@@ -12,6 +12,8 @@ class CardView: UIView
 {
     @IBOutlet private var contentView: UIView?
     @IBOutlet weak var cardLabel: UILabel!
+    @IBOutlet weak var topValueLabel: UILabel!
+    @IBOutlet weak var bottomValueLabel: UILabel!
     @IBOutlet weak var cardBackgroundImage: UIImageView!
     
     var faceUp: Bool = true
@@ -26,6 +28,8 @@ class CardView: UIView
             {
                 self.cardBackgroundImage.image = UIImage.init(named: "CardBackA")
                 self.cardLabel.text = self.backIcon
+                self.topValueLabel.hidden = true
+                self.bottomValueLabel.hidden = true
             }
         }
     }
@@ -51,6 +55,8 @@ class CardView: UIView
                 if (self.faceUp)
                 {
                     self.cardLabel.text = card.cardLabel
+                    self.topValueLabel.text = card.rank
+                    self.bottomValueLabel.text = card.rank
                 }
                 else
                 {
