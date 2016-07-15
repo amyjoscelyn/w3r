@@ -12,6 +12,7 @@ class CardView: UIView
 {
     @IBOutlet private var contentView: UIView?
     @IBOutlet weak var cardLabel: UILabel!
+    @IBOutlet weak var cardBackgroundImage: UIImageView!
     
     var faceUp: Bool = true
         {
@@ -23,6 +24,7 @@ class CardView: UIView
             }
             else
             {
+                self.cardBackgroundImage.image = UIImage.init(named: "CardBackA")
                 self.cardLabel.text = self.backIcon
             }
         }

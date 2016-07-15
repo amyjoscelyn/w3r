@@ -74,6 +74,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kvU-YA-pYH" customClass="CardView" customModule="Wither" customModuleProvider="target">
                                 <rect key="frame" x="20" y="636" width="60" height="80"/>
