@@ -8,6 +8,8 @@
 
 import UIKit
 
+let card_back = "🅦" //✵❂✪⚪️
+
 class CardView: UIView
 {
     @IBOutlet private var contentView: UIView?
@@ -22,7 +24,12 @@ class CardView: UIView
         {
             if self.faceUp
             {
+                self.cardBackgroundImage.image = UIImage.init(named: "CardFrontC")
                 self.cardLabel.text = self.card?.cardLabel
+                self.topValueLabel.text = self.card?.rank
+                self.bottomValueLabel.text = self.card?.rank
+                self.topValueLabel.hidden = false
+                self.bottomValueLabel.hidden = false
             }
             else
             {
@@ -34,7 +41,7 @@ class CardView: UIView
         }
     }
     
-    var backIcon: String = "✪" //card_back //do i need all this duplicate code?
+    var backIcon: String = card_back
         {
         didSet
         {
@@ -66,7 +73,6 @@ class CardView: UIView
             else
             {
                 self.hidden = true
-                //this only works if they're explicitly set as nil
             }
         }
     }

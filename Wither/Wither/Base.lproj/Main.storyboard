@@ -50,6 +50,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TableBackgroundC" translatesAutoresizingMaskIntoConstraints="NO" id="GUP-Cj-fmy">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JhV-8Y-atc" customClass="CardView" customModule="Wither" customModuleProvider="target">
                                 <rect key="frame" x="177" y="244" width="60" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -340,4 +343,7 @@
             <point key="canvasLocation" x="243" y="255"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="TableBackgroundC" width="600" height="600"/>
+    </resources>
 </document>

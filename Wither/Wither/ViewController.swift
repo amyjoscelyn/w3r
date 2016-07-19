@@ -261,9 +261,9 @@ class ViewController: UIViewController
             
             //***************************************
             //for testing purposes, this code can be commented out
-//            self.aiWar1View.faceUp = false
-//            self.aiWar2View.faceUp = false
-//            self.aiWar3View.faceUp = false
+            self.aiWar1View.faceUp = false
+            self.aiWar2View.faceUp = false
+            self.aiWar3View.faceUp = false
             //***************************************
         }
         else if self.game.player.hand.count > 0 || self.game.aiPlayer.hand.count > 0
