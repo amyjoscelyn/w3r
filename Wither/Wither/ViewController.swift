@@ -30,8 +30,17 @@ class ViewController: UIViewController
 {
     @IBOutlet weak var playerDeckView: CardView!
     @IBOutlet weak var playerDiscardView: CardView!
+    @IBOutlet weak var playerDiscardViewA: CardView!
+    @IBOutlet weak var playerDiscardViewB: CardView!
+    @IBOutlet weak var playerDiscardViewC: CardView!
+    @IBOutlet weak var playerDiscardViewD: CardView!
+    
     @IBOutlet weak var aiDeckView: CardView!
     @IBOutlet weak var aiDiscardView: CardView!
+    @IBOutlet weak var aiDiscardViewA: CardView!
+    @IBOutlet weak var aiDiscardViewB: CardView!
+    @IBOutlet weak var aiDiscardViewC: CardView!
+    @IBOutlet weak var aiDiscardViewD: CardView!
     
     @IBOutlet weak var playerWar1View: CardView!
     @IBOutlet weak var playerWar2View: CardView!
@@ -141,8 +150,17 @@ class ViewController: UIViewController
     func rotateCardViews()
     {
         //AFFINE TRANSFORM!!!!!!!!
-        self.playerDiscardView.transform = CGAffineTransformMakeRotation(0)
-        self.aiDiscardView.transform = CGAffineTransformMakeRotation(0)
+        self.playerDiscardView.transform = CGAffineTransformMakeRotation(0.05)
+        self.playerDiscardViewA.transform = CGAffineTransformMakeRotation(5.4)
+        self.playerDiscardViewB.transform = CGAffineTransformMakeRotation(2)
+        self.playerDiscardViewC.transform = CGAffineTransformMakeRotation(0.9)
+        self.playerDiscardViewD.transform = CGAffineTransformMakeRotation(0)
+        
+        self.aiDiscardView.transform = CGAffineTransformMakeRotation(0.9)
+        self.aiDiscardViewA.transform = CGAffineTransformMakeRotation(2.3)
+        self.aiDiscardViewB.transform = CGAffineTransformMakeRotation(0)
+        self.aiDiscardViewC.transform = CGAffineTransformMakeRotation(6.1)
+        self.playerDiscardViewD.transform = CGAffineTransformMakeRotation(0.5)
         
         self.playerWar1AView.transform = CGAffineTransformMakeRotation(6)
         self.playerWar1BView.transform = CGAffineTransformMakeRotation(0.5)
@@ -237,7 +255,16 @@ class ViewController: UIViewController
         self.resolveWarGuideLabel.hidden = true
         
         self.aiDiscardView.card = nil;
+        self.aiDiscardViewA.card = nil;
+        self.aiDiscardViewB.card = nil;
+        self.aiDiscardViewC.card = nil;
+        self.aiDiscardViewD.card = nil;
+        
         self.playerDiscardView.card = nil;
+        self.playerDiscardViewA.card = nil;
+        self.playerDiscardViewB.card = nil;
+        self.playerDiscardViewC.card = nil;
+        self.playerDiscardViewD.card = nil;
     }
     
     func clearAllWarCardViewsAndTempHands()
@@ -1275,6 +1302,64 @@ class ViewController: UIViewController
         
         print("Player saves \(self.savePlayerCards.count) cards and discards \(self.discardPlayerCards.count) cards, AI saves \(self.saveAICards.count) cards and discards \(self.discardAICards.count) cards.")
         
+        if self.discardPlayerCards.count > 0
+        {
+            var currentDiscardCount = self.game.player.discard.count
+            
+            for card in self.discardPlayerCards
+            {
+                currentDiscardCount += 1
+                
+                switch currentDiscardCount % 5
+                {
+                case 1:
+                    self.playerDiscardView.card = card
+                    self.view.bringSubviewToFront(self.playerDiscardView)
+                case 2:
+                    self.playerDiscardViewA.card = card
+                    self.view.bringSubviewToFront(self.playerDiscardViewA)
+                case 3:
+                    self.playerDiscardViewB.card = card
+                    self.view.bringSubviewToFront(self.playerDiscardViewB)
+                case 4:
+                    self.playerDiscardViewC.card = card
+                    self.view.bringSubviewToFront(self.playerDiscardViewC)
+                default:
+                    self.playerDiscardViewD.card = card
+                    self.view.bringSubviewToFront(self.playerDiscardViewD)
+                }
+            }
+        }
+        
+        if self.discardAICards.count > 0
+        {
+            var currentDiscardCount = self.game.aiPlayer.discard.count
+            
+            for card in self.discardAICards
+            {
+                currentDiscardCount += 1
+                
+                switch currentDiscardCount % 5
+                {
+                case 1:
+                    self.aiDiscardView.card = card
+                    self.view.bringSubviewToFront(self.aiDiscardView)
+                case 2:
+                    self.aiDiscardViewA.card = card
+                    self.view.bringSubviewToFront(self.aiDiscardViewA)
+                case 3:
+                    self.aiDiscardViewB.card = card
+                    self.view.bringSubviewToFront(self.aiDiscardViewB)
+                case 4:
+                    self.aiDiscardViewC.card = card
+                    self.view.bringSubviewToFront(self.aiDiscardViewC)
+                default:
+                    self.aiDiscardViewD.card = card
+                    self.view.bringSubviewToFront(self.aiDiscardViewD)
+                }
+            }
+        }
+        
         self.game.player.discard.appendContentsOf(self.discardPlayerCards)
         self.game.aiPlayer.discard.appendContentsOf(self.discardAICards)
         self.game.player.deck.cards.appendContentsOf(self.savePlayerCards)
@@ -1283,15 +1368,15 @@ class ViewController: UIViewController
         self.clearAllWarCardViewsAndTempHands()
         self.cardsRemaining()
         
-        if let lastAICardDiscarded = self.game.aiPlayer.discard.last
-        {
-            self.aiDiscardView.card = lastAICardDiscarded
-        }
-        
-        if let lastPlayerCardDiscarded = self.game.player.discard.last
-        {
-            self.playerDiscardView.card = lastPlayerCardDiscarded
-        }
+//        if let lastAICardDiscarded = self.game.aiPlayer.discard.last
+//        {
+//            self.aiDiscardView.card = lastAICardDiscarded
+//        }
+//        
+//        if let lastPlayerCardDiscarded = self.game.player.discard.last
+//        {
+//            self.playerDiscardView.card = lastPlayerCardDiscarded
+//        }
         
         self.playGameButton.setTitle("", forState: UIControlState.Normal)
         self.playGameButton.enabled = false

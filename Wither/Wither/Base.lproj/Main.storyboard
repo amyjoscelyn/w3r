@@ -275,6 +275,38 @@
                                 <rect key="frame" x="50" y="165" width="60" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VXd-Nw-DMz" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                                <rect key="frame" x="242" y="636" width="60" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aXy-oW-NGa" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                                <rect key="frame" x="241" y="636" width="60" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CqN-og-XYW" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                                <rect key="frame" x="241" y="635" width="60" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1dV-Hb-GOm" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                                <rect key="frame" x="110" y="28" width="60" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o87-vS-A7T" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                                <rect key="frame" x="110" y="28" width="60" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Fl-gN-59P" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                                <rect key="frame" x="110" y="28" width="60" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P5N-SJ-fCf" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                                <rect key="frame" x="241" y="636" width="60" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="56W-g3-AlX" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                                <rect key="frame" x="110" y="28" width="60" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -299,6 +331,10 @@
                         <outlet property="aiCardsRemainingInDeckLabel" destination="qJG-cg-RNr" id="Fwq-Yt-PpN"/>
                         <outlet property="aiDeckView" destination="thy-S7-ZWt" id="wHB-9J-q3C"/>
                         <outlet property="aiDiscardView" destination="uwr-LI-udl" id="T0c-b6-d8b"/>
+                        <outlet property="aiDiscardViewA" destination="1dV-Hb-GOm" id="OkU-8Z-3EX"/>
+                        <outlet property="aiDiscardViewB" destination="o87-vS-A7T" id="YOE-Fc-40s"/>
+                        <outlet property="aiDiscardViewC" destination="5Fl-gN-59P" id="XPH-hj-00V"/>
+                        <outlet property="aiDiscardViewD" destination="56W-g3-AlX" id="jTa-39-Zpc"/>
                         <outlet property="aiWar1AView" destination="a25-TV-gba" id="ApH-dP-W6L"/>
                         <outlet property="aiWar1BView" destination="vbR-7d-5o3" id="vZf-ab-lEO"/>
                         <outlet property="aiWar1CView" destination="vo6-BU-JJE" id="BZn-U2-eCf"/>
@@ -315,6 +351,10 @@
                         <outlet property="playerCardsRemainingInDeckLabel" destination="94D-hn-VzE" id="9MF-Kw-XdK"/>
                         <outlet property="playerDeckView" destination="kvU-YA-pYH" id="ggu-Ud-7sx"/>
                         <outlet property="playerDiscardView" destination="uMs-Jh-NGm" id="zgK-Ft-Eor"/>
+                        <outlet property="playerDiscardViewA" destination="VXd-Nw-DMz" id="xBs-vg-aRr"/>
+                        <outlet property="playerDiscardViewB" destination="aXy-oW-NGa" id="PuZ-eB-Kkv"/>
+                        <outlet property="playerDiscardViewC" destination="CqN-og-XYW" id="17j-vl-bKD"/>
+                        <outlet property="playerDiscardViewD" destination="P5N-SJ-fCf" id="9X2-Qn-IxH"/>
                         <outlet property="playerWar1AView" destination="yxs-Tn-bBd" id="5Ec-Lf-ZTt"/>
                         <outlet property="playerWar1BView" destination="O9Q-4e-xCR" id="Mez-QE-ZC4"/>
                         <outlet property="playerWar1CView" destination="pey-1c-Lny" id="DNL-Ef-yBq"/>
