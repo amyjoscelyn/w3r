@@ -134,6 +134,45 @@ class ViewController: UIViewController
         
         self.playGameButton.setTitle("", forState: UIControlState.Normal)
         self.playGameButton.enabled = false
+        
+        self.rotateCardViews()
+    }
+    
+    func rotateCardViews()
+    {
+        //AFFINE TRANSFORM!!!!!!!!
+        self.playerDiscardView.transform = CGAffineTransformMakeRotation(0)
+        self.aiDiscardView.transform = CGAffineTransformMakeRotation(0)
+        
+        self.playerWar1AView.transform = CGAffineTransformMakeRotation(6)
+        self.playerWar1BView.transform = CGAffineTransformMakeRotation(0.5)
+        self.playerWar1CView.transform = CGAffineTransformMakeRotation(0.05)
+        
+        self.playerWar2AView.transform = CGAffineTransformMakeRotation(0.5)
+        self.playerWar2BView.transform = CGAffineTransformMakeRotation(6)
+        self.playerWar2CView.transform = CGAffineTransformMakeRotation(0.2)
+        
+        self.playerWar3AView.transform = CGAffineTransformMakeRotation(6.1)
+        self.playerWar3BView.transform = CGAffineTransformMakeRotation(0.1)
+        self.playerWar3CView.transform = CGAffineTransformMakeRotation(0.7)
+        
+        self.aiWar1AView.transform = CGAffineTransformMakeRotation(6.2)
+        self.aiWar1BView.transform = CGAffineTransformMakeRotation(0.3)
+        self.aiWar1CView.transform = CGAffineTransformMakeRotation(0.04)
+        
+        self.aiWar2AView.transform = CGAffineTransformMakeRotation(0.2)
+        self.aiWar2BView.transform = CGAffineTransformMakeRotation(6.1)
+        self.aiWar2CView.transform = CGAffineTransformMakeRotation(6.23)
+        
+        self.aiWar3AView.transform = CGAffineTransformMakeRotation(0.5)
+        self.aiWar3BView.transform = CGAffineTransformMakeRotation(6.05)
+        self.aiWar3CView.transform = CGAffineTransformMakeRotation(0)
+        
+        // 0.5 points at 1:00
+        // 1-top points at 2:00, maybe 2:30
+        // 3 makes it upside down, top pointing at 5:00, maybe 4:30
+        // 5 points just after 9:00, like 9:30
+        // 6 - points at 11:00
     }
     
     func customizeButton(button: UIButton)
