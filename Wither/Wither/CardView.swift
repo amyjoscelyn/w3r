@@ -33,7 +33,7 @@ class CardView: UIView
             }
             else
             {
-                self.cardBackgroundImage.image = UIImage.init(named: "CardBackA")
+                self.cardBackgroundImage.image = UIImage.init(named: "CardBackB")
                 self.cardLabel.text = self.backIcon
                 self.topValueLabel.hidden = true
                 self.bottomValueLabel.hidden = true
