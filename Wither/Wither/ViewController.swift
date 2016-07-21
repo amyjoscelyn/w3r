@@ -459,6 +459,22 @@ class ViewController: UIViewController
         self.playGameButton.enabled = true
     }
     
+    func populateHandWithSingleCard()
+    {
+        //        print("#10 (populateHandWithSingleCard)")
+        print("[populateHandWithSingleCard] player has \(self.game.player.deck.cards.count) cards in deck, AI has \(self.game.aiPlayer.deck.cards.count) cards")
+        self.aiWar2View.card = self.game.aiPlayer.hand[0]
+        self.playerWar2View.card = self.game.player.hand[0] //maybe new cardView here instead?
+        
+        self.aiWar1View.card = nil
+        self.aiWar3View.card = nil
+        self.playerWar1View.card = nil //set 2 as nil... or they should already be nil, because of the endRound, right?
+        self.playerWar3View.card = nil
+        
+        self.game.aiPlayer.hand.removeAll()
+        self.game.player.hand.removeAll()
+    }
+    
     
                 //Above handles a new round
     
@@ -511,9 +527,9 @@ class ViewController: UIViewController
             let aiCard2 = self.cardToJudge(ai_string, column: second_column)
             let aiCard3 = self.cardToJudge(ai_string, column: third_column)
             
-            let winnerOf1 = self.game.twoCardFaceOff(playerCard1, aiPlayerCard: aiCard1)
-            let winnerOf2 = self.game.twoCardFaceOff(playerCard2, aiPlayerCard: aiCard2)
-            let winnerOf3 = self.game.twoCardFaceOff(playerCard3, aiPlayerCard: aiCard3)
+            let winnerOf1 = self.resolveWar(playerCard1, aiPlayerCard: aiCard1)
+            let winnerOf2 = self.resolveWar(playerCard2, aiPlayerCard: aiCard2)
+            let winnerOf3 = self.resolveWar(playerCard3, aiPlayerCard: aiCard3)
             
             print("\(winnerOf1) won 1, \(winnerOf2) won 2, \(winnerOf3) won 3")
             
@@ -659,6 +675,12 @@ class ViewController: UIViewController
             }
         }
         return card!
+    }
+    
+    func resolveWar(playerCard: Card, aiPlayerCard: Card) -> String //I'm not sure this method's getting called!!
+    {
+        //        print("#30 (resolveWar)")
+        return self.game.twoCardFaceOff(playerCard, aiPlayerCard: aiPlayerCard)
     }
     
     func awardRoundWithResult(cardResult1: String, cardResult2: String, cardResult3: String)
@@ -1532,26 +1554,36 @@ class ViewController: UIViewController
                 //Above handles the round's end
     
     
-    func populateHandWithSingleCard()
+    func endGame()
     {
-        //        print("#10 (populateHandWithSingleCard)")
-        print("[populateHandWithSingleCard] player has \(self.game.player.deck.cards.count) cards in deck, AI has \(self.game.aiPlayer.deck.cards.count) cards")
-        self.aiWar2View.card = self.game.aiPlayer.hand[0]
-        self.playerWar2View.card = self.game.player.hand[0]
+        //        print("#31 (endGame)")
+        print("The game is over.")
         
-        self.aiWar1View.card = nil
-        self.aiWar3View.card = nil
-        self.playerWar1View.card = nil
-        self.playerWar3View.card = nil
+        let playerPoints = self.game.player.deck.cards.count
+        let aiPoints = self.game.aiPlayer.deck.cards.count
         
-        self.game.aiPlayer.hand.removeAll()
-        self.game.player.hand.removeAll()
+        var winner = ""
+        
+        if playerPoints > aiPoints
+        {
+            winner = player_string
+        }
+        else if aiPoints > playerPoints
+        {
+            winner = ai_string
+        }
+        else
+        {
+            winner = "There is no winner."
+        }
+        
+        print("Player has \(playerPoints) points, AI has \(aiPoints) points.  The winner is: \(winner)")
+        
+        self.prepButtonWithTitle(play_game_string)
     }
     
     
-    
-    
-    
+                //Above wraps up an individual game
     
     
     @IBAction func settingsButtonTapped(sender: AnyObject)
@@ -1588,38 +1620,6 @@ class ViewController: UIViewController
     }
     
     
-    
-    func resolveWar(playerCard: Card, aiPlayerCard: Card) -> String
-    {
-//        print("#30 (resolveWar)")
-        return self.game.twoCardFaceOff(playerCard, aiPlayerCard: aiPlayerCard)
-    }
-    
-    func endGame()
-    {
-//        print("#31 (endGame)")
-        print("The game is over.")
-        
-        let playerPoints = self.game.player.deck.cards.count
-        let aiPoints = self.game.aiPlayer.deck.cards.count
-        
-        var winner = ""
-        
-        if playerPoints > aiPoints
-        {
-            winner = player_string
-        }
-        else if aiPoints > playerPoints
-        {
-            winner = ai_string
-        }
-        else
-        {
-            winner = "There is no winner."
-        }
-        
-        print("Player has \(playerPoints) points, AI has \(aiPoints) points.  The winner is: \(winner)")
-        
-        self.prepButtonWithTitle(play_game_string)
-    }
+    //Above are IBActions for swapping cards, skipping wars, and the settings button
+
 }
