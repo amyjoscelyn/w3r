@@ -519,29 +519,24 @@ class ViewController: UIViewController
         //        print("#14 (judgeRound)")
         if self.playerWar1View.card != nil
         {
-            let playerCard1 = self.cardToJudge(player_string, column: first_column)
-            let playerCard2 = self.cardToJudge(player_string, column: second_column)
-            let playerCard3 = self.cardToJudge(player_string, column: third_column)
+            let cardsToJudge1 = self.cardsToJudge(first_column)
+            let cardsToJudge2 = self.cardsToJudge(second_column)
+            let cardsToJudge3 = self.cardsToJudge(third_column)
             
-            let aiCard1 = self.cardToJudge(ai_string, column: first_column)
-            let aiCard2 = self.cardToJudge(ai_string, column: second_column)
-            let aiCard3 = self.cardToJudge(ai_string, column: third_column)
+            let winnerOf1 = self.resolveWar(cardsToJudge1)
+            let winnerOf2 = self.resolveWar(cardsToJudge2)
+            let winnerOf3 = self.resolveWar(cardsToJudge3)
             
-            let winnerOf1 = self.resolveWar(playerCard1, aiPlayerCard: aiCard1)
-            let winnerOf2 = self.resolveWar(playerCard2, aiPlayerCard: aiCard2)
-            let winnerOf3 = self.resolveWar(playerCard3, aiPlayerCard: aiCard3)
-            
-            print("\(winnerOf1) won 1, \(winnerOf2) won 2, \(winnerOf3) won 3")
+//            print("\(winnerOf1) won 1, \(winnerOf2) won 2, \(winnerOf3) won 3")
             
             self.awardRoundWithResult(winnerOf1, cardResult2: winnerOf2, cardResult3: winnerOf3)
         }
         else
         {
             //there is only one card up, #2
-            let playerCard = self.cardToJudge(player_string, column: second_column)
-            let aiCard = self.cardToJudge(ai_string, column: second_column)
             
-            let winner = self.game.twoCardFaceOff(playerCard, aiPlayerCard: aiCard)
+            let cardsToJudge = self.cardsToJudge(second_column)
+            let winner = self.resolveWar(cardsToJudge)
             
             print("\(winner) won!!")
             
@@ -549,137 +544,106 @@ class ViewController: UIViewController
         }
     }
     
-    func cardToJudge(player: String, column: String) -> Card
+    func cardsToJudge(column: String) -> [Card]
     {
-        //        print("#15 (cardToJudge)")
-        var card: Card?
+        var playerCard: Card = Card.init(suit: "X", rank: "0")
+        var aiCard: Card = Card.init(suit: "X", rank: "0")
         
-        if player == player_string
+        switch column
         {
-            if column == first_column
+        case first_column:
+            if !isWar1
             {
-                if let playerCard1C = self.playerWar1CView.card
+                playerCard = self.playerWar1View.card!
+                aiCard = self.aiWar1View.card!
+            }
+            else
+            {
+                let aViewZIndex = self.view.subviews.indexOf(self.playerWar1AView)
+                let bViewZIndex = self.view.subviews.indexOf(self.playerWar1BView)
+                let cViewZIndex = self.view.subviews.indexOf(self.playerWar1CView)
+                
+                if aViewZIndex > bViewZIndex
                 {
-                    card = playerCard1C
+                    playerCard = self.playerWar1AView.card!
+                    aiCard = self.aiWar1AView.card!
                 }
-                else if let playerCard1B = self.playerWar1BView.card
+                else if bViewZIndex > cViewZIndex
                 {
-                    card = playerCard1B
-                }
-                else if let playerCard1A = self.playerWar1AView.card
-                {
-                    card = playerCard1A
+                    playerCard = self.playerWar1BView.card!
+                    aiCard = self.aiWar1BView.card!
                 }
                 else
                 {
-                    card = self.playerWar1View.card!
+                    playerCard = self.playerWar1CView.card!
+                    aiCard = self.aiWar1CView.card!
                 }
             }
-            else if column == second_column
+        case second_column:
+            if !isWar2
             {
-                if let playerCard2C = self.playerWar2CView.card
+                playerCard = self.playerWar1View.card!
+                aiCard = self.aiWar2View.card!
+            }
+            else
+            {
+                let aViewZIndex = self.view.subviews.indexOf(self.playerWar2AView)
+                let bViewZIndex = self.view.subviews.indexOf(self.playerWar2BView)
+                let cViewZIndex = self.view.subviews.indexOf(self.playerWar2CView)
+                
+                if aViewZIndex > bViewZIndex
                 {
-                    card = playerCard2C
+                    playerCard = self.playerWar2AView.card!
+                    aiCard = self.aiWar2AView.card!
                 }
-                else if let playerCard2B = self.playerWar2BView.card
+                else if bViewZIndex > cViewZIndex
                 {
-                    card = playerCard2B
-                }
-                else if let playerCard2A = self.playerWar2AView.card
-                {
-                    card = playerCard2A
+                    playerCard = self.playerWar2BView.card!
+                    aiCard = self.aiWar2BView.card!
                 }
                 else
                 {
-                    card = self.playerWar2View.card!
+                    playerCard = self.playerWar2CView.card!
+                    aiCard = self.aiWar2CView.card!
                 }
             }
-            else if column == third_column
+        default:
+            if !isWar3
             {
-                if let playerCard3C = self.playerWar3CView.card
+                playerCard = self.playerWar1View.card!
+                aiCard = self.aiWar3View.card!
+            }
+            else
+            {
+                let aViewZIndex = self.view.subviews.indexOf(self.playerWar3AView)
+                let bViewZIndex = self.view.subviews.indexOf(self.playerWar3BView)
+                let cViewZIndex = self.view.subviews.indexOf(self.playerWar3CView)
+                
+                if aViewZIndex > bViewZIndex
                 {
-                    card = playerCard3C
+                    playerCard = self.playerWar3AView.card!
+                    aiCard = self.aiWar3AView.card!
                 }
-                else if let playerCard3B = self.playerWar3BView.card
+                else if bViewZIndex > cViewZIndex
                 {
-                    card = playerCard3B
-                }
-                else if let playerCard3A = self.playerWar3AView.card
-                {
-                    card = playerCard3A
+                    playerCard = self.playerWar3BView.card!
+                    aiCard = self.aiWar3BView.card!
                 }
                 else
                 {
-                    card = self.playerWar3View.card!
+                    playerCard = self.playerWar3CView.card!
+                    aiCard = self.aiWar3CView.card!
                 }
             }
         }
-        if player == ai_string
-        {
-            if column == first_column
-            {
-                if let aiCard1C = self.aiWar1CView.card
-                {
-                    card = aiCard1C
-                }
-                else if let aiCard1B = self.aiWar1BView.card
-                {
-                    card = aiCard1B
-                }
-                else if let aiCard1A = self.aiWar1AView.card
-                {
-                    card = aiCard1A
-                }
-                else
-                {
-                    card = self.aiWar1View.card!
-                }
-            }
-            else if column == second_column
-            {
-                if let aiCard2C = self.aiWar2CView.card
-                {
-                    card = aiCard2C
-                }
-                else if let aiCard2B = self.aiWar2BView.card
-                {
-                    card = aiCard2B
-                }
-                else if let aiCard2A = self.aiWar2AView.card
-                {
-                    card = aiCard2A
-                }
-                else
-                {
-                    card = self.aiWar2View.card!
-                }
-            }
-            else if column == third_column
-            {
-                if let aiCard3C = self.aiWar3CView.card
-                {
-                    card = aiCard3C
-                }
-                else if let aiCard3B = self.aiWar3BView.card
-                {
-                    card = aiCard3B
-                }
-                else if let aiCard3A = self.aiWar3AView.card
-                {
-                    card = aiCard3A
-                }
-                else
-                {
-                    card = self.aiWar3View.card!
-                }
-            }
-        }
-        return card!
+        return [ playerCard, aiCard ]
     }
     
-    func resolveWar(playerCard: Card, aiPlayerCard: Card) -> String //I'm not sure this method's getting called!!
+    func resolveWar(cards: [Card]) -> String
     {
-        //        print("#30 (resolveWar)")
+        let playerCard = cards.first!
+        let aiPlayerCard = cards.last!
+        
         return self.game.twoCardFaceOff(playerCard, aiPlayerCard: aiPlayerCard)
     }
     
@@ -746,11 +710,6 @@ class ViewController: UIViewController
         
         var column = ""
         
-        //I MIGHT BE ABLE TO DO A SWITCH STATEMENT FOR ALL OF THESE
-        //if I were to make the whole winCount == 3, lossCount == 2, etc. as constants
-        //I'm not sure if it's possible to have Boolean equations as constants though
-        //but it might be easier to read, especially if my constant names are understandable
-        
         if winCount == 3
         {
             print("case #1 (player wins all!)")
@@ -794,10 +753,10 @@ class ViewController: UIViewController
                 
                 self.prepButtonWithTitle(end_round_string)
             }
-            else //war
+            else //war //DOES THIS GET CALLED WHEN WAR IS TIED?
             {
                 column = self.columnOfResult(war_emoji)
-                let warValue = self.cardValueOfWar(column)
+                let warValue = self.cardValueOfWar(column) //only good for initial wars...
                 print("AI has lost, but gets to pass on the war.")
                 let willResolveWar = self.game.aiPlayer.shouldResolveWar(warValue)
                 
@@ -898,7 +857,7 @@ class ViewController: UIViewController
         }
         else //there is at least one war that needs to be resolved in order to determine a clear winner
         {
-            print("case #5 (no clear winner... yet)")
+//            print("case #5 (no clear winner... yet)")
             if warCount == 1
             {
                 column = self.columnOfResult(war_emoji)
@@ -1268,7 +1227,7 @@ class ViewController: UIViewController
         switch column
         {
         case first_column:
-            return (self.aiWar1View.card?.cardValue)!
+            return (self.aiWar1View.card?.cardValue)! //what about wars on ABC?
         case second_column:
             return (self.aiWar2View.card?.cardValue)!
         default:
@@ -1395,6 +1354,10 @@ class ViewController: UIViewController
         self.warSkippedByPlayer = false
         self.skipWarButton.hidden = true
         self.resolveWarGuideLabel.hidden = true
+        
+        self.isWar1 = false
+        self.isWar2 = false
+        self.isWar3 = false
         
         print("Player saves \(self.savePlayerCards.count) cards and discards \(self.discardPlayerCards.count) cards, AI saves \(self.saveAICards.count) cards and discards \(self.discardAICards.count) cards.")
         
