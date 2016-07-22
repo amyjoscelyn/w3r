@@ -11,4 +11,6 @@ import UIKit
 class CardCluster: UIView
 {
     @IBOutlet private var contentView: UIView?
+    
+    
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="tHW-67-kxN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="VVH-Vz-7M6">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -393,7 +393,61 @@
                     <view key="view" contentMode="scaleToFill" id="pGS-Qu-lAA">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yap-l4-TVo" userLabel="Center Game View">
+                                <rect key="frame" x="75" y="279" width="450" height="41"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cey-wh-Cto">
+                                        <rect key="frame" x="0.0" y="0.0" width="450" height="41"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="PLAY GAME">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="87I-mV-1UG">
+                                        <rect key="frame" x="34" y="0.0" width="383" height="41"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="❌" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HF6-uw-OMC">
+                                                <rect key="frame" x="0.0" y="11" width="22" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="👑" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ILR-F7-IYP">
+                                                <rect key="frame" x="181" y="11" width="22" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="⚔" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="15d-hx-qsk">
+                                                <rect key="frame" x="361" y="11" width="22" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.40694346749999999" green="0.5739182692" blue="0.42716160330000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="87I-mV-1UG" firstAttribute="height" secondItem="Yap-l4-TVo" secondAttribute="height" id="07w-Xu-VL2"/>
+                                    <constraint firstItem="cey-wh-Cto" firstAttribute="centerY" secondItem="Yap-l4-TVo" secondAttribute="centerY" id="1MB-X3-pIR"/>
+                                    <constraint firstItem="87I-mV-1UG" firstAttribute="centerY" secondItem="Yap-l4-TVo" secondAttribute="centerY" id="7ZR-b9-Lr2"/>
+                                    <constraint firstItem="cey-wh-Cto" firstAttribute="width" secondItem="Yap-l4-TVo" secondAttribute="width" id="L5z-1J-PIg"/>
+                                    <constraint firstItem="cey-wh-Cto" firstAttribute="centerX" secondItem="Yap-l4-TVo" secondAttribute="centerX" id="NcA-Sq-agB"/>
+                                    <constraint firstItem="87I-mV-1UG" firstAttribute="width" secondItem="Yap-l4-TVo" secondAttribute="width" multiplier="0.85" id="RTq-mW-XRx"/>
+                                    <constraint firstAttribute="width" secondItem="Yap-l4-TVo" secondAttribute="height" multiplier="11:1" id="Wvh-dB-HF2"/>
+                                    <constraint firstItem="87I-mV-1UG" firstAttribute="centerX" secondItem="Yap-l4-TVo" secondAttribute="centerX" id="tZn-Fd-4lt"/>
+                                    <constraint firstItem="cey-wh-Cto" firstAttribute="height" secondItem="Yap-l4-TVo" secondAttribute="height" id="yWP-43-45U"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Yap-l4-TVo" firstAttribute="width" secondItem="pGS-Qu-lAA" secondAttribute="width" multiplier="0.75" id="dZG-Hk-Bec"/>
+                            <constraint firstItem="Yap-l4-TVo" firstAttribute="centerX" secondItem="pGS-Qu-lAA" secondAttribute="centerX" id="jZ3-hg-u8T"/>
+                            <constraint firstItem="Yap-l4-TVo" firstAttribute="centerY" secondItem="pGS-Qu-lAA" secondAttribute="centerY" id="xze-X8-LNu"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ayb-Rl-EMX" userLabel="First Responder" sceneMemberID="firstResponder"/>

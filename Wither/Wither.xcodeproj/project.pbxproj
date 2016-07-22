@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3D3F07B21D42AE8A00ABF59A /* CardCluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F07B11D42AE8A00ABF59A /* CardCluster.swift */; };
+		3D3F07B41D42B3CC00ABF59A /* CardCluster.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D3F07B31D42B3CC00ABF59A /* CardCluster.xib */; };
 		3DD6B0001D28A19600297E60 /* AIPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD6AFFF1D28A19600297E60 /* AIPlayer.swift */; };
 		3DFAF9D41D248139009D80B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFAF9D31D248139009D80B3 /* AppDelegate.swift */; };
 		3DFAF9D61D248139009D80B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFAF9D51D248139009D80B3 /* ViewController.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		3D3F07B11D42AE8A00ABF59A /* CardCluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCluster.swift; sourceTree = "<group>"; };
+		3D3F07B31D42B3CC00ABF59A /* CardCluster.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardCluster.xib; sourceTree = "<group>"; };
 		3DD6AFFF1D28A19600297E60 /* AIPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIPlayer.swift; sourceTree = "<group>"; };
 		3DFAF9D01D248139009D80B3 /* Wither.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wither.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DFAF9D31D248139009D80B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				3DFAFA071D257A94009D80B3 /* Game.swift */,
 				3DFAF9D71D248139009D80B3 /* Main.storyboard */,
 				3DFAFA091D258B7F009D80B3 /* CardView.xib */,
+				3D3F07B31D42B3CC00ABF59A /* CardCluster.xib */,
 				3DFAF9DA1D248139009D80B3 /* Assets.xcassets */,
 				3DFAF9DC1D248139009D80B3 /* LaunchScreen.storyboard */,
 				3DFAF9DF1D248139009D80B3 /* Info.plist */,
@@ -254,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DFAF9DE1D248139009D80B3 /* LaunchScreen.storyboard in Resources */,
+				3D3F07B41D42B3CC00ABF59A /* CardCluster.xib in Resources */,
 				3DFAF9DB1D248139009D80B3 /* Assets.xcassets in Resources */,
 				3DFAFA0A1D258B7F009D80B3 /* CardView.xib in Resources */,
 				3DFAF9D91D248139009D80B3 /* Main.storyboard in Resources */,
