@@ -441,12 +441,56 @@
                                     <constraint firstItem="cey-wh-Cto" firstAttribute="height" secondItem="Yap-l4-TVo" secondAttribute="height" id="yWP-43-45U"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rtf-ER-ibL" userLabel="Player Deck View">
+                                <rect key="frame" x="28" y="447" width="450" height="120"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u6X-J6-SbI" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="32" width="60" height="80"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="5wZ-8q-JwB"/>
+                                            <constraint firstAttribute="width" secondItem="u6X-J6-SbI" secondAttribute="height" multiplier="3:4" id="bF8-Fj-j1Q"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B0o-Vm-Xtu" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                                        <rect key="frame" x="374" y="32" width="60" height="80"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="XoK-H8-B0L"/>
+                                            <constraint firstAttribute="width" secondItem="B0o-Vm-Xtu" secondAttribute="height" multiplier="3:4" id="lZ4-gs-hiX"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="2wL-Vn-RMD"/>
+                                    <constraint firstAttribute="bottom" secondItem="u6X-J6-SbI" secondAttribute="bottom" constant="8" id="UH2-fJ-Kc0"/>
+                                    <constraint firstItem="u6X-J6-SbI" firstAttribute="leading" secondItem="rtf-ER-ibL" secondAttribute="leading" id="kzE-Vm-3kH"/>
+                                    <constraint firstAttribute="trailing" secondItem="B0o-Vm-Xtu" secondAttribute="trailing" constant="16" id="n4z-7R-TJH"/>
+                                    <constraint firstAttribute="bottom" secondItem="B0o-Vm-Xtu" secondAttribute="bottom" constant="8" id="sHU-35-EfK"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qu7-nL-skD">
+                                <rect key="frame" x="353" y="359" width="60" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vDP-AE-caO" userLabel="AI Deck View">
+                                <rect key="frame" x="6" y="39" width="450" height="120"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="rtf-ER-ibL" firstAttribute="leading" secondItem="pGS-Qu-lAA" secondAttribute="leadingMargin" constant="8" id="BAA-9X-oXe"/>
+                            <constraint firstItem="vDP-AE-caO" firstAttribute="width" secondItem="rtf-ER-ibL" secondAttribute="width" id="Cif-Wi-9If"/>
+                            <constraint firstItem="lxl-Wd-I4v" firstAttribute="top" secondItem="rtf-ER-ibL" secondAttribute="bottom" constant="33" id="NYm-2F-7CB"/>
+                            <constraint firstItem="vDP-AE-caO" firstAttribute="height" secondItem="rtf-ER-ibL" secondAttribute="height" id="WOb-sM-ZUf"/>
+                            <constraint firstItem="vDP-AE-caO" firstAttribute="top" secondItem="ToD-6S-74r" secondAttribute="bottom" constant="19" id="bkW-wv-Zsf"/>
                             <constraint firstItem="Yap-l4-TVo" firstAttribute="width" secondItem="pGS-Qu-lAA" secondAttribute="width" multiplier="0.75" id="dZG-Hk-Bec"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vDP-AE-caO" secondAttribute="trailing" constant="124" id="isq-5c-ej2"/>
                             <constraint firstItem="Yap-l4-TVo" firstAttribute="centerX" secondItem="pGS-Qu-lAA" secondAttribute="centerX" id="jZ3-hg-u8T"/>
                             <constraint firstItem="Yap-l4-TVo" firstAttribute="centerY" secondItem="pGS-Qu-lAA" secondAttribute="centerY" id="xze-X8-LNu"/>
+                            <constraint firstItem="rtf-ER-ibL" firstAttribute="width" secondItem="pGS-Qu-lAA" secondAttribute="width" multiplier="0.75" id="zmT-2j-f2v"/>
                         </constraints>
                     </view>
                 </viewController>
