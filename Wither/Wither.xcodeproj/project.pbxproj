@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D3F07B21D42AE8A00ABF59A /* CardCluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F07B11D42AE8A00ABF59A /* CardCluster.swift */; };
 		3DD6B0001D28A19600297E60 /* AIPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD6AFFF1D28A19600297E60 /* AIPlayer.swift */; };
 		3DFAF9D41D248139009D80B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFAF9D31D248139009D80B3 /* AppDelegate.swift */; };
 		3DFAF9D61D248139009D80B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFAF9D51D248139009D80B3 /* ViewController.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D3F07B11D42AE8A00ABF59A /* CardCluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCluster.swift; sourceTree = "<group>"; };
 		3DD6AFFF1D28A19600297E60 /* AIPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIPlayer.swift; sourceTree = "<group>"; };
 		3DFAF9D01D248139009D80B3 /* Wither.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wither.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DFAF9D31D248139009D80B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				3DFAF9D31D248139009D80B3 /* AppDelegate.swift */,
 				3DFAF9D51D248139009D80B3 /* ViewController.swift */,
 				3DFAFA0B1D258C70009D80B3 /* CardView.swift */,
+				3D3F07B11D42AE8A00ABF59A /* CardCluster.swift */,
 				3DFAFA011D2482E7009D80B3 /* Card.swift */,
 				3DFAFA031D257072009D80B3 /* Deck.swift */,
 				3DFAFA051D25738D009D80B3 /* Player.swift */,
@@ -284,6 +287,7 @@
 				3DFAFA081D257A94009D80B3 /* Game.swift in Sources */,
 				3DFAF9D61D248139009D80B3 /* ViewController.swift in Sources */,
 				3DFAFA021D2482E7009D80B3 /* Card.swift in Sources */,
+				3D3F07B21D42AE8A00ABF59A /* CardCluster.swift in Sources */,
 				3DFAFA061D25738D009D80B3 /* Player.swift in Sources */,
 				3DFAF9D41D248139009D80B3 /* AppDelegate.swift in Sources */,
 			);
