@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import QuartzCore //I imported this to rotate the cards a bit.  Is this how this works?
 
 let winning_emoji = "👑"
 let loss_emoji = "❌"
@@ -19,6 +18,9 @@ let third_column = "3"
 
 let player_string = "Player"
 let ai_string = "AI"
+
+let save_string = "Save"
+let discard_string = "Discard"
 
 let play_game_string = "BEGIN GAME"
 let ready_string = "READY!"
@@ -96,7 +98,6 @@ class ViewController: UIViewController
     var isWar2 = false
     var isWar3 = false
     var roundHasBegun = false
-    var warSkippedByPlayer = false
     
     let game = Game.init()
     
@@ -200,7 +201,7 @@ class ViewController: UIViewController
     func rotateCardViews()
     {
         self.playerDiscardView.transform = CGAffineTransformMakeRotation(0.05)
-        self.playerDiscardViewA.transform = CGAffineTransformMakeRotation(5.4)
+        self.playerDiscardViewA.transform = CGAffineTransformMakeRotation(5.1)
         self.playerDiscardViewB.transform = CGAffineTransformMakeRotation(2)
         self.playerDiscardViewC.transform = CGAffineTransformMakeRotation(0.9)
         self.playerDiscardViewD.transform = CGAffineTransformMakeRotation(0)
@@ -341,7 +342,7 @@ class ViewController: UIViewController
 //        print("#5 (handlePanGesture)")
         if panGesture.state == UIGestureRecognizerState.Began
         {
-            self.playerDeckView?.bringSubviewToFront(self.view) //is this right???
+            self.view.bringSubviewToFront(self.playerDeckView)
             self.lastLocation = self.playerDeckView.center
         }
         if panGesture.state == UIGestureRecognizerState.Changed
@@ -381,9 +382,9 @@ class ViewController: UIViewController
             
             //***************************************
             //for testing purposes, this code can be commented out
-            self.aiWar1View.faceUp = false
-            self.aiWar2View.faceUp = false
-            self.aiWar3View.faceUp = false
+//            self.aiWar1View.faceUp = false
+//            self.aiWar2View.faceUp = false
+//            self.aiWar3View.faceUp = false
             //***************************************
         }
         else if self.game.player.hand.count > 0 || self.game.aiPlayer.hand.count > 0
@@ -497,12 +498,14 @@ class ViewController: UIViewController
         }
         else if label == war_string
         {
+            self.skipWarButton.hidden = true
+            self.resolveWarGuideLabel.hidden = true
             self.hideWarLabel(self.columnOfWar)
             self.playWarInColumn(self.columnOfWar)
         }
         else if label == end_round_string
         {
-            self.endRound() //√
+            self.endRound()
         }
         else if label == game_over_string
         {
@@ -582,7 +585,7 @@ class ViewController: UIViewController
         case second_column:
             if !isWar2
             {
-                playerCard = self.playerWar1View.card!
+                playerCard = self.playerWar2View.card!
                 aiCard = self.aiWar2View.card!
             }
             else
@@ -610,7 +613,7 @@ class ViewController: UIViewController
         default:
             if !isWar3
             {
-                playerCard = self.playerWar1View.card!
+                playerCard = self.playerWar3View.card!
                 aiCard = self.aiWar3View.card!
             }
             else
@@ -736,27 +739,21 @@ class ViewController: UIViewController
                 switch column
                 {
                 case first_column:
-                    self.discardSingleCard(player_string, column: first_column)
-                    self.saveSingleCard(player_string, column: second_column)
-                    self.saveSingleCard(player_string, column: third_column)
+                    self.playerHandActions([ discard_string, save_string, save_string ])
                 case second_column:
-                    self.saveSingleCard(player_string, column: first_column)
-                    self.discardSingleCard(player_string, column: second_column)
-                    self.saveSingleCard(player_string, column: third_column)
+                    self.playerHandActions([ save_string, discard_string, save_string ])
                 default:
-                    self.saveSingleCard(player_string, column: first_column)
-                    self.saveSingleCard(player_string, column: second_column)
-                    self.discardSingleCard(player_string, column: third_column)
+                    self.playerHandActions([ save_string, save_string, discard_string ])
                 }
                 
                 self.discardAllCards(ai_string)
                 
                 self.prepButtonWithTitle(end_round_string)
             }
-            else //war //DOES THIS GET CALLED WHEN WAR IS TIED?
+            else //war
             {
                 column = self.columnOfResult(war_emoji)
-                let warValue = self.cardValueOfWar(column) //only good for initial wars...
+                let warValue = self.cardValueOfWar(column) //only good for initial wars... right?
                 print("AI has lost, but gets to pass on the war.")
                 let willResolveWar = self.game.aiPlayer.shouldResolveWar(warValue)
                 
@@ -774,17 +771,11 @@ class ViewController: UIViewController
                     switch column
                     {
                     case first_column:
-                        self.saveSingleCard(ai_string, column: first_column)
-                        self.discardSingleCard(ai_string, column: second_column)
-                        self.discardSingleCard(ai_string, column: third_column)
+                        self.aiHandActions([ save_string, discard_string, discard_string ])
                     case second_column:
-                        self.discardSingleCard(ai_string, column: first_column)
-                        self.saveSingleCard(ai_string, column: second_column)
-                        self.discardSingleCard(ai_string, column: third_column)
+                        self.aiHandActions([ discard_string, save_string, discard_string ])
                     default:
-                        self.discardSingleCard(ai_string, column: first_column)
-                        self.discardSingleCard(ai_string, column: second_column)
-                        self.saveSingleCard(ai_string, column: third_column)
+                        self.aiHandActions([ discard_string, discard_string, save_string ])
                     }
                     
                     self.prepButtonWithTitle(end_round_string)
@@ -801,47 +792,15 @@ class ViewController: UIViewController
                 switch column
                 {
                 case first_column:
-                    self.discardSingleCard(ai_string, column: first_column)
-                    self.saveSingleCard(ai_string, column: second_column)
-                    self.saveSingleCard(ai_string, column: third_column)
+                    self.aiHandActions([ discard_string, save_string, save_string ])
                 case second_column:
-                    self.saveSingleCard(ai_string, column: first_column)
-                    self.discardSingleCard(ai_string, column: second_column)
-                    self.saveSingleCard(ai_string, column: third_column)
+                    self.aiHandActions([ save_string, discard_string, save_string ])
                 default:
-                    self.saveSingleCard(ai_string, column: first_column)
-                    self.saveSingleCard(ai_string, column: second_column)
-                    self.discardSingleCard(ai_string, column: third_column)
+                    self.aiHandActions([ save_string, save_string, discard_string ])
                 }
                 
                 self.discardAllCards(player_string)
                 
-                self.prepButtonWithTitle(end_round_string)
-            }
-            else if warSkippedByPlayer
-            {
-                print("war has been skipped!--in method")
-                
-                self.saveAllCards(ai_string)
-                
-                column = self.columnOfResult(war_emoji)
-                
-                switch column
-                {
-                case first_column:
-                    self.saveSingleCard(player_string, column: first_column)
-                    self.discardSingleCard(player_string, column: second_column)
-                    self.discardSingleCard(player_string, column: third_column)
-                case second_column:
-                    self.discardSingleCard(player_string, column: first_column)
-                    self.saveSingleCard(player_string, column: second_column)
-                    self.discardSingleCard(player_string, column: third_column)
-                default:
-                    self.discardSingleCard(player_string, column: first_column)
-                    self.discardSingleCard(player_string, column: second_column)
-                    self.saveSingleCard(player_string, column: third_column)
-                }
-//                self.endRound() //why is this called here, and not in the button???
                 self.prepButtonWithTitle(end_round_string)
             }
             else //war
@@ -884,7 +843,7 @@ class ViewController: UIViewController
                     firstWar = self.cardValueOfWar(second_column)
                     secondWar = self.cardValueOfWar(third_column)
                     
-                    if firstWar > secondWar //>=?
+                    if firstWar >= secondWar
                     {
                         self.prepForWar(second_column)
                     }
@@ -897,7 +856,7 @@ class ViewController: UIViewController
                     firstWar = self.cardValueOfWar(first_column)
                     secondWar = self.cardValueOfWar(third_column)
                     
-                    if firstWar > secondWar //>=?
+                    if firstWar >= secondWar
                     {
                         self.prepForWar(first_column)
                     }
@@ -910,7 +869,7 @@ class ViewController: UIViewController
                     firstWar = self.cardValueOfWar(first_column)
                     secondWar = self.cardValueOfWar(second_column)
                     
-                    if firstWar > secondWar //>=?
+                    if firstWar >= secondWar
                     {
                         self.prepForWar(first_column)
                     }
@@ -1005,6 +964,64 @@ class ViewController: UIViewController
         }
         
         return column
+    }
+    
+    func playerHandActions(actions: [String])
+    {
+        let action1 = actions[0]
+        let action2 = actions[1]
+        let action3 = actions[2]
+        
+        switch action1
+        {
+        case save_string:
+            saveSingleCard(player_string, column: first_column)
+        default:
+            discardSingleCard(player_string, column: first_column)
+        }
+        switch action2
+        {
+        case save_string:
+            saveSingleCard(player_string, column: second_column)
+        default:
+            discardSingleCard(player_string, column: second_column)
+        }
+        switch action3
+        {
+        case save_string:
+            saveSingleCard(player_string, column: third_column)
+        default:
+            discardSingleCard(player_string, column: third_column)
+        }
+    }
+    
+    func aiHandActions(actions: [String])
+    {
+        let action1 = actions[0]
+        let action2 = actions[1]
+        let action3 = actions[2]
+        
+        switch action1
+        {
+        case save_string:
+            saveSingleCard(ai_string, column: first_column)
+        default:
+            discardSingleCard(ai_string, column: first_column)
+        }
+        switch action2
+        {
+        case save_string:
+            saveSingleCard(ai_string, column: second_column)
+        default:
+            discardSingleCard(ai_string, column: second_column)
+        }
+        switch action3
+        {
+        case save_string:
+            saveSingleCard(ai_string, column: third_column)
+        default:
+            discardSingleCard(ai_string, column: third_column)
+        }
     }
     
     func saveSingleCard(player: String, column: String)
@@ -1227,7 +1244,7 @@ class ViewController: UIViewController
         switch column
         {
         case first_column:
-            return (self.aiWar1View.card?.cardValue)! //what about wars on ABC?
+            return (self.aiWar1View.card?.cardValue)!
         case second_column:
             return (self.aiWar2View.card?.cardValue)!
         default:
@@ -1351,7 +1368,7 @@ class ViewController: UIViewController
         self.war2ResultLabel.text = ""
         self.war3ResultLabel.text = ""
         
-        self.warSkippedByPlayer = false
+//        self.warSkippedByPlayer = false
         self.skipWarButton.hidden = true
         self.resolveWarGuideLabel.hidden = true
         
@@ -1484,7 +1501,10 @@ class ViewController: UIViewController
                 //GAME IS OVER
                 print("GAME IS OVER. NO BACKUP FOR WAR BY BOTH PLAYERS.  TIE!")
                 print("finalRoundSpoils deemed this game OVER!!!!!!!!")
-                self.prepButtonWithTitle(game_over_string)
+//                self.prepButtonWithTitle(game_over_string)
+                //I think instead here should go another method, where it resolves the round--endRound?--and THEN sets the title to the game_over_string, so that we can see the card being discarded.
+                //And maybe if there's at least a single card still left in one person's hand, MAYBE play can continue?  Or they can choose at that point whether they want to play it.
+                //If, however, that single card was one they just won... maybe it's a one-use thing and then you get credited a point, or maybe they just keep going until a player has 0 cards?  But the longer you play that same card, the more likely you'll run into a war, and that's not desirable.
             }
             if self.game.player.deck.cards.count == 1
             {
@@ -1577,12 +1597,32 @@ class ViewController: UIViewController
     
     @IBAction func skipWarButtonTapped(sender: AnyObject)
     {
-        print("WE'RE SKIPPING THIS WAR...")
-        self.warSkippedByPlayer = true
-        self.judgeRound()
+//        print("PLAYER PASSES ON WAR.")
+        
+        self.playerPassesOnWar()
     }
     
-    
+    func playerPassesOnWar()
+    {
+        self.skipWarButton.hidden = true
+        
+        self.saveAllCards(ai_string)
+        
+        let column = self.columnOfResult(war_emoji)
+        
+        switch column
+        {
+        case first_column:
+            self.playerHandActions([ save_string, discard_string, discard_string ])
+        case second_column:
+            self.playerHandActions([ discard_string, save_string, discard_string ])
+        default:
+            self.playerHandActions([ discard_string, discard_string, save_string ])
+        }
+        self.prepButtonWithTitle(end_round_string)
+    }
+ 
+ 
     //Above are IBActions for swapping cards, skipping wars, and the settings button
 
 }
