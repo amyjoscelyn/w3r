@@ -3,43 +3,60 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10116"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardCluster" customModule="Wither" customModuleProvider="target">
+            <connections>
+                <outlet property="baseCardView" destination="KcI-5p-rNY" id="qIK-uQ-4M8"/>
+                <outlet property="cardViewA" destination="VkJ-zR-G9Y" id="eJs-BS-vOL"/>
+                <outlet property="cardViewB" destination="5rk-fk-Ku7" id="YyH-ak-vYU"/>
+                <outlet property="cardViewC" destination="DUS-uX-HEC" id="IWh-TU-pZL"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="121" height="156"/>
+            <rect key="frame" x="0.0" y="0.0" width="120" height="160"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KcI-5p-rNY" customClass="CardView" customModule="Wither" customModuleProvider="target">
                     <rect key="frame" x="30" y="8" width="60" height="80"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="KcI-5p-rNY" secondAttribute="height" multiplier="3:4" id="Ibx-32-JQZ"/>
-                        <constraint firstAttribute="width" constant="60" id="O2T-PN-ETj"/>
-                    </constraints>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VkJ-zR-G9Y" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VkJ-zR-G9Y" customClass="CardView" customModule="Wither" customModuleProvider="target">
                     <rect key="frame" x="13" y="26" width="60" height="80"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DUS-uX-HEC">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DUS-uX-HEC" customClass="CardView" customModule="Wither" customModuleProvider="target">
                     <rect key="frame" x="20" y="69" width="60" height="80"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5rk-fk-Ku7">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5rk-fk-Ku7" customClass="CardView" customModule="Wither" customModuleProvider="target">
                     <rect key="frame" x="48" y="51" width="60" height="80"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.047058823530000002" green="0.37647058820000001" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="KcI-5p-rNY" firstAttribute="leading" secondItem="DUS-uX-HEC" secondAttribute="trailing" constant="-50" id="0Ib-47-Pfg"/>
                 <constraint firstItem="KcI-5p-rNY" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="F4M-E1-iZK"/>
+                <constraint firstItem="5rk-fk-Ku7" firstAttribute="width" secondItem="KcI-5p-rNY" secondAttribute="width" id="JbL-Tq-glt"/>
+                <constraint firstItem="5rk-fk-Ku7" firstAttribute="top" secondItem="KcI-5p-rNY" secondAttribute="bottom" constant="-37" id="Pd0-eB-a1C"/>
+                <constraint firstItem="5rk-fk-Ku7" firstAttribute="leading" secondItem="KcI-5p-rNY" secondAttribute="trailing" constant="-42" id="Wd2-vU-QHf"/>
+                <constraint firstItem="KcI-5p-rNY" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.5" id="XzY-hO-Pqp"/>
+                <constraint firstItem="VkJ-zR-G9Y" firstAttribute="height" secondItem="KcI-5p-rNY" secondAttribute="height" id="ZxY-hq-Mgd"/>
+                <constraint firstItem="5rk-fk-Ku7" firstAttribute="height" secondItem="KcI-5p-rNY" secondAttribute="height" id="cSd-dc-zG9"/>
+                <constraint firstItem="VkJ-zR-G9Y" firstAttribute="width" secondItem="KcI-5p-rNY" secondAttribute="width" id="d7k-3P-ZTT"/>
                 <constraint firstItem="KcI-5p-rNY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="i7G-sP-HuO"/>
+                <constraint firstItem="KcI-5p-rNY" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.5" id="n3g-pF-lOk"/>
+                <constraint firstItem="VkJ-zR-G9Y" firstAttribute="top" secondItem="KcI-5p-rNY" secondAttribute="bottom" constant="-62" id="oaJ-Lw-pXS"/>
+                <constraint firstItem="DUS-uX-HEC" firstAttribute="width" secondItem="KcI-5p-rNY" secondAttribute="width" id="p76-oh-NGE"/>
+                <constraint firstItem="DUS-uX-HEC" firstAttribute="height" secondItem="KcI-5p-rNY" secondAttribute="height" id="rYq-va-0I8"/>
+                <constraint firstItem="DUS-uX-HEC" firstAttribute="top" secondItem="KcI-5p-rNY" secondAttribute="bottom" constant="-19" id="wRK-KL-aHr"/>
+                <constraint firstItem="KcI-5p-rNY" firstAttribute="leading" secondItem="VkJ-zR-G9Y" secondAttribute="trailing" constant="-43" id="ymv-CF-7GM"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="198" y="283"/>
+            <point key="canvasLocation" x="197" y="283"/>
         </view>
     </objects>
 </document>
