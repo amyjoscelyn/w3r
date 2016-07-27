@@ -18,6 +18,11 @@ class CardView: UIView
     @IBOutlet weak var bottomValueLabel: UILabel!
     @IBOutlet weak var cardBackgroundImage: UIImageView!
     
+    class func widthForScreenWidth() -> CGFloat
+    {
+        return UIScreen.mainScreen().bounds.size.width / 7
+    }
+    
     var faceUp: Bool = true
         {
         didSet

@@ -9,9 +9,7 @@
 import UIKit
 
 class CardCluster: UIView
-{
-    //121, 156
-    
+{   
     @IBOutlet private var contentView: UIView?
     @IBOutlet weak var baseCardView: CardView!
     @IBOutlet weak var cardViewA: CardView!

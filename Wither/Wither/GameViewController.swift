@@ -51,6 +51,14 @@ class GameViewController: UIViewController
         self.ai2ClusterView.setPlayerAndColumn("AI", column: "2")
         self.ai3ClusterView.setPlayerAndColumn("AI", column: "3")
         
+//        self.player1ClusterView.autoresizesSubviews = true
+//        self.player2ClusterView.autoresizesSubviews = true
+//        self.player3ClusterView.autoresizesSubviews = true
+//        
+//        self.ai1ClusterView.autoresizesSubviews = true
+//        self.ai2ClusterView.autoresizesSubviews = true
+//        self.ai3ClusterView.autoresizesSubviews = true
+        
 //        self.populateCardClusters()
     }
     
