@@ -18,29 +18,43 @@
             <rect key="frame" x="0.0" y="0.0" width="60" height="80"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CardFrontC" translatesAutoresizingMaskIntoConstraints="NO" id="2iF-GH-mXV">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CardFrontC" translatesAutoresizingMaskIntoConstraints="NO" id="2iF-GH-mXV">
                     <rect key="frame" x="0.0" y="0.0" width="60" height="80"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="♤A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wT3-9v-1at">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="♤A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wT3-9v-1at">
                     <rect key="frame" x="0.0" y="0.0" width="60" height="80"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                     <color key="textColor" red="0.245713141" green="0.245713141" blue="0.245713141" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="RANK" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZ3-fv-75W">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RANK" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZ3-fv-75W">
                     <rect key="frame" x="23" y="2" width="33" height="14"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="RANK" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKw-0M-9RT">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RANK" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKw-0M-9RT">
                     <rect key="frame" x="4" y="63" width="33" height="15"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
+            <constraints>
+                <constraint firstItem="2iF-GH-mXV" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="0n2-Yi-bN9"/>
+                <constraint firstItem="2iF-GH-mXV" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="Esf-JG-gUp"/>
+                <constraint firstItem="CZ3-fv-75W" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="2" id="JNw-kc-lAt"/>
+                <constraint firstAttribute="trailing" secondItem="CZ3-fv-75W" secondAttribute="trailing" constant="4" id="RfY-z0-Dju"/>
+                <constraint firstItem="gKw-0M-9RT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="4" id="T1o-jW-pjU"/>
+                <constraint firstItem="wT3-9v-1at" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="aBy-M8-GYy"/>
+                <constraint firstItem="2iF-GH-mXV" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="aHE-wC-uAo"/>
+                <constraint firstItem="wT3-9v-1at" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="akK-3V-M06"/>
+                <constraint firstItem="wT3-9v-1at" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="dVB-Z2-trr"/>
+                <constraint firstAttribute="bottom" secondItem="gKw-0M-9RT" secondAttribute="bottom" constant="2" id="kby-Sz-veB"/>
+                <constraint firstItem="2iF-GH-mXV" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="qJS-eI-3oo"/>
+                <constraint firstItem="wT3-9v-1at" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="qbC-Wd-yoS"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="585" y="88"/>

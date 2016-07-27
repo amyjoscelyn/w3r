@@ -19,6 +19,26 @@ class CardCluster: UIView
     private var cards: [Card] = []
     private var player: String = ""
     private var column: String = ""
+    private var cardViews: [CardView] { return [ self.baseCardView, self.cardViewA, self.cardViewB, self.cardViewC ] }
+    
+//    func setWidthOfCardView()
+//    {
+//        let width = CardView.widthForScreenWidth()
+//        let height = width / 3 * 4
+//        
+//        self.baseCardView.frame = CGRectMake(0, 0, width, height)
+//    }
+    
+    func customizeCardViews()
+    {
+        for card in self.cardViews
+        {
+            card.layer.cornerRadius = 6
+            card.layer.borderWidth = 3
+            //        card.layer.borderColor =
+            card.clipsToBounds = true
+        }
+    }
     
     func setPlayerAndColumn(player: String, column: String)
     {
@@ -37,6 +57,16 @@ class CardCluster: UIView
         self.cards.removeAll()
         return arrayOfCards
     }
+    
+    func cardToJudge() -> Card
+    {
+        return self.cards.last!
+    }
+    
+//    func placeCardJustDealtOnTop(cardView: CardView)
+//    {
+//        self.bringSubviewToFront(cardView)
+//    }
     
     func populateCardViews()
     {
@@ -61,6 +91,7 @@ class CardCluster: UIView
             }
             
             cardView.card = self.cards.last
+            self.bringSubviewToFront(cardView)
         }
         else
         {

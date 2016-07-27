@@ -618,7 +618,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Exq-K6-GRb">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.40694346749999999" green="0.5739182692" blue="0.42716160330000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="PLAY GAME">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -647,7 +647,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.40694346749999999" green="0.5739182692" blue="0.42716160330000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Exq-K6-GRb" firstAttribute="height" secondItem="Nzy-eM-plK" secondAttribute="height" id="0n4-Fs-qoH"/>
                                     <constraint firstItem="Exq-K6-GRb" firstAttribute="centerY" secondItem="Nzy-eM-plK" secondAttribute="centerY" id="1VF-CE-HDO"/>
@@ -663,11 +663,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yhm-d6-z2x" userLabel="Player Deck View">
                                 <rect key="frame" x="28" y="456" width="300" height="120"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFP-4u-sQS" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aFP-4u-sQS" customClass="CardView" customModule="Wither" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="32" width="60" height="80"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="dOx-K1-JMk"/>
                                             <constraint firstAttribute="width" secondItem="aFP-4u-sQS" secondAttribute="height" multiplier="3:4" id="lsg-lC-bmF"/>
                                         </constraints>
                                     </view>
@@ -680,7 +679,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="aFP-4u-sQS" firstAttribute="leading" secondItem="yhm-d6-z2x" secondAttribute="leading" id="2qI-Lc-Q3b"/>
                                     <constraint firstAttribute="bottom" secondItem="acK-wd-xOS" secondAttribute="bottom" constant="8" id="fac-li-daw"/>
@@ -713,7 +712,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="F2S-5b-BRa" firstAttribute="leading" secondItem="pgG-Y9-oiB" secondAttribute="leading" constant="16" id="0bK-Vg-nWK"/>
                                     <constraint firstAttribute="trailing" secondItem="vLL-8V-IAo" secondAttribute="trailing" id="V2l-ev-S7i"/>
@@ -721,7 +720,7 @@
                                     <constraint firstItem="vLL-8V-IAo" firstAttribute="top" secondItem="pgG-Y9-oiB" secondAttribute="top" constant="8" id="vRa-jO-FWp"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c1t-7k-M7B" userLabel="AI Hand Stack View">
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c1t-7k-M7B" userLabel="AI Hand Stack View">
                                 <rect key="frame" x="16" y="114" width="368" height="163"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3RO-dD-xNM" customClass="CardCluster" customModule="Wither" customModuleProvider="target">
@@ -731,7 +730,7 @@
                                             <constraint firstAttribute="width" secondItem="3RO-dD-xNM" secondAttribute="height" multiplier="3:4" id="h2S-Ce-VQS"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cxB-dL-5eq" customClass="CardCluster" customModule="Wither" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxB-dL-5eq" customClass="CardCluster" customModule="Wither" customModuleProvider="target">
                                         <rect key="frame" x="123" y="0.0" width="122" height="163"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -779,6 +778,7 @@
                             <constraint firstItem="Nzy-eM-plK" firstAttribute="width" secondItem="Siu-Tt-bQv" secondAttribute="width" multiplier="0.75" id="2yL-cW-6pe"/>
                             <constraint firstItem="yhm-d6-z2x" firstAttribute="width" secondItem="Siu-Tt-bQv" secondAttribute="width" multiplier="0.75" id="GDG-OJ-IJ6"/>
                             <constraint firstAttribute="trailing" secondItem="YjE-Y7-9Mm" secondAttribute="trailing" constant="16" id="HQe-iw-YbN"/>
+                            <constraint firstItem="aFP-4u-sQS" firstAttribute="width" secondItem="krD-nP-8lR" secondAttribute="width" multiplier="0.5" id="Imt-nf-OJh"/>
                             <constraint firstItem="c1t-7k-M7B" firstAttribute="bottom" secondItem="Siu-Tt-bQv" secondAttribute="centerY" constant="-24" id="M7n-HR-72j"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pgG-Y9-oiB" secondAttribute="trailing" constant="8" id="PrX-Dn-Bbw"/>
                             <constraint firstItem="pgG-Y9-oiB" firstAttribute="top" secondItem="goF-0T-WFI" secondAttribute="bottom" constant="12" id="Rya-Qe-uSb"/>

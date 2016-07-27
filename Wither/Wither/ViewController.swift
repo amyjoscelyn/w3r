@@ -8,25 +8,25 @@
 
 import UIKit
 
-let winning_emoji = "👑"
-let loss_emoji = "❌"
-let war_emoji = "⚔"
-
-let first_column = "1"
-let second_column = "2"
-let third_column = "3"
-
-let player_string = "Player"
-let ai_string = "AI"
-
-let save_string = "Save"
-let discard_string = "Discard"
-
-let play_game_string = "BEGIN GAME"
-let ready_string = "READY!"
-let war_string = "WAR!"
-let end_round_string = "END ROUND"
-let game_over_string = "GAME OVER"
+//let winning_emoji = "👑"
+//let loss_emoji = "❌"
+//let war_emoji = "⚔"
+//
+//let first_column = "1"
+//let second_column = "2"
+//let third_column = "3"
+//
+//let player_string = "Player"
+//let ai_string = "AI"
+//
+//let save_string = "Save"
+//let discard_string = "Discard"
+//
+//let play_game_string = "BEGIN GAME"
+//let ready_string = "READY!"
+//let war_string = "WAR!"
+//let end_round_string = "END ROUND"
+//let game_over_string = "GAME OVER"
 
 class ViewController: UIViewController
 {
