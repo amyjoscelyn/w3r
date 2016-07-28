@@ -107,7 +107,7 @@ class AICardCluster: UIView
     
     private func commonInit()
     {
-        let content = NSBundle.mainBundle().loadNibNamed("CardCluster", owner: self, options: nil).first as! UIView
+        let content = NSBundle.mainBundle().loadNibNamed("AICardCluster", owner: self, options: nil).first as! UIView
         content.frame = self.bounds
         content.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
         self.contentView = content

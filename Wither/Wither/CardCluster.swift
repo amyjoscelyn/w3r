@@ -92,6 +92,7 @@ class CardCluster: UIView
             
             cardView.card = self.cards.last
             self.bringSubviewToFront(cardView)
+            //why isn't this working?
         }
         else
         {

@@ -9,10 +9,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AICardCluster" customModule="Wither" customModuleProvider="target">
             <connections>
-                <outlet property="baseCardView" destination="sNE-Mf-DaR" id="2L1-td-MNy"/>
-                <outlet property="cardViewA" destination="IpG-hl-jwb" id="JyU-7a-JEy"/>
-                <outlet property="cardViewB" destination="HBY-mu-1Mx" id="MAu-H9-4gn"/>
-                <outlet property="cardViewC" destination="F2o-h8-tKy" id="xKO-2A-HCh"/>
+                <outlet property="baseCardView" destination="sNE-Mf-DaR" id="eHc-Yo-WjZ"/>
+                <outlet property="cardViewA" destination="IpG-hl-jwb" id="hcf-qa-Cv2"/>
+                <outlet property="cardViewB" destination="HBY-mu-1Mx" id="EEg-az-8ke"/>
+                <outlet property="cardViewC" destination="F2o-h8-tKy" id="zo9-Qf-Zle"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

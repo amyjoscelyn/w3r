@@ -81,7 +81,6 @@ class GameViewController: UIViewController
         self.cardViewArray()
         self.createGameSpace()
         self.startGame()
-        
     }
     
     func cardViewArray()
@@ -143,13 +142,13 @@ class GameViewController: UIViewController
         
 //        self.player1ClusterView.setWidthOfCardView()
         
-        self.player1ClusterView.autoresizesSubviews = true
-        self.player2ClusterView.autoresizesSubviews = true
-        self.player3ClusterView.autoresizesSubviews = true
-        
-        self.ai1ClusterView.autoresizesSubviews = true
-        self.ai2ClusterView.autoresizesSubviews = true
-        self.ai3ClusterView.autoresizesSubviews = true
+//        self.player1ClusterView.autoresizesSubviews = true
+//        self.player2ClusterView.autoresizesSubviews = true
+//        self.player3ClusterView.autoresizesSubviews = true
+//        
+//        self.ai1ClusterView.autoresizesSubviews = true
+//        self.ai2ClusterView.autoresizesSubviews = true
+//        self.ai3ClusterView.autoresizesSubviews = true
         
         self.populateCardClusters()
     }
@@ -1257,6 +1256,30 @@ class GameViewController: UIViewController
         if self.game.player.deck.cards.count > 0 && self.game.aiPlayer.deck.cards.count > 0
         {
             self.game.war()
+            
+            let playerCardCluster: CardCluster
+            let aiCardCluster: AICardCluster
+            
+            if self.isWar1
+            {
+                playerCardCluster = self.player1ClusterView
+                aiCardCluster = self.ai1ClusterView
+            }
+            else if self.isWar2
+            {
+                playerCardCluster = self.player2ClusterView
+                aiCardCluster = self.ai2ClusterView
+            }
+            else
+            {
+                playerCardCluster = self.player3ClusterView
+                aiCardCluster = self.ai3ClusterView
+            }
+            
+            playerCardCluster.addCard(self.game.player.warCards.last!)
+            aiCardCluster.addCard(self.game.aiPlayer.warCards.last!)
+            
+            self.populateCardClusters()
             
 //            var playerWarView: CardView
 //            var aiWarView: CardView
