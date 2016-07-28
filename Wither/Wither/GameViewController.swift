@@ -28,6 +28,9 @@ let war_string = "WAR!"
 let end_round_string = "END ROUND"
 let game_over_string = "GAME OVER"
 
+let corner_radius: CGFloat = 8
+let border_width: CGFloat = 3
+
 class GameViewController: UIViewController
 {
     var lastLocation: CGPoint = CGPointMake(0, 0)
@@ -51,9 +54,9 @@ class GameViewController: UIViewController
     @IBOutlet weak var player1ClusterView: CardCluster!
     @IBOutlet weak var player2ClusterView: CardCluster!
     @IBOutlet weak var player3ClusterView: CardCluster!
-    @IBOutlet weak var ai1ClusterView: CardCluster!
-    @IBOutlet weak var ai2ClusterView: CardCluster!
-    @IBOutlet weak var ai3ClusterView: CardCluster!
+    @IBOutlet weak var ai1ClusterView: AICardCluster!
+    @IBOutlet weak var ai2ClusterView: AICardCluster!
+    @IBOutlet weak var ai3ClusterView: AICardCluster!
     
     @IBOutlet weak var playGameButton: UIButton!
     @IBOutlet weak var war1ResultLabel: UILabel!
@@ -61,6 +64,7 @@ class GameViewController: UIViewController
     @IBOutlet weak var war3ResultLabel: UILabel!
     
     //settings button, swap buttons, deck labels, resolveWarGuide and skipWarButton
+    @IBOutlet weak var centerGameView: UIView!
     
     var columnOfWar: String = ""
     var isWar1 = false
@@ -108,6 +112,9 @@ class GameViewController: UIViewController
         
         self.playGameButton.setTitle("", forState: UIControlState.Normal)
         self.playGameButton.enabled = false
+        
+        self.centerGameView.layer.cornerRadius = corner_radius
+        self.centerGameView.clipsToBounds = true
         
 //        self.rotateCardViews()
         
@@ -161,8 +168,8 @@ class GameViewController: UIViewController
     func customizeButton(button: UIButton)
     {
         //        print("#3 (customizeButton)")
-        button.layer.cornerRadius = 8
-        button.layer.borderWidth = 3
+        button.layer.cornerRadius = corner_radius
+        button.layer.borderWidth = border_width
         button.layer.borderColor = UIColor.whiteColor().CGColor
         button.clipsToBounds = true //why isn't this working?
     }
@@ -373,6 +380,7 @@ class GameViewController: UIViewController
     func prepButtonWithTitle(title: String)
     {
         //        print("#27 (prepButtonWithTitle)")
+        print(title)
         self.playGameButton.setTitle(title, forState: UIControlState.Normal)
         self.playGameButton.enabled = true
     }

@@ -616,13 +616,6 @@
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nzy-eM-plK" userLabel="Center Game View">
                                 <rect key="frame" x="50" y="284" width="300" height="30"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Exq-K6-GRb">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
-                                        <color key="backgroundColor" red="0.40694346749999999" green="0.5739182692" blue="0.42716160330000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="PLAY GAME">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hJa-Yx-zq6">
                                         <rect key="frame" x="23" y="0.0" width="255" height="30"/>
                                         <subviews>
@@ -646,8 +639,18 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Exq-K6-GRb">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="PLAY GAME">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="playGameButtonTapped:" destination="HrA-ET-muD" eventType="touchUpInside" id="BpB-fR-fdy"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.40694346749999999" green="0.5739182692" blue="0.42716160330000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="Exq-K6-GRb" firstAttribute="height" secondItem="Nzy-eM-plK" secondAttribute="height" id="0n4-Fs-qoH"/>
                                     <constraint firstItem="Exq-K6-GRb" firstAttribute="centerY" secondItem="Nzy-eM-plK" secondAttribute="centerY" id="1VF-CE-HDO"/>
@@ -723,21 +726,21 @@
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c1t-7k-M7B" userLabel="AI Hand Stack View">
                                 <rect key="frame" x="16" y="114" width="368" height="163"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3RO-dD-xNM" customClass="CardCluster" customModule="Wither" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3RO-dD-xNM" customClass="AICardCluster" customModule="Wither" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="123" height="163"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="3RO-dD-xNM" secondAttribute="height" multiplier="3:4" id="h2S-Ce-VQS"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxB-dL-5eq" customClass="CardCluster" customModule="Wither" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxB-dL-5eq" customClass="AICardCluster" customModule="Wither" customModuleProvider="target">
                                         <rect key="frame" x="123" y="0.0" width="122" height="163"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="cxB-dL-5eq" secondAttribute="height" multiplier="3:4" id="9R5-q9-cfd"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qJu-qg-Tfs" customClass="CardCluster" customModule="Wither" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qJu-qg-Tfs" customClass="AICardCluster" customModule="Wither" customModuleProvider="target">
                                         <rect key="frame" x="245" y="0.0" width="123" height="163"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -802,6 +805,7 @@
                         <outlet property="ai3ClusterView" destination="qJu-qg-Tfs" id="0vs-ga-5uT"/>
                         <outlet property="aiDeckView" destination="vLL-8V-IAo" id="Cwv-Bk-PD4"/>
                         <outlet property="aiDiscardView" destination="F2S-5b-BRa" id="OJg-o1-qbw"/>
+                        <outlet property="centerGameView" destination="Nzy-eM-plK" id="dOw-o8-oNY"/>
                         <outlet property="playGameButton" destination="Exq-K6-GRb" id="ZNe-3u-XP9"/>
                         <outlet property="player1ClusterView" destination="krD-nP-8lR" id="PaT-4x-htO"/>
                         <outlet property="player2ClusterView" destination="deM-9S-HpO" id="cvX-g8-mnL"/>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10116"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AICardCluster" customModule="Wither" customModuleProvider="target">
+            <connections>
+                <outlet property="baseCardView" destination="sNE-Mf-DaR" id="2L1-td-MNy"/>
+                <outlet property="cardViewA" destination="IpG-hl-jwb" id="JyU-7a-JEy"/>
+                <outlet property="cardViewB" destination="HBY-mu-1Mx" id="MAu-H9-4gn"/>
+                <outlet property="cardViewC" destination="F2o-h8-tKy" id="xKO-2A-HCh"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="4b8-tl-eaO">
+            <rect key="frame" x="0.0" y="0.0" width="120" height="160"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IpG-hl-jwb" userLabel="Card View A" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                    <rect key="frame" x="46" y="53" width="60" height="80"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="IpG-hl-jwb" secondAttribute="height" multiplier="3:4" id="fnf-re-FEz"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F2o-h8-tKy" userLabel="Card View C" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                    <rect key="frame" x="39" y="11" width="60" height="80"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="F2o-h8-tKy" secondAttribute="height" multiplier="3:4" id="w19-tS-VI4"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HBY-mu-1Mx" userLabel="Card View B" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                    <rect key="frame" x="12" y="29" width="60" height="80"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="HBY-mu-1Mx" secondAttribute="height" multiplier="3:4" id="LZO-V6-ZVj"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sNE-Mf-DaR" userLabel="Base Card View" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                    <rect key="frame" x="30" y="72" width="60" height="80"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="sNE-Mf-DaR" secondAttribute="height" multiplier="3:4" id="gPX-Hu-0sS"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="sNE-Mf-DaR" firstAttribute="centerY" secondItem="4b8-tl-eaO" secondAttribute="centerY" multiplier="1.4" id="0Y2-7y-TSj"/>
+                <constraint firstItem="F2o-h8-tKy" firstAttribute="centerX" secondItem="4b8-tl-eaO" secondAttribute="centerX" multiplier="1.16" id="6H7-Q0-Yx0"/>
+                <constraint firstItem="IpG-hl-jwb" firstAttribute="centerX" secondItem="4b8-tl-eaO" secondAttribute="centerX" multiplier="1.27" id="6Q8-zf-hWg"/>
+                <constraint firstItem="F2o-h8-tKy" firstAttribute="centerY" secondItem="4b8-tl-eaO" secondAttribute="centerY" multiplier="0.64" id="9rw-3d-e47"/>
+                <constraint firstItem="sNE-Mf-DaR" firstAttribute="width" secondItem="4b8-tl-eaO" secondAttribute="width" multiplier="0.5" id="F0P-Ci-QUa"/>
+                <constraint firstItem="IpG-hl-jwb" firstAttribute="width" secondItem="HBY-mu-1Mx" secondAttribute="width" id="Z64-FX-CeE"/>
+                <constraint firstItem="HBY-mu-1Mx" firstAttribute="width" secondItem="F2o-h8-tKy" secondAttribute="width" id="a8B-eR-PB2"/>
+                <constraint firstItem="F2o-h8-tKy" firstAttribute="width" secondItem="sNE-Mf-DaR" secondAttribute="width" id="dym-Bs-rTc"/>
+                <constraint firstItem="HBY-mu-1Mx" firstAttribute="centerY" secondItem="4b8-tl-eaO" secondAttribute="centerY" multiplier="0.86" id="ik1-2P-oK4"/>
+                <constraint firstItem="IpG-hl-jwb" firstAttribute="centerY" secondItem="4b8-tl-eaO" secondAttribute="centerY" multiplier="1.17" id="lmp-FQ-NIB"/>
+                <constraint firstItem="HBY-mu-1Mx" firstAttribute="centerX" secondItem="4b8-tl-eaO" secondAttribute="centerX" multiplier="0.7" id="oOX-Ei-bxR"/>
+                <constraint firstItem="sNE-Mf-DaR" firstAttribute="centerX" secondItem="4b8-tl-eaO" secondAttribute="centerX" id="rx8-Sp-2bZ"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="193" y="299"/>
+        </view>
+    </objects>
+</document>
