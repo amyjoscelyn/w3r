@@ -29,16 +29,21 @@ class CardCluster: UIView
 //        self.baseCardView.frame = CGRectMake(0, 0, width, height)
 //    }
     
-    func customizeCardViews()
+    func getCardViews() -> [CardView]
     {
-        for card in self.cardViews
-        {
-            card.layer.cornerRadius = 6
-            card.layer.borderWidth = 3
-            //        card.layer.borderColor =
-            card.clipsToBounds = true
-        }
+        return self.cardViews
     }
+    
+//    func customizeCardViews()
+//    {
+//        for card in self.cardViews
+//        {
+//            card.layer.cornerRadius = 6
+//            card.layer.borderWidth = 3
+//            //        card.layer.borderColor =
+//            card.clipsToBounds = true
+//        }
+//    }
     
     func setPlayerAndColumn(player: String, column: String)
     {

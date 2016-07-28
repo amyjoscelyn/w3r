@@ -21,16 +21,21 @@ class AICardCluster: UIView
     private var column: String = ""
     private var cardViews: [CardView] { return [ self.baseCardView, self.cardViewA, self.cardViewB, self.cardViewC ] }
     
-    func customizeCardViews()
+    func getCardViews() -> [CardView]
     {
-        for card in self.cardViews
-        {
-            card.layer.cornerRadius = 6
-            card.layer.borderWidth = 3
-            //        card.layer.borderColor =
-            card.clipsToBounds = true
-        }
+        return self.cardViews
     }
+    
+//    func customizeCardViews()
+//    {
+//        for card in self.cardViews
+//        {
+//            card.layer.cornerRadius = 6
+//            card.layer.borderWidth = 3
+//            //        card.layer.borderColor =
+//            card.clipsToBounds = true
+//        }
+//    }
     
     func setPlayerAndColumn(player: String, column: String)
     {

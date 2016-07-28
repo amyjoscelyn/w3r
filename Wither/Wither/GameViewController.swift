@@ -37,12 +37,10 @@ class GameViewController: UIViewController
     var deckOriginalCenter: CGPoint = CGPointMake(0, 0)
     
     @IBOutlet weak var playerDeckView: CardView!
-    @IBOutlet weak var playerDiscardView: CardView!
-    //other discard views
+    @IBOutlet weak var playerDiscardView: DiscardPile!
     
     @IBOutlet weak var aiDeckView: CardView!
-    @IBOutlet weak var aiDiscardView: CardView!
-    //other discard views
+    @IBOutlet weak var aiDiscardView: DiscardPile!
     
     var cardViews: [CardView] = []
     
@@ -87,9 +85,17 @@ class GameViewController: UIViewController
     {
         self.cardViews = [
             self.playerDeckView,
-            self.aiDeckView,
-            self.playerDiscardView,
-            self.aiDiscardView ]
+            self.aiDeckView ]
+        self.cardViews.appendContentsOf(self.playerDiscardView.getViews())
+        self.cardViews.appendContentsOf(self.aiDiscardView.getViews())
+        
+        self.cardViews.appendContentsOf(self.player1ClusterView.getCardViews())
+        self.cardViews.appendContentsOf(self.player2ClusterView.getCardViews())
+        self.cardViews.appendContentsOf(self.player3ClusterView.getCardViews())
+        
+        self.cardViews.appendContentsOf(self.ai1ClusterView.getCardViews())
+        self.cardViews.appendContentsOf(self.ai2ClusterView.getCardViews())
+        self.cardViews.appendContentsOf(self.ai3ClusterView.getCardViews())
     }
     
     func createGameSpace()
@@ -132,13 +138,6 @@ class GameViewController: UIViewController
         self.ai1ClusterView.setPlayerAndColumn("AI", column: "1")
         self.ai2ClusterView.setPlayerAndColumn("AI", column: "2")
         self.ai3ClusterView.setPlayerAndColumn("AI", column: "3")
-        
-        self.player1ClusterView.customizeCardViews()
-        self.player2ClusterView.customizeCardViews()
-        self.player3ClusterView.customizeCardViews()
-        self.ai1ClusterView.customizeCardViews()
-        self.ai2ClusterView.customizeCardViews()
-        self.ai3ClusterView.customizeCardViews()
         
 //        self.player1ClusterView.setWidthOfCardView()
         
@@ -219,12 +218,12 @@ class GameViewController: UIViewController
 //        self.swapCards2And3Button.hidden = true
 //        self.swapCards1And3Button.hidden = true
         
-        self.aiDiscardView.card = nil;
+//        self.aiDiscardView.card = nil;
 //        self.aiDiscardViewA.card = nil;
 //        self.aiDiscardViewB.card = nil;
 //        self.aiDiscardViewC.card = nil;
 //        self.aiDiscardViewD.card = nil;
-        self.playerDiscardView.card = nil;
+//        self.playerDiscardView.card = nil;
 //        self.playerDiscardViewA.card = nil;
 //        self.playerDiscardViewB.card = nil;
 //        self.playerDiscardViewC.card = nil;
@@ -379,7 +378,6 @@ class GameViewController: UIViewController
     func prepButtonWithTitle(title: String)
     {
         //        print("#27 (prepButtonWithTitle)")
-        print(title)
         self.playGameButton.setTitle(title, forState: UIControlState.Normal)
         self.playGameButton.enabled = true
     }
@@ -919,10 +917,6 @@ class GameViewController: UIViewController
         let action2 = actions[1]
         let action3 = actions[2]
         
-        print(action1)
-        print(action2)
-        print(action3)
-        
         switch action1
         {
         case save_string:
@@ -951,10 +945,6 @@ class GameViewController: UIViewController
         let action1 = actions[0]
         let action2 = actions[1]
         let action3 = actions[2]
-        
-        print(action1)
-        print(action2)
-        print(action3)
         
         switch action1
         {
@@ -1234,7 +1224,7 @@ class GameViewController: UIViewController
 //                switch currentDiscardCount % 5
 //                {
 //                case 1:
-                    self.playerDiscardView.card = card
+//                    self.playerDiscardView.card = card
 //                    self.view.bringSubviewToFront(self.playerDiscardView)
 //                case 2:
 //                    self.playerDiscardViewA.card = card
@@ -1263,7 +1253,7 @@ class GameViewController: UIViewController
 //                switch currentDiscardCount % 5
 //                {
 //                case 1:
-                    self.aiDiscardView.card = card
+//                    self.aiDiscardView.card = card
 //                    self.view.bringSubviewToFront(self.aiDiscardView)
 //                case 2:
 //                    self.aiDiscardViewA.card = card
