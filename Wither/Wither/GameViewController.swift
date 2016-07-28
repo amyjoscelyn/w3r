@@ -236,7 +236,7 @@ class GameViewController: UIViewController
         //        print("#7 (clearAllWarCardViewsAndTempHands)")
         
         //should be enough to clear the cards
-//        self.populateCardClusters()
+        self.populateCardClusters()
         
         self.discardPlayerCards.removeAll()
         self.discardAICards.removeAll()
@@ -919,6 +919,10 @@ class GameViewController: UIViewController
         let action2 = actions[1]
         let action3 = actions[2]
         
+        print(action1)
+        print(action2)
+        print(action3)
+        
         switch action1
         {
         case save_string:
@@ -947,6 +951,10 @@ class GameViewController: UIViewController
         let action1 = actions[0]
         let action2 = actions[1]
         let action3 = actions[2]
+        
+        print(action1)
+        print(action2)
+        print(action3)
         
         switch action1
         {
@@ -980,52 +988,10 @@ class GameViewController: UIViewController
             {
             case first_column:
                 self.savePlayerCards.appendContentsOf(self.player1ClusterView.removeCards())
-//                self.savePlayerCards.append(self.playerWar1View.card!)
-//                
-//                if let warCard1A = self.playerWar1AView.card
-//                {
-//                    self.savePlayerCards.append(warCard1A)
-//                }
-//                if let warCard1B = self.playerWar1BView.card
-//                {
-//                    self.savePlayerCards.append(warCard1B)
-//                }
-//                if let warCard1C = self.playerWar1CView.card
-//                {
-//                    self.savePlayerCards.append(warCard1C)
-//                }
             case second_column:
                 self.savePlayerCards.appendContentsOf(self.player2ClusterView.removeCards())
-//                self.savePlayerCards.append(self.playerWar2View.card!)
-//                
-//                if let warCard2A = self.playerWar2AView.card
-//                {
-//                    self.savePlayerCards.append(warCard2A)
-//                }
-//                if let warCard2B = self.playerWar2BView.card
-//                {
-//                    self.savePlayerCards.append(warCard2B)
-//                }
-//                if let warCard2C = self.playerWar2CView.card
-//                {
-//                    self.savePlayerCards.append(warCard2C)
-//                }
             default:
                 self.savePlayerCards.appendContentsOf(self.player3ClusterView.removeCards())
-//                self.savePlayerCards.append(self.playerWar3View.card!)
-//                
-//                if let warCard3A = self.playerWar3AView.card
-//                {
-//                    self.savePlayerCards.append(warCard3A)
-//                }
-//                if let warCard3B = self.playerWar3BView.card
-//                {
-//                    self.savePlayerCards.append(warCard3B)
-//                }
-//                if let warCard3C = self.playerWar3CView.card
-//                {
-//                    self.savePlayerCards.append(warCard3C)
-//                }
             }
         }
         else if player == ai_string
@@ -1034,52 +1000,10 @@ class GameViewController: UIViewController
             {
             case first_column:
                 self.saveAICards.appendContentsOf(self.ai1ClusterView.removeCards())
-//                self.saveAICards.append(self.aiWar1View.card!)
-//                
-//                if let warCard1A = self.aiWar1AView.card
-//                {
-//                    self.saveAICards.append(warCard1A)
-//                }
-//                if let warCard1B = self.aiWar1BView.card
-//                {
-//                    self.saveAICards.append(warCard1B)
-//                }
-//                if let warCard1C = self.aiWar1CView.card
-//                {
-//                    self.saveAICards.append(warCard1C)
-//                }
             case second_column:
                 self.saveAICards.appendContentsOf(self.ai2ClusterView.removeCards())
-//                self.saveAICards.append(self.aiWar2View.card!)
-//                
-//                if let warCard2A = self.aiWar2AView.card
-//                {
-//                    self.saveAICards.append(warCard2A)
-//                }
-//                if let warCard2B = self.aiWar2BView.card
-//                {
-//                    self.saveAICards.append(warCard2B)
-//                }
-//                if let warCard2C = self.aiWar2CView.card
-//                {
-//                    self.saveAICards.append(warCard2C)
-//                }
             default:
                 self.saveAICards.appendContentsOf(self.ai3ClusterView.removeCards())
-//                self.saveAICards.append(self.aiWar3View.card!)
-//                
-//                if let warCard3A = self.aiWar3AView.card
-//                {
-//                    self.saveAICards.append(warCard3A)
-//                }
-//                if let warCard3B = self.aiWar3BView.card
-//                {
-//                    self.saveAICards.append(warCard3B)
-//                }
-//                if let warCard3C = self.aiWar3CView.card
-//                {
-//                    self.saveAICards.append(warCard3C)
-//                }
             }
         }
     }
@@ -1092,53 +1016,11 @@ class GameViewController: UIViewController
             switch column
             {
             case first_column:
-                self.savePlayerCards.appendContentsOf(self.player1ClusterView.removeCards())
-//                self.discardPlayerCards.append(self.playerWar1View.card!)
-//                
-//                if let warCard1A = self.playerWar1AView.card
-//                {
-//                    self.discardPlayerCards.append(warCard1A)
-//                }
-//                if let warCard1B = self.playerWar1BView.card
-//                {
-//                    self.discardPlayerCards.append(warCard1B)
-//                }
-//                if let warCard1C = self.playerWar1CView.card
-//                {
-//                    self.discardPlayerCards.append(warCard1C)
-//                }
+                self.discardPlayerCards.appendContentsOf(self.player1ClusterView.removeCards())
             case second_column:
-                self.savePlayerCards.appendContentsOf(self.player2ClusterView.removeCards())
-//                self.discardPlayerCards.append(self.playerWar2View.card!)
-//                
-//                if let warCard2A = self.playerWar2AView.card
-//                {
-//                    self.discardPlayerCards.append(warCard2A)
-//                }
-//                if let warCard2B = self.playerWar2BView.card
-//                {
-//                    self.discardPlayerCards.append(warCard2B)
-//                }
-//                if let warCard2C = self.playerWar2CView.card
-//                {
-//                    self.discardPlayerCards.append(warCard2C)
-//                }
+                self.discardPlayerCards.appendContentsOf(self.player2ClusterView.removeCards())
             default:
-                self.savePlayerCards.appendContentsOf(self.player3ClusterView.removeCards())
-//                self.discardPlayerCards.append(self.playerWar3View.card!)
-//                
-//                if let warCard3A = self.playerWar3AView.card
-//                {
-//                    self.discardPlayerCards.append(warCard3A)
-//                }
-//                if let warCard3B = self.playerWar3BView.card
-//                {
-//                    self.discardPlayerCards.append(warCard3B)
-//                }
-//                if let warCard3C = self.playerWar3CView.card
-//                {
-//                    self.discardPlayerCards.append(warCard3C)
-//                }
+                self.discardPlayerCards.appendContentsOf(self.player3ClusterView.removeCards())
             }
         }
         else if player == ai_string
@@ -1146,53 +1028,11 @@ class GameViewController: UIViewController
             switch column
             {
             case first_column:
-                self.saveAICards.appendContentsOf(self.ai1ClusterView.removeCards())
-//                self.discardAICards.append(self.aiWar1View.card!)
-//                
-//                if let warCard1A = self.aiWar1AView.card
-//                {
-//                    self.discardAICards.append(warCard1A)
-//                }
-//                if let warCard1B = self.aiWar1BView.card
-//                {
-//                    self.discardAICards.append(warCard1B)
-//                }
-//                if let warCard1C = self.aiWar1CView.card
-//                {
-//                    self.discardAICards.append(warCard1C)
-//                }
+                self.discardAICards.appendContentsOf(self.ai1ClusterView.removeCards())
             case second_column:
-                self.saveAICards.appendContentsOf(self.ai2ClusterView.removeCards())
-//                self.discardAICards.append(self.aiWar2View.card!)
-//                
-//                if let warCard2A = self.aiWar2AView.card
-//                {
-//                    self.discardAICards.append(warCard2A)
-//                }
-//                if let warCard2B = self.aiWar2BView.card
-//                {
-//                    self.discardAICards.append(warCard2B)
-//                }
-//                if let warCard2C = self.aiWar2CView.card
-//                {
-//                    self.discardAICards.append(warCard2C)
-//                }
+                self.discardAICards.appendContentsOf(self.ai2ClusterView.removeCards())
             default:
-                self.saveAICards.appendContentsOf(self.ai3ClusterView.removeCards())
-//                self.discardAICards.append(self.aiWar3View.card!)
-//                
-//                if let warCard3A = self.aiWar3AView.card
-//                {
-//                    self.discardAICards.append(warCard3A)
-//                }
-//                if let warCard3B = self.aiWar3BView.card
-//                {
-//                    self.discardAICards.append(warCard3B)
-//                }
-//                if let warCard3C = self.aiWar3CView.card
-//                {
-//                    self.discardAICards.append(warCard3C)
-//                }
+                self.discardAICards.appendContentsOf(self.ai3ClusterView.removeCards())
             }
         }
     }
@@ -1394,7 +1234,7 @@ class GameViewController: UIViewController
 //                switch currentDiscardCount % 5
 //                {
 //                case 1:
-//                    self.playerDiscardView.card = card
+                    self.playerDiscardView.card = card
 //                    self.view.bringSubviewToFront(self.playerDiscardView)
 //                case 2:
 //                    self.playerDiscardViewA.card = card
@@ -1423,7 +1263,7 @@ class GameViewController: UIViewController
 //                switch currentDiscardCount % 5
 //                {
 //                case 1:
-//                    self.aiDiscardView.card = card
+                    self.aiDiscardView.card = card
 //                    self.view.bringSubviewToFront(self.aiDiscardView)
 //                case 2:
 //                    self.aiDiscardViewA.card = card

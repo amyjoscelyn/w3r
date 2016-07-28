@@ -55,6 +55,8 @@ class CardCluster: UIView
     {
         let arrayOfCards = self.cards
         self.cards.removeAll()
+//        self.populateCardViews()
+        
         return arrayOfCards
     }
     
@@ -70,10 +72,7 @@ class CardCluster: UIView
     
     func populateCardViews()
     {
-        if self.baseCardView.card == nil
-        {
-            self.baseCardView.card = self.cards.first
-        }
+        self.baseCardView.card = self.cards.first
         
         if self.cards.count > 1
         {

@@ -62,10 +62,7 @@ class AICardCluster: UIView
     
     func populateCardViews()
     {
-        if self.baseCardView.card == nil
-        {
-            self.baseCardView.card = self.cards.first
-        }
+        self.baseCardView.card = self.cards.first
         
         if self.cards.count > 1
         {
