@@ -173,7 +173,7 @@ class ViewController: UIViewController
         self.playGameButton.setTitle("", forState: UIControlState.Normal)
         self.playGameButton.enabled = false
         
-        self.rotateCardViews()
+//        self.rotateCardViews()
         
         for cardView in self.cardViews
         {
@@ -200,18 +200,6 @@ class ViewController: UIViewController
     
     func rotateCardViews()
     {
-        self.playerDiscardView.transform = CGAffineTransformMakeRotation(0.05)
-        self.playerDiscardViewA.transform = CGAffineTransformMakeRotation(5.1)
-        self.playerDiscardViewB.transform = CGAffineTransformMakeRotation(2)
-        self.playerDiscardViewC.transform = CGAffineTransformMakeRotation(0.9)
-        self.playerDiscardViewD.transform = CGAffineTransformMakeRotation(0)
-        
-        self.aiDiscardView.transform = CGAffineTransformMakeRotation(0)
-        self.aiDiscardViewA.transform = CGAffineTransformMakeRotation(4.3)
-        self.aiDiscardViewB.transform = CGAffineTransformMakeRotation(0.9)
-        self.aiDiscardViewC.transform = CGAffineTransformMakeRotation(6.1)
-        self.playerDiscardViewD.transform = CGAffineTransformMakeRotation(0.5)
-        
         self.playerWar1AView.transform = CGAffineTransformMakeRotation(6)
         self.playerWar1BView.transform = CGAffineTransformMakeRotation(0.5)
         self.playerWar1CView.transform = CGAffineTransformMakeRotation(0.05)

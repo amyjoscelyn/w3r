@@ -19,10 +19,81 @@ class DiscardPile: UIView
     @IBOutlet weak var discardCardViewA: CardView!
     
     private var cardViews: [CardView] { return [ self.discardCardViewA, self.discardCardViewB, self.discardCardViewC, self.discardCardViewD, self.discardCardViewE ] }
+    private var cards: [Card] = []
+    private var player: String = ""
+    
+    func setPlayer(player: String)
+    {
+        self.player = player
+    }
+    
+    func clearCards()
+    {
+        self.discardCardViewA.card = nil
+        self.discardCardViewB.card = nil
+        self.discardCardViewC.card = nil
+        self.discardCardViewD.card = nil
+        self.discardCardViewE.card = nil
+    }
     
     func getViews() -> [CardView]
     {
         return self.cardViews
+    }
+    
+    func rotateViews()
+    { //are all of these being populated???
+        
+        if self.player == player_string
+        {
+            self.discardCardViewA.transform = CGAffineTransformMakeRotation(1.5)
+            self.discardCardViewB.transform = CGAffineTransformMakeRotation(5.1)
+            self.discardCardViewC.transform = CGAffineTransformMakeRotation(2)
+            self.discardCardViewD.transform = CGAffineTransformMakeRotation(0.9)
+            self.discardCardViewE.transform = CGAffineTransformMakeRotation(0)
+        }
+        else
+        {
+            self.discardCardViewA.transform = CGAffineTransformMakeRotation(0)
+            self.discardCardViewB.transform = CGAffineTransformMakeRotation(4.3)
+            self.discardCardViewC.transform = CGAffineTransformMakeRotation(0.9)
+            self.discardCardViewD.transform = CGAffineTransformMakeRotation(6.1)
+            self.discardCardViewE.transform = CGAffineTransformMakeRotation(0.5)
+        }
+    }
+    
+    func addCards(cards: [Card])
+    {
+        self.cards.appendContentsOf(cards)
+    }
+    
+    func populateCardViews()
+    {
+        var currentDiscardCount = self.cards.count
+        
+        for card in self.cards
+        {
+            currentDiscardCount += 1
+            
+            switch currentDiscardCount % 5
+            {
+            case 1:
+                self.discardCardViewA.card = card
+                self.contentView?.bringSubviewToFront(self.discardCardViewA)
+            case 2:
+                self.discardCardViewB.card = card
+                self.contentView?.bringSubviewToFront(self.discardCardViewB)
+            case 3:
+                self.discardCardViewC.card = card
+                self.contentView?.bringSubviewToFront(self.discardCardViewC)
+            case 4:
+                self.discardCardViewD.card = card
+                self.contentView?.bringSubviewToFront(self.discardCardViewD)
+            default:
+                self.discardCardViewE.card = card
+                self.contentView?.bringSubviewToFront(self.discardCardViewE)
+            }
+        }
     }
     
     override init(frame: CGRect)

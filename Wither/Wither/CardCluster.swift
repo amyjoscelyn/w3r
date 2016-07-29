@@ -67,7 +67,7 @@ class CardCluster: UIView
     
     func cardToJudge() -> Card
     {
-        return self.cards.last!
+        return self.cards.last! //sometimes this causes crash
     }
     
 //    func placeCardJustDealtOnTop(cardView: CardView)
@@ -95,7 +95,7 @@ class CardCluster: UIView
             }
             
             cardView.card = self.cards.last
-            self.bringSubviewToFront(cardView)
+            self.contentView?.bringSubviewToFront(cardView)
             //why isn't this working?
         }
         else

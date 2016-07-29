@@ -613,6 +613,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TableBackgroundC" translatesAutoresizingMaskIntoConstraints="NO" id="EWb-wJ-gh8">
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                            </imageView>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nzy-eM-plK" userLabel="Center Game View">
                                 <rect key="frame" x="50" y="284" width="300" height="30"/>
                                 <subviews>
@@ -673,9 +676,9 @@
                                             <constraint firstAttribute="width" secondItem="aFP-4u-sQS" secondAttribute="height" multiplier="3:4" id="lsg-lC-bmF"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="acK-wd-xOS" customClass="DiscardPile" customModule="Wither" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="acK-wd-xOS" customClass="DiscardPile" customModule="Wither" customModuleProvider="target">
                                         <rect key="frame" x="189" y="17" width="102" height="102"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="acK-wd-xOS" secondAttribute="height" multiplier="1:1" id="d21-50-WqS"/>
                                         </constraints>
@@ -697,7 +700,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pgG-Y9-oiB" userLabel="AI Deck View">
                                 <rect key="frame" x="72" y="32" width="300" height="120"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vLL-8V-IAo" customClass="CardView" customModule="Wither" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vLL-8V-IAo" customClass="CardView" customModule="Wither" customModuleProvider="target">
                                         <rect key="frame" x="238" y="8" width="61" height="82"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -706,7 +709,7 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F2S-5b-BRa" customClass="DiscardPile" customModule="Wither" customModuleProvider="target">
                                         <rect key="frame" x="8" y="0.0" width="102" height="102"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="F2S-5b-BRa" secondAttribute="height" multiplier="1:1" id="xzD-EV-xim"/>
                                         </constraints>
@@ -725,61 +728,65 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3RO-dD-xNM" customClass="AICardCluster" customModule="Wither" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="123" height="163"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="3RO-dD-xNM" secondAttribute="height" multiplier="3:4" id="h2S-Ce-VQS"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxB-dL-5eq" customClass="AICardCluster" customModule="Wither" customModuleProvider="target">
                                         <rect key="frame" x="123" y="0.0" width="122" height="163"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="cxB-dL-5eq" secondAttribute="height" multiplier="3:4" id="9R5-q9-cfd"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qJu-qg-Tfs" customClass="AICardCluster" customModule="Wither" customModuleProvider="target">
                                         <rect key="frame" x="245" y="0.0" width="123" height="163"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="qJu-qg-Tfs" secondAttribute="height" multiplier="3:4" id="tuV-8C-DAT"/>
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YjE-Y7-9Mm" userLabel="Player Hand Stack View">
                                 <rect key="frame" x="15" y="324" width="369" height="164"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="krD-nP-8lR" customClass="CardCluster" customModule="Wither" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="123" height="164"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="krD-nP-8lR" secondAttribute="height" multiplier="3:4" id="kBh-fO-fba"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="deM-9S-HpO" customClass="CardCluster" customModule="Wither" customModuleProvider="target">
                                         <rect key="frame" x="123" y="0.0" width="123" height="164"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="deM-9S-HpO" secondAttribute="height" multiplier="3:4" id="1pf-LA-bXU"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gdp-up-KSr" customClass="CardCluster" customModule="Wither" customModuleProvider="target">
                                         <rect key="frame" x="246" y="0.0" width="123" height="164"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="gdp-up-KSr" secondAttribute="height" multiplier="3:4" id="0de-Jn-iow"/>
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Nzy-eM-plK" firstAttribute="width" secondItem="Siu-Tt-bQv" secondAttribute="width" multiplier="0.75" id="2yL-cW-6pe"/>
+                            <constraint firstItem="EWb-wJ-gh8" firstAttribute="leading" secondItem="Siu-Tt-bQv" secondAttribute="leading" id="5bV-H3-Vdg"/>
                             <constraint firstItem="acK-wd-xOS" firstAttribute="width" secondItem="krD-nP-8lR" secondAttribute="width" multiplier="5/6" id="Dv4-O4-DP6"/>
                             <constraint firstItem="yhm-d6-z2x" firstAttribute="width" secondItem="Siu-Tt-bQv" secondAttribute="width" multiplier="0.75" id="GDG-OJ-IJ6"/>
                             <constraint firstAttribute="trailing" secondItem="YjE-Y7-9Mm" secondAttribute="trailing" constant="16" id="HQe-iw-YbN"/>
                             <constraint firstItem="vLL-8V-IAo" firstAttribute="width" secondItem="qJu-qg-Tfs" secondAttribute="width" multiplier="0.5" id="HTQ-H6-Vnz"/>
+                            <constraint firstItem="EWb-wJ-gh8" firstAttribute="bottom" secondItem="8OH-dq-qO6" secondAttribute="top" id="I32-Eh-Ruj"/>
                             <constraint firstItem="aFP-4u-sQS" firstAttribute="width" secondItem="krD-nP-8lR" secondAttribute="width" multiplier="0.5" id="Imt-nf-OJh"/>
                             <constraint firstItem="c1t-7k-M7B" firstAttribute="bottom" secondItem="Siu-Tt-bQv" secondAttribute="centerY" constant="-24" id="M7n-HR-72j"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pgG-Y9-oiB" secondAttribute="trailing" constant="8" id="PrX-Dn-Bbw"/>
@@ -795,6 +802,7 @@
                             <constraint firstItem="c1t-7k-M7B" firstAttribute="centerX" secondItem="Siu-Tt-bQv" secondAttribute="centerX" id="nxN-NS-5Gj"/>
                             <constraint firstItem="8OH-dq-qO6" firstAttribute="top" secondItem="yhm-d6-z2x" secondAttribute="bottom" constant="24" id="oNE-9y-XZb"/>
                             <constraint firstItem="Nzy-eM-plK" firstAttribute="centerX" secondItem="Siu-Tt-bQv" secondAttribute="centerX" id="rTl-e8-gcd"/>
+                            <constraint firstItem="EWb-wJ-gh8" firstAttribute="centerX" secondItem="YjE-Y7-9Mm" secondAttribute="centerX" id="wsj-PD-7YE"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

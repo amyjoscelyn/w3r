@@ -85,7 +85,7 @@ class AICardCluster: UIView
             }
             
             cardView.card = self.cards.last
-            self.bringSubviewToFront(cardView)
+            self.contentView?.bringSubviewToFront(cardView)
         }
         else
         {

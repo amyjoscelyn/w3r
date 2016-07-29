@@ -104,6 +104,13 @@ class GameViewController: UIViewController
         //        print("#2 (createGameSpace)")        
         self.setCardClusters()
         
+        self.playerDiscardView.setPlayer(player_string)
+        self.aiDiscardView.setPlayer(ai_string)
+        self.playerDiscardView.clearCards()
+        self.aiDiscardView.clearCards()
+        self.playerDiscardView.rotateViews()
+        self.aiDiscardView.rotateViews()
+        
         self.customizeButton(self.playGameButton)
 //        self.customizeButton(self.settingsButton)
 //        self.customizeButton(self.swapCards1And2Button)
@@ -120,8 +127,6 @@ class GameViewController: UIViewController
         
         self.centerGameView.layer.cornerRadius = corner_radius
         self.centerGameView.clipsToBounds = true
-        
-//        self.rotateCardViews()
         
         for cardView in self.cardViews
         {
@@ -1215,60 +1220,14 @@ class GameViewController: UIViewController
     {
         if self.discardPlayerCards.count > 0
         {
-            var currentDiscardCount = self.game.player.discard.count
-            
-            for card in self.discardPlayerCards
-            {
-                currentDiscardCount += 1
-//                
-//                switch currentDiscardCount % 5
-//                {
-//                case 1:
-//                    self.playerDiscardView.card = card
-//                    self.view.bringSubviewToFront(self.playerDiscardView)
-//                case 2:
-//                    self.playerDiscardViewA.card = card
-//                    self.view.bringSubviewToFront(self.playerDiscardViewA)
-//                case 3:
-//                    self.playerDiscardViewB.card = card
-//                    self.view.bringSubviewToFront(self.playerDiscardViewB)
-//                case 4:
-//                    self.playerDiscardViewC.card = card
-//                    self.view.bringSubviewToFront(self.playerDiscardViewC)
-//                default:
-//                    self.playerDiscardViewD.card = card
-//                    self.view.bringSubviewToFront(self.playerDiscardViewD)
-//                }
-            }
+            self.playerDiscardView.addCards(self.discardPlayerCards)
+            self.playerDiscardView.populateCardViews()
         }
         
         if self.discardAICards.count > 0
         {
-            var currentDiscardCount = self.game.aiPlayer.discard.count
-            
-            for card in self.discardAICards
-            {
-                currentDiscardCount += 1
-                
-//                switch currentDiscardCount % 5
-//                {
-//                case 1:
-//                    self.aiDiscardView.card = card
-//                    self.view.bringSubviewToFront(self.aiDiscardView)
-//                case 2:
-//                    self.aiDiscardViewA.card = card
-//                    self.view.bringSubviewToFront(self.aiDiscardViewA)
-//                case 3:
-//                    self.aiDiscardViewB.card = card
-//                    self.view.bringSubviewToFront(self.aiDiscardViewB)
-//                case 4:
-//                    self.aiDiscardViewC.card = card
-//                    self.view.bringSubviewToFront(self.aiDiscardViewC)
-//                default:
-//                    self.aiDiscardViewD.card = card
-//                    self.view.bringSubviewToFront(self.aiDiscardViewD)
-//                }
-            }
+            self.aiDiscardView.addCards(self.discardAICards)
+            self.aiDiscardView.populateCardViews()
         }
     }
     
