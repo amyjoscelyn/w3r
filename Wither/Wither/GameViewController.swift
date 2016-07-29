@@ -29,7 +29,7 @@ let end_round_string = "END ROUND"
 let game_over_string = "GAME OVER"
 
 let corner_radius: CGFloat = 8
-let border_width: CGFloat = 3
+let border_width: CGFloat = 2
 
 class GameViewController: UIViewController
 {
@@ -98,10 +98,16 @@ class GameViewController: UIViewController
         self.cardViews.appendContentsOf(self.ai3ClusterView.getCardViews())
     }
     
+    override func prefersStatusBarHidden() -> Bool
+    {
+        return true
+    }
+    
     func createGameSpace()
     {
         //THIS SHOULD ONLY GET CALLED ONCE
-        //        print("#2 (createGameSpace)")        
+        //        print("#2 (createGameSpace)")
+        
         self.setCardClusters()
         
         self.playerDiscardView.setPlayer(player_string)

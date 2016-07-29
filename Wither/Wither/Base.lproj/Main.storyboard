@@ -780,19 +780,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="EWb-wJ-gh8" firstAttribute="centerX" secondItem="Siu-Tt-bQv" secondAttribute="centerX" id="0m9-j6-6iX"/>
+                            <constraint firstItem="EWb-wJ-gh8" firstAttribute="centerY" secondItem="Siu-Tt-bQv" secondAttribute="centerY" id="1V3-Ro-DJh"/>
                             <constraint firstItem="Nzy-eM-plK" firstAttribute="width" secondItem="Siu-Tt-bQv" secondAttribute="width" multiplier="0.75" id="2yL-cW-6pe"/>
-                            <constraint firstItem="EWb-wJ-gh8" firstAttribute="leading" secondItem="Siu-Tt-bQv" secondAttribute="leading" id="5bV-H3-Vdg"/>
+                            <constraint firstItem="EWb-wJ-gh8" firstAttribute="width" secondItem="Siu-Tt-bQv" secondAttribute="width" id="6sR-hb-fT0"/>
                             <constraint firstItem="acK-wd-xOS" firstAttribute="width" secondItem="krD-nP-8lR" secondAttribute="width" multiplier="5/6" id="Dv4-O4-DP6"/>
                             <constraint firstItem="yhm-d6-z2x" firstAttribute="width" secondItem="Siu-Tt-bQv" secondAttribute="width" multiplier="0.75" id="GDG-OJ-IJ6"/>
                             <constraint firstAttribute="trailing" secondItem="YjE-Y7-9Mm" secondAttribute="trailing" constant="16" id="HQe-iw-YbN"/>
                             <constraint firstItem="vLL-8V-IAo" firstAttribute="width" secondItem="qJu-qg-Tfs" secondAttribute="width" multiplier="0.5" id="HTQ-H6-Vnz"/>
-                            <constraint firstItem="EWb-wJ-gh8" firstAttribute="bottom" secondItem="8OH-dq-qO6" secondAttribute="top" id="I32-Eh-Ruj"/>
                             <constraint firstItem="aFP-4u-sQS" firstAttribute="width" secondItem="krD-nP-8lR" secondAttribute="width" multiplier="0.5" id="Imt-nf-OJh"/>
                             <constraint firstItem="c1t-7k-M7B" firstAttribute="bottom" secondItem="Siu-Tt-bQv" secondAttribute="centerY" constant="-24" id="M7n-HR-72j"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pgG-Y9-oiB" secondAttribute="trailing" constant="8" id="PrX-Dn-Bbw"/>
                             <constraint firstItem="pgG-Y9-oiB" firstAttribute="top" secondItem="goF-0T-WFI" secondAttribute="bottom" constant="12" id="Rya-Qe-uSb"/>
                             <constraint firstItem="YjE-Y7-9Mm" firstAttribute="centerX" secondItem="Siu-Tt-bQv" secondAttribute="centerX" id="Tu9-I3-s41"/>
                             <constraint firstItem="Nzy-eM-plK" firstAttribute="centerY" secondItem="Siu-Tt-bQv" secondAttribute="centerY" id="W0I-v5-G9f"/>
+                            <constraint firstItem="EWb-wJ-gh8" firstAttribute="height" secondItem="Siu-Tt-bQv" secondAttribute="height" id="cXM-gg-1j2"/>
                             <constraint firstItem="F2S-5b-BRa" firstAttribute="width" secondItem="acK-wd-xOS" secondAttribute="width" id="eWw-1c-olA"/>
                             <constraint firstItem="yhm-d6-z2x" firstAttribute="leading" secondItem="Siu-Tt-bQv" secondAttribute="leadingMargin" constant="8" id="eoP-1F-cWe"/>
                             <constraint firstItem="c1t-7k-M7B" firstAttribute="leading" secondItem="Siu-Tt-bQv" secondAttribute="leading" constant="16" id="ftS-IQ-JEH"/>
@@ -802,7 +804,6 @@
                             <constraint firstItem="c1t-7k-M7B" firstAttribute="centerX" secondItem="Siu-Tt-bQv" secondAttribute="centerX" id="nxN-NS-5Gj"/>
                             <constraint firstItem="8OH-dq-qO6" firstAttribute="top" secondItem="yhm-d6-z2x" secondAttribute="bottom" constant="24" id="oNE-9y-XZb"/>
                             <constraint firstItem="Nzy-eM-plK" firstAttribute="centerX" secondItem="Siu-Tt-bQv" secondAttribute="centerX" id="rTl-e8-gcd"/>
-                            <constraint firstItem="EWb-wJ-gh8" firstAttribute="centerX" secondItem="YjE-Y7-9Mm" secondAttribute="centerX" id="wsj-PD-7YE"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
