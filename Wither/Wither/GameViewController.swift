@@ -60,6 +60,8 @@ class GameViewController: UIViewController
     @IBOutlet weak var war1ResultLabel: UILabel!
     @IBOutlet weak var war2ResultLabel: UILabel!
     @IBOutlet weak var war3ResultLabel: UILabel!
+    @IBOutlet weak var playerCardsRemainingInDeckLabel: UILabel!
+    @IBOutlet weak var aiCardsRemainingInDeckLabel: UILabel!
     
     //settings button, swap buttons, deck labels, resolveWarGuide and skipWarButton
     @IBOutlet weak var centerGameView: UIView!
@@ -142,13 +144,13 @@ class GameViewController: UIViewController
     
     func setCardClusters()
     {
-        self.player1ClusterView.setPlayerAndColumn("Player", column: "1")
-        self.player2ClusterView.setPlayerAndColumn("Player", column: "2")
-        self.player3ClusterView.setPlayerAndColumn("Player", column: "3")
+        self.player1ClusterView.setColumn(first_column)
+        self.player2ClusterView.setColumn(second_column)
+        self.player3ClusterView.setColumn(third_column)
         
-        self.ai1ClusterView.setPlayerAndColumn("AI", column: "1")
-        self.ai2ClusterView.setPlayerAndColumn("AI", column: "2")
-        self.ai3ClusterView.setPlayerAndColumn("AI", column: "3")
+        self.ai1ClusterView.setColumn(first_column)
+        self.ai2ClusterView.setColumn(second_column)
+        self.ai3ClusterView.setColumn(third_column)
         
 //        self.player1ClusterView.setWidthOfCardView()
         
@@ -332,8 +334,8 @@ class GameViewController: UIViewController
         let playerDeckCount = self.game.player.deck.cards.count
         let aiDeckCount = self.game.aiPlayer.deck.cards.count
         
-//        self.playerCardsRemainingInDeckLabel.text = "Cards: \(playerDeckCount/* + self.game.player.hand.count*/)"
-//        self.aiCardsRemainingInDeckLabel.text = "Cards: \(aiDeckCount/* + self.game.aiPlayer.hand.count*/)"
+        self.playerCardsRemainingInDeckLabel.text = "Cards: \(playerDeckCount/* + self.game.player.hand.count*/)"
+        self.aiCardsRemainingInDeckLabel.text = "Cards: \(aiDeckCount/* + self.game.aiPlayer.hand.count*/)"
         
         if playerDeckCount > 0
         {

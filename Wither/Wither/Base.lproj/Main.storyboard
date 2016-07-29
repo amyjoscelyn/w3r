@@ -465,19 +465,23 @@
                                             <constraint firstAttribute="width" secondItem="acK-wd-xOS" secondAttribute="height" multiplier="1:1" id="d21-50-WqS"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cards: 52" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGG-3c-ahj">
+                                        <rect key="frame" x="0.0" y="9" width="74" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="bGG-3c-ahj" firstAttribute="leading" secondItem="yhm-d6-z2x" secondAttribute="leading" id="0I6-13-El8"/>
                                     <constraint firstItem="aFP-4u-sQS" firstAttribute="leading" secondItem="yhm-d6-z2x" secondAttribute="leading" id="2qI-Lc-Q3b"/>
+                                    <constraint firstItem="bGG-3c-ahj" firstAttribute="bottom" secondItem="aFP-4u-sQS" secondAttribute="top" id="TY7-uk-1Mi"/>
                                     <constraint firstAttribute="bottom" secondItem="acK-wd-xOS" secondAttribute="bottom" id="fac-li-daw"/>
                                     <constraint firstAttribute="bottom" secondItem="aFP-4u-sQS" secondAttribute="bottom" constant="8" id="oef-Q2-LTd"/>
                                     <constraint firstAttribute="trailing" secondItem="acK-wd-xOS" secondAttribute="trailing" constant="8" id="uBK-Jp-aVp"/>
                                     <constraint firstAttribute="height" constant="120" id="y0P-Yx-WGP"/>
                                 </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7RL-eJ-FZz">
-                                <rect key="frame" x="506" y="500" width="60" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pgG-Y9-oiB" userLabel="AI Deck View">
                                 <rect key="frame" x="72" y="32" width="300" height="120"/>
@@ -496,10 +500,18 @@
                                             <constraint firstAttribute="width" secondItem="F2S-5b-BRa" secondAttribute="height" multiplier="1:1" id="xzD-EV-xim"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cards: 52" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNE-wt-42L">
+                                        <rect key="frame" x="225" y="90" width="74" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="F2S-5b-BRa" firstAttribute="leading" secondItem="pgG-Y9-oiB" secondAttribute="leading" constant="8" id="0bK-Vg-nWK"/>
+                                    <constraint firstItem="XNE-wt-42L" firstAttribute="top" secondItem="vLL-8V-IAo" secondAttribute="bottom" id="Hwz-3y-7Pc"/>
+                                    <constraint firstAttribute="trailing" secondItem="XNE-wt-42L" secondAttribute="trailing" id="PCC-C4-H1P"/>
                                     <constraint firstAttribute="trailing" secondItem="vLL-8V-IAo" secondAttribute="trailing" id="V2l-ev-S7i"/>
                                     <constraint firstItem="F2S-5b-BRa" firstAttribute="top" secondItem="pgG-Y9-oiB" secondAttribute="top" id="kDB-VF-puD"/>
                                     <constraint firstItem="vLL-8V-IAo" firstAttribute="top" secondItem="pgG-Y9-oiB" secondAttribute="top" constant="8" id="vRa-jO-FWp"/>
@@ -594,6 +606,7 @@
                         <outlet property="ai1ClusterView" destination="3RO-dD-xNM" id="kUd-pP-NOa"/>
                         <outlet property="ai2ClusterView" destination="cxB-dL-5eq" id="E5y-DO-uNi"/>
                         <outlet property="ai3ClusterView" destination="qJu-qg-Tfs" id="0vs-ga-5uT"/>
+                        <outlet property="aiCardsRemainingInDeckLabel" destination="XNE-wt-42L" id="bYJ-NX-ZfT"/>
                         <outlet property="aiDeckView" destination="vLL-8V-IAo" id="Cwv-Bk-PD4"/>
                         <outlet property="aiDiscardView" destination="F2S-5b-BRa" id="OJg-o1-qbw"/>
                         <outlet property="centerGameView" destination="Nzy-eM-plK" id="dOw-o8-oNY"/>
@@ -601,6 +614,7 @@
                         <outlet property="player1ClusterView" destination="krD-nP-8lR" id="PaT-4x-htO"/>
                         <outlet property="player2ClusterView" destination="deM-9S-HpO" id="cvX-g8-mnL"/>
                         <outlet property="player3ClusterView" destination="gdp-up-KSr" id="1NJ-ZM-wrB"/>
+                        <outlet property="playerCardsRemainingInDeckLabel" destination="bGG-3c-ahj" id="jbu-HE-5jh"/>
                         <outlet property="playerDeckView" destination="aFP-4u-sQS" id="hlN-fd-Uei"/>
                         <outlet property="playerDiscardView" destination="acK-wd-xOS" id="ZMi-3c-aYN"/>
                         <outlet property="war1ResultLabel" destination="hsd-8X-Wol" id="RAr-dJ-Pvl"/>

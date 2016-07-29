@@ -17,7 +17,6 @@ class CardCluster: UIView
     @IBOutlet weak var cardViewC: CardView!
     
     private var cards: [Card] = []
-    private var player: String = ""
     private var column: String = ""
     private var cardViews: [CardView] { return [ self.baseCardView, self.cardViewA, self.cardViewB, self.cardViewC ] }
     
@@ -34,20 +33,27 @@ class CardCluster: UIView
         return self.cardViews
     }
     
-//    func customizeCardViews()
-//    {
-//        for card in self.cardViews
-//        {
-//            card.layer.cornerRadius = 6
-//            card.layer.borderWidth = 3
-//            //        card.layer.borderColor =
-//            card.clipsToBounds = true
-//        }
-//    }
-    
-    func setPlayerAndColumn(player: String, column: String)
+    func rotateCardViews()
     {
-        self.player = player
+        switch self.column
+        {
+        case first_column:
+            self.cardViewA.transform = CGAffineTransformMakeRotation(6)
+            self.cardViewB.transform = CGAffineTransformMakeRotation(0.5)
+            self.cardViewC.transform = CGAffineTransformMakeRotation(0.05)
+        case second_column:
+            self.cardViewA.transform = CGAffineTransformMakeRotation(0.5)
+            self.cardViewB.transform = CGAffineTransformMakeRotation(6)
+            self.cardViewC.transform = CGAffineTransformMakeRotation(0.2)
+        default:
+            self.cardViewA.transform = CGAffineTransformMakeRotation(6.1)
+            self.cardViewB.transform = CGAffineTransformMakeRotation(0.1)
+            self.cardViewC.transform = CGAffineTransformMakeRotation(0.7)
+        }
+    }
+    
+    func setColumn(column: String)
+    {
         self.column = column
     }
     
