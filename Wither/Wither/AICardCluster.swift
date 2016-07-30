@@ -66,11 +66,6 @@ class AICardCluster: UIView
         return self.cards.last!
     }
     
-    //    func placeCardJustDealtOnTop(cardView: CardView)
-    //    {
-    //        self.bringSubviewToFront(cardView)
-    //    }
-    
     func populateCardViews()
     {
         self.baseCardView.card = self.cards.first

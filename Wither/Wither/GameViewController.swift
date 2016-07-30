@@ -63,7 +63,7 @@ class GameViewController: UIViewController
     @IBOutlet weak var playerCardsRemainingInDeckLabel: UILabel!
     @IBOutlet weak var aiCardsRemainingInDeckLabel: UILabel!
     
-    //settings button, swap buttons, deck labels, resolveWarGuide and skipWarButton
+    //settings button, swap buttons, resolveWarGuide and skipWarButton
     @IBOutlet weak var centerGameView: UIView!
     
     var columnOfWar: String = ""
@@ -152,16 +152,6 @@ class GameViewController: UIViewController
         self.ai2ClusterView.setColumn(second_column)
         self.ai3ClusterView.setColumn(third_column)
         
-//        self.player1ClusterView.setWidthOfCardView()
-        
-//        self.player1ClusterView.autoresizesSubviews = true
-//        self.player2ClusterView.autoresizesSubviews = true
-//        self.player3ClusterView.autoresizesSubviews = true
-//        
-//        self.ai1ClusterView.autoresizesSubviews = true
-//        self.ai2ClusterView.autoresizesSubviews = true
-//        self.ai3ClusterView.autoresizesSubviews = true
-        
         self.populateCardClusters()
     }
     
@@ -182,7 +172,7 @@ class GameViewController: UIViewController
         button.layer.cornerRadius = corner_radius
         button.layer.borderWidth = border_width
         button.layer.borderColor = UIColor.whiteColor().CGColor
-        button.clipsToBounds = true //why isn't this working?
+        button.clipsToBounds = true
     }
     
     func panGestures()
@@ -230,24 +220,11 @@ class GameViewController: UIViewController
 //        self.swapCards1And2Button.hidden = true
 //        self.swapCards2And3Button.hidden = true
 //        self.swapCards1And3Button.hidden = true
-        
-//        self.aiDiscardView.card = nil;
-//        self.aiDiscardViewA.card = nil;
-//        self.aiDiscardViewB.card = nil;
-//        self.aiDiscardViewC.card = nil;
-//        self.aiDiscardViewD.card = nil;
-//        self.playerDiscardView.card = nil;
-//        self.playerDiscardViewA.card = nil;
-//        self.playerDiscardViewB.card = nil;
-//        self.playerDiscardViewC.card = nil;
-//        self.playerDiscardViewD.card = nil;
     }
     
     func clearAllWarCardViewsAndTempHands()
     {
         //        print("#7 (clearAllWarCardViewsAndTempHands)")
-        
-        //should be enough to clear the cards
         self.populateCardClusters()
         
         self.discardPlayerCards.removeAll()
@@ -334,8 +311,8 @@ class GameViewController: UIViewController
         let playerDeckCount = self.game.player.deck.cards.count
         let aiDeckCount = self.game.aiPlayer.deck.cards.count
         
-        self.playerCardsRemainingInDeckLabel.text = "Cards: \(playerDeckCount/* + self.game.player.hand.count*/)"
-        self.aiCardsRemainingInDeckLabel.text = "Cards: \(aiDeckCount/* + self.game.aiPlayer.hand.count*/)"
+        self.playerCardsRemainingInDeckLabel.text = "Cards: \(playerDeckCount)"
+        self.aiCardsRemainingInDeckLabel.text = "Cards: \(aiDeckCount)"
         
         if playerDeckCount > 0
         {
@@ -376,13 +353,6 @@ class GameViewController: UIViewController
         self.ai3ClusterView.addCard(self.game.aiPlayer.hand[2])
         
         self.populateCardClusters()
-        
-//        self.aiWar1View.card = self.game.aiPlayer.hand[0]
-//        self.aiWar2View.card = self.game.aiPlayer.hand[1]
-//        self.aiWar3View.card = self.game.aiPlayer.hand[2]
-//        self.playerWar1View.card = self.game.player.hand[0]
-//        self.playerWar2View.card = self.game.player.hand[1]
-//        self.playerWar3View.card = self.game.player.hand[2]
         
         self.game.aiPlayer.hand.removeAll()
         self.game.player.hand.removeAll()
@@ -493,93 +463,12 @@ class GameViewController: UIViewController
         case first_column:
             playerCard = self.player1ClusterView.cardToJudge()
             aiCard = self.ai1ClusterView.cardToJudge()
-//            if !isWar1
-//            {
-//                playerCard = self.player1ClusterView.baseCardView.card!
-//                aiCard = self.ai1ClusterView.baseCardView.card!
-//            }
-//            else
-//            {
-//                let aViewZIndex = self.view.subviews.indexOf(self.playerWar1AView)
-//                let bViewZIndex = self.view.subviews.indexOf(self.playerWar1BView)
-//                let cViewZIndex = self.view.subviews.indexOf(self.playerWar1CView)
-//                
-//                if aViewZIndex > bViewZIndex
-//                {
-//                    playerCard = self.playerWar1AView.card!
-//                    aiCard = self.aiWar1AView.card!
-//                }
-//                else if bViewZIndex > cViewZIndex
-//                {
-//                    playerCard = self.playerWar1BView.card!
-//                    aiCard = self.aiWar1BView.card!
-//                }
-//                else
-//                {
-//                    playerCard = self.playerWar1CView.card!
-//                    aiCard = self.aiWar1CView.card!
-//                }
-//            }
         case second_column:
             playerCard = self.player2ClusterView.cardToJudge()
             aiCard = self.ai2ClusterView.cardToJudge()
-//            if !isWar2
-//            {
-//                playerCard = self.playerWar2View.card!
-//                aiCard = self.aiWar2View.card!
-//            }
-//            else
-//            {
-//                let aViewZIndex = self.view.subviews.indexOf(self.playerWar2AView)
-//                let bViewZIndex = self.view.subviews.indexOf(self.playerWar2BView)
-//                let cViewZIndex = self.view.subviews.indexOf(self.playerWar2CView)
-//                
-//                if aViewZIndex > bViewZIndex
-//                {
-//                    playerCard = self.playerWar2AView.card!
-//                    aiCard = self.aiWar2AView.card!
-//                }
-//                else if bViewZIndex > cViewZIndex
-//                {
-//                    playerCard = self.playerWar2BView.card!
-//                    aiCard = self.aiWar2BView.card!
-//                }
-//                else
-//                {
-//                    playerCard = self.playerWar2CView.card!
-//                    aiCard = self.aiWar2CView.card!
-//                }
-//            }
         default:
             playerCard = self.player3ClusterView.cardToJudge()
             aiCard = self.ai3ClusterView.cardToJudge()
-//            if !isWar3
-//            {
-//                playerCard = self.playerWar3View.card!
-//                aiCard = self.aiWar3View.card!
-//            }
-//            else
-//            {
-//                let aViewZIndex = self.view.subviews.indexOf(self.playerWar3AView)
-//                let bViewZIndex = self.view.subviews.indexOf(self.playerWar3BView)
-//                let cViewZIndex = self.view.subviews.indexOf(self.playerWar3CView)
-//                
-//                if aViewZIndex > bViewZIndex
-//                {
-//                    playerCard = self.playerWar3AView.card!
-//                    aiCard = self.aiWar3AView.card!
-//                }
-//                else if bViewZIndex > cViewZIndex
-//                {
-//                    playerCard = self.playerWar3BView.card!
-//                    aiCard = self.aiWar3BView.card!
-//                }
-//                else
-//                {
-//                    playerCard = self.playerWar3CView.card!
-//                    aiCard = self.aiWar3CView.card!
-//                }
-//            }
         }
         return [ playerCard, aiCard ]
     }
@@ -695,7 +584,7 @@ class GameViewController: UIViewController
             else //war
             {
                 column = self.columnOfResult(war_emoji)
-                let warValue = self.cardValueOfWar(column) //only good for initial wars... right?
+                let warValue = self.cardValueOfWar(column)
                 print("AI has lost, but gets to pass on the war.")
                 let willResolveWar = self.game.aiPlayer.shouldResolveWar(warValue)
                 
@@ -849,23 +738,17 @@ class GameViewController: UIViewController
     {
         //        print("#21 (saveAllCards)")
         var cardsToSave: [Card] = []
-        //I don't think I need this new array.  I can just use the property it eventually gets added to
         
         if player == player_string
         {
-//            cardsToSave = [ self.playerWar1View.card!, self.playerWar2View.card!, self.playerWar3View.card! ]
             cardsToSave.appendContentsOf(self.player1ClusterView.removeCards())
             cardsToSave.appendContentsOf(self.player2ClusterView.removeCards())
             cardsToSave.appendContentsOf(self.player3ClusterView.removeCards())
-//            cardsToSave.appendContentsOf(self.game.player.warCards)
             
             self.savePlayerCards.appendContentsOf(cardsToSave)
         }
         else if player == ai_string
         {
-//            cardsToSave = [ self.aiWar1View.card!, self.aiWar2View.card!, self.aiWar3View.card! ]
-//            cardsToSave.appendContentsOf(self.game.aiPlayer.warCards)
-
             cardsToSave.appendContentsOf(self.ai1ClusterView.removeCards())
             cardsToSave.appendContentsOf(self.ai2ClusterView.removeCards())
             cardsToSave.appendContentsOf(self.ai3ClusterView.removeCards())
@@ -881,8 +764,7 @@ class GameViewController: UIViewController
         
         if player == player_string
         {
-//            cardsToDiscard = [ self.playerWar1View.card!, self.playerWar2View.card!, self.playerWar3View.card! ]
-//            cardsToDiscard.appendContentsOf(self.game.player.warCards)
+            //cardsToDiscard.appendContentsOf(self.game.player.warCards)
             //WHAT AM I USING THIS GAME.WARCARDS METHOD FOR THEN?!?!?!?!
 
             cardsToDiscard.appendContentsOf(self.player1ClusterView.removeCards())
@@ -893,8 +775,6 @@ class GameViewController: UIViewController
         }
         else if player == ai_string
         {
-//            cardsToDiscard = [ self.aiWar1View.card!, self.aiWar2View.card!, self.aiWar3View.card! ]
-//            cardsToDiscard.appendContentsOf(self.game.aiPlayer.warCards)
             cardsToDiscard.appendContentsOf(self.ai1ClusterView.removeCards())
             cardsToDiscard.appendContentsOf(self.ai2ClusterView.removeCards())
             cardsToDiscard.appendContentsOf(self.ai3ClusterView.removeCards())
@@ -1046,13 +926,10 @@ class GameViewController: UIViewController
         switch column
         {
         case first_column:
-//            return (self.aiWar1View.card?.cardValue)!
             return self.ai1ClusterView.cardToJudge().cardValue
         case second_column:
-//            return (self.aiWar2View.card?.cardValue)!
             return self.ai2ClusterView.cardToJudge().cardValue
         default:
-//            return (self.aiWar3View.card?.cardValue)!
             return self.ai3ClusterView.cardToJudge().cardValue
         }
     }
@@ -1121,60 +998,7 @@ class GameViewController: UIViewController
             
             playerCardCluster.addCard(self.game.player.warCards.last!)
             aiCardCluster.addCard(self.game.aiPlayer.warCards.last!)
-            
             self.populateCardClusters()
-            
-//            var playerWarView: CardView
-//            var aiWarView: CardView
-//            
-//            switch self.game.player.warCards.count % 3
-//            {
-//            case 1:
-//                switch column
-//                {
-//                case first_column:
-//                    playerWarView = self.playerWar1AView
-//                    aiWarView = self.aiWar1AView
-//                case second_column:
-//                    playerWarView = self.playerWar2AView
-//                    aiWarView = self.aiWar2AView
-//                default:
-//                    playerWarView = self.playerWar3AView
-//                    aiWarView = self.aiWar3AView
-//                }
-//            case 2:
-//                switch column
-//                {
-//                case first_column:
-//                    playerWarView = self.playerWar1BView
-//                    aiWarView = self.aiWar1BView
-//                case second_column:
-//                    playerWarView = self.playerWar2BView
-//                    aiWarView = self.aiWar2BView
-//                default:
-//                    playerWarView = self.playerWar3BView
-//                    aiWarView = self.aiWar3BView
-//                }
-//            default:
-//                switch column
-//                {
-//                case first_column:
-//                    playerWarView = self.playerWar1CView
-//                    aiWarView = self.aiWar1CView
-//                case second_column:
-//                    playerWarView = self.playerWar2CView
-//                    aiWarView = self.aiWar2CView
-//                default:
-//                    playerWarView = self.playerWar3CView
-//                    aiWarView = self.aiWar3CView
-//                }
-//            }
-//            
-//            playerWarView.card = self.game.player.warCards.last
-//            aiWarView.card = self.game.aiPlayer.warCards.last
-//            
-//            self.view.bringSubviewToFront(playerWarView)
-//            self.view.bringSubviewToFront(aiWarView)
             
             self.playGameButton.setTitle(ready_string, forState: UIControlState.Normal)
         }

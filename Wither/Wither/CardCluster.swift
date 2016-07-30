@@ -76,11 +76,6 @@ class CardCluster: UIView
         return self.cards.last! //sometimes this causes crash
     }
     
-//    func placeCardJustDealtOnTop(cardView: CardView)
-//    {
-//        self.bringSubviewToFront(cardView)
-//    }
-    
     func populateCardViews()
     {
         self.baseCardView.card = self.cards.first

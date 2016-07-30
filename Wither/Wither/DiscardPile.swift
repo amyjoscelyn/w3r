@@ -42,7 +42,7 @@ class DiscardPile: UIView
     }
     
     func rotateViews()
-    { //are all of these being populated???
+    {
         
         if self.player == player_string
         {
@@ -70,6 +70,7 @@ class DiscardPile: UIView
     func populateCardViews()
     {
         var currentDiscardCount = self.cards.count
+        //this is alwyas going to be the count of cards just discarded, never what it was before they were
         
         for card in self.cards
         {
