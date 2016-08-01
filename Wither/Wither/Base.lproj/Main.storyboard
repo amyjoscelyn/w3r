@@ -466,7 +466,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cards: 52" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGG-3c-ahj">
-                                        <rect key="frame" x="0.0" y="9" width="74" height="21"/>
+                                        <rect key="frame" x="0.0" y="5" width="74" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -476,7 +476,7 @@
                                 <constraints>
                                     <constraint firstItem="bGG-3c-ahj" firstAttribute="leading" secondItem="yhm-d6-z2x" secondAttribute="leading" id="0I6-13-El8"/>
                                     <constraint firstItem="aFP-4u-sQS" firstAttribute="leading" secondItem="yhm-d6-z2x" secondAttribute="leading" id="2qI-Lc-Q3b"/>
-                                    <constraint firstItem="bGG-3c-ahj" firstAttribute="bottom" secondItem="aFP-4u-sQS" secondAttribute="top" id="TY7-uk-1Mi"/>
+                                    <constraint firstItem="bGG-3c-ahj" firstAttribute="bottom" secondItem="aFP-4u-sQS" secondAttribute="top" constant="-4" id="TY7-uk-1Mi"/>
                                     <constraint firstAttribute="bottom" secondItem="acK-wd-xOS" secondAttribute="bottom" id="fac-li-daw"/>
                                     <constraint firstAttribute="bottom" secondItem="aFP-4u-sQS" secondAttribute="bottom" constant="8" id="oef-Q2-LTd"/>
                                     <constraint firstAttribute="trailing" secondItem="acK-wd-xOS" secondAttribute="trailing" constant="8" id="uBK-Jp-aVp"/>
@@ -501,7 +501,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cards: 52" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNE-wt-42L">
-                                        <rect key="frame" x="225" y="90" width="74" height="21"/>
+                                        <rect key="frame" x="226" y="94" width="74" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -510,7 +510,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="F2S-5b-BRa" firstAttribute="leading" secondItem="pgG-Y9-oiB" secondAttribute="leading" constant="8" id="0bK-Vg-nWK"/>
-                                    <constraint firstItem="XNE-wt-42L" firstAttribute="top" secondItem="vLL-8V-IAo" secondAttribute="bottom" id="Hwz-3y-7Pc"/>
+                                    <constraint firstItem="XNE-wt-42L" firstAttribute="top" secondItem="vLL-8V-IAo" secondAttribute="bottom" constant="4" id="Hwz-3y-7Pc"/>
                                     <constraint firstAttribute="trailing" secondItem="XNE-wt-42L" secondAttribute="trailing" id="PCC-C4-H1P"/>
                                     <constraint firstAttribute="trailing" secondItem="vLL-8V-IAo" secondAttribute="trailing" id="V2l-ev-S7i"/>
                                     <constraint firstItem="F2S-5b-BRa" firstAttribute="top" secondItem="pgG-Y9-oiB" secondAttribute="top" id="kDB-VF-puD"/>

@@ -23,6 +23,14 @@ class CardView: UIView
         return UIScreen.mainScreen().bounds.size.width / 7
     }
     
+    class func fontSizeForScreenWidth() -> CGFloat
+    {
+        print("\(UIScreen.mainScreen().bounds.size.width / 19)")
+        return UIScreen.mainScreen().bounds.size.width / 19
+    }
+    
+    var fontSize: CGFloat = { return CardView.fontSizeForScreenWidth() }()
+    
     var faceUp: Bool = true
         {
         didSet
@@ -69,6 +77,7 @@ class CardView: UIView
                     self.cardLabel.text = card.cardLabel
                     self.topValueLabel.text = card.rank
                     self.bottomValueLabel.text = card.rank
+                    self.cardLabel.font = UIFont.systemFontOfSize(self.fontSize)
                 }
                 else
                 {

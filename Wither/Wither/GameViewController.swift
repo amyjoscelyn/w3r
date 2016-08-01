@@ -126,6 +126,10 @@ class GameViewController: UIViewController
 //        self.customizeButton(self.swapCards1And3Button)
 //        self.customizeButton(self.skipWarButton)
         
+        self.war1ResultLabel.font = UIFont.systemFontOfSize(CardView.fontSizeForScreenWidth() * 19/22)
+        self.war2ResultLabel.font = UIFont.systemFontOfSize(CardView.fontSizeForScreenWidth() * 19/22)
+        self.war3ResultLabel.font = UIFont.systemFontOfSize(CardView.fontSizeForScreenWidth() * 19/22)
+        
         self.deckOriginalCenter = self.playerDeckView.center
         
         self.panGestures()
@@ -173,6 +177,8 @@ class GameViewController: UIViewController
         button.layer.borderWidth = border_width
         button.layer.borderColor = UIColor.whiteColor().CGColor
         button.clipsToBounds = true
+        
+        button.titleLabel?.font = UIFont.systemFontOfSize(CardView.fontSizeForScreenWidth() * 17/22)
     }
     
     func panGestures()
@@ -370,6 +376,11 @@ class GameViewController: UIViewController
     {
         //        print("#10 (populateHandWithSingleCard)")
         print("[populateHandWithSingleCard] player has \(self.game.player.deck.cards.count) cards in deck, AI has \(self.game.aiPlayer.deck.cards.count) cards")
+        
+        self.player2ClusterView.addCard(self.game.player.hand[0])
+        self.ai2ClusterView.addCard(self.game.aiPlayer.hand[0])
+        
+        self.populateCardClusters()
 //        self.aiWar2View.card = self.game.aiPlayer.hand[0]
 //        self.playerWar2View.card = self.game.player.hand[0] //maybe new cardView here instead?
 //        
@@ -426,7 +437,7 @@ class GameViewController: UIViewController
     func judgeRound()
     {
         //        print("#14 (judgeRound)")
-        if self.player1ClusterView.baseCardView != nil
+        if !self.player1ClusterView.baseCardView.hidden
         {
             let cardsToJudge1 = self.cardsToJudge(first_column)
             let cardsToJudge2 = self.cardsToJudge(second_column)
@@ -444,12 +455,14 @@ class GameViewController: UIViewController
         {
             //there is only one card up, #2
             
+            print("~~~~~~~~cards in player hand: \(self.game.player.hand.count) \n ~~~~~~~~cards in ai hand: \(self.game.aiPlayer.hand.count)")
+            
             let cardsToJudge = self.cardsToJudge(second_column)
             let winner = self.resolveWar(cardsToJudge)
             
             print("\(winner) won!!")
             
-            self.awardFinalRoundWithResult(winner)
+//            self.awardFinalRoundWithResult(winner)
         }
     }
     
@@ -540,7 +553,7 @@ class GameViewController: UIViewController
             }
         }
         
-        print("crowns: \(winCount), X's: \(lossCount), swords: \(warCount)")
+//        print("crowns: \(winCount), X's: \(lossCount), swords: \(warCount)")
         
         var column = ""
         
@@ -585,17 +598,17 @@ class GameViewController: UIViewController
             {
                 column = self.columnOfResult(war_emoji)
                 let warValue = self.cardValueOfWar(column)
-                print("AI has lost, but gets to pass on the war.")
+//                print("AI has lost, but gets to pass on the war.")
                 let willResolveWar = self.game.aiPlayer.shouldResolveWar(warValue)
                 
                 if willResolveWar
                 {
-                    self.columnOfWar = column
+//                    self.columnOfWar = column
                     self.prepForWar(column)
                 }
                 else
                 {
-                    print("AI PASSES ON WAR.")
+//                    print("AI PASSES ON WAR.")
                     
                     self.saveAllCards(player_string)
                     
@@ -636,7 +649,7 @@ class GameViewController: UIViewController
             }
             else //war
             {
-                print("playing the war now...")
+//                print("playing the war now...")
                 column = self.columnOfResult(war_emoji)
                 
 //                self.skipWarButton.hidden = false
@@ -962,11 +975,11 @@ class GameViewController: UIViewController
         switch column
         {
         case first_column:
-            self.war1ResultLabel.hidden = true
+            self.war1ResultLabel.text = "  "
         case second_column:
-            self.war2ResultLabel.hidden = true
+            self.war2ResultLabel.text = "  "
         default:
-            self.war3ResultLabel.hidden = true
+            self.war3ResultLabel.text = "  "
         }
     }
     
@@ -984,16 +997,22 @@ class GameViewController: UIViewController
             {
                 playerCardCluster = self.player1ClusterView
                 aiCardCluster = self.ai1ClusterView
+                
+                self.isWar1 = false
             }
             else if self.isWar2
             {
                 playerCardCluster = self.player2ClusterView
                 aiCardCluster = self.ai2ClusterView
+                
+                self.isWar2 = false
             }
-            else
+            else //self.isWar3
             {
                 playerCardCluster = self.player3ClusterView
                 aiCardCluster = self.ai3ClusterView
+                
+                self.isWar3 = false
             }
             
             playerCardCluster.addCard(self.game.player.warCards.last!)
@@ -1001,6 +1020,9 @@ class GameViewController: UIViewController
             self.populateCardClusters()
             
             self.playGameButton.setTitle(ready_string, forState: UIControlState.Normal)
+            
+            
+            //I think I should make all self.isWar# false here
         }
         else
         {
@@ -1075,7 +1097,7 @@ class GameViewController: UIViewController
         default:
             self.war2ResultLabel.text = war_emoji
         }
-        self.war2ResultLabel.hidden = false
+//        self.war2ResultLabel.hidden = false
         
         self.prepButtonWithTitle("")
         
