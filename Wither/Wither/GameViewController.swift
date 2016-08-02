@@ -371,7 +371,6 @@ class GameViewController: UIViewController
         self.playGameButton.enabled = true
     }
     
-    //THIS METHOD ISN'T ACTIVE YET!!!!!
     func populateHandWithSingleCard()
     {
         //        print("#10 (populateHandWithSingleCard)")
@@ -381,13 +380,6 @@ class GameViewController: UIViewController
         self.ai2ClusterView.addCard(self.game.aiPlayer.hand[0])
         
         self.populateCardClusters()
-//        self.aiWar2View.card = self.game.aiPlayer.hand[0]
-//        self.playerWar2View.card = self.game.player.hand[0] //maybe new cardView here instead?
-//        
-//        self.aiWar1View.card = nil
-//        self.aiWar3View.card = nil
-//        self.playerWar1View.card = nil //set 2 as nil... or they should already be nil, because of the endRound, right?
-//        self.playerWar3View.card = nil
         
         self.game.aiPlayer.hand.removeAll()
         self.game.player.hand.removeAll()
@@ -462,7 +454,7 @@ class GameViewController: UIViewController
             
             print("\(winner) won!!")
             
-//            self.awardFinalRoundWithResult(winner)
+            self.awardFinalRoundWithResult(winner)
         }
     }
     
@@ -1097,7 +1089,7 @@ class GameViewController: UIViewController
         default:
             self.war2ResultLabel.text = war_emoji
         }
-//        self.war2ResultLabel.hidden = false
+        self.war2ResultLabel.hidden = false
         
         self.prepButtonWithTitle("")
         

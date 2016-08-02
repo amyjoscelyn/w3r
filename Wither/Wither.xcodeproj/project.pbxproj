@@ -107,7 +107,6 @@
 			children = (
 				3DFAF9D21D248139009D80B3 /* Wither */,
 				3DFAF9E71D248139009D80B3 /* WitherTests */,
-				3DFAF9F21D248139009D80B3 /* WitherUITests */,
 				3DFAF9D11D248139009D80B3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -152,6 +151,7 @@
 		3DFAF9E71D248139009D80B3 /* WitherTests */ = {
 			isa = PBXGroup;
 			children = (
+				3DFAF9F21D248139009D80B3 /* WitherUITests */,
 				3DFAF9E81D248139009D80B3 /* WitherTests.swift */,
 				3DFAF9EA1D248139009D80B3 /* Info.plist */,
 			);
@@ -164,7 +164,8 @@
 				3DFAF9F31D248139009D80B3 /* WitherUITests.swift */,
 				3DFAF9F51D248139009D80B3 /* Info.plist */,
 			);
-			path = WitherUITests;
+			name = WitherUITests;
+			path = ../WitherUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
