@@ -290,9 +290,9 @@ class GameViewController: UIViewController
             
             //***************************************
             //for testing purposes, this code can be commented out
-            //            self.aiWar1View.faceUp = false
-            //            self.aiWar2View.faceUp = false
-            //            self.aiWar3View.faceUp = false
+            self.ai1ClusterView.faceDown()
+            self.ai2ClusterView.faceDown()
+            self.ai3ClusterView.faceDown()
             //***************************************
         }
         else if self.game.player.hand.count > 0 || self.game.aiPlayer.hand.count > 0
@@ -399,9 +399,9 @@ class GameViewController: UIViewController
         }
         else if label == ready_string
         {
-//            self.aiWar1View.faceUp = true
-//            self.aiWar2View.faceUp = true
-//            self.aiWar3View.faceUp = true
+            self.ai1ClusterView.showCard()
+            self.ai2ClusterView.showCard()
+            self.ai3ClusterView.showCard()
             
             self.judgeRound()
         }
@@ -1123,9 +1123,6 @@ class GameViewController: UIViewController
                 print("GAME IS OVER. NO BACKUP FOR WAR BY BOTH PLAYERS.  TIE!")
                 print("finalRoundSpoils deemed this game OVER!!!!!!!!")
                 //                self.prepButtonWithTitle(game_over_string)
-                //I think instead here should go another method, where it resolves the round--endRound?--and THEN sets the title to the game_over_string, so that we can see the card being discarded.
-                //And maybe if there's at least a single card still left in one person's hand, MAYBE play can continue?  Or they can choose at that point whether they want to play it.
-                //If, however, that single card was one they just won... maybe it's a one-use thing and then you get credited a point, or maybe they just keep going until a player has 0 cards?  But the longer you play that same card, the more likely you'll run into a war, and that's not desirable.
             }
             if self.game.player.deck.cards.count == 1
             {

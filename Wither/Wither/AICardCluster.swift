@@ -66,6 +66,16 @@ class AICardCluster: UIView
         return self.cards.last!
     }
     
+    func faceDown()
+    {
+        self.baseCardView.faceUp = false
+    }
+    
+    func showCard()
+    {
+        self.baseCardView.faceUp = true
+    }
+    
     func populateCardViews()
     {
         self.baseCardView.card = self.cards.first
