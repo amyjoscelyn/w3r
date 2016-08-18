@@ -321,13 +321,13 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
             
             self.playerDeckView.userInteractionEnabled = false
             
-            self.playerHandStackView.reorderingEnabled = false
+            self.playerHandStackView.reorderingEnabled = true
             
             //***************************************
             //for testing purposes, this code can be commented out
-            self.ai1ClusterView.faceDown()
-            self.ai2ClusterView.faceDown()
-            self.ai3ClusterView.faceDown()
+//            self.ai1ClusterView.faceDown()
+//            self.ai2ClusterView.faceDown()
+//            self.ai3ClusterView.faceDown()
             //***************************************
         }
         else if self.game.player.hand.count > 0 || self.game.aiPlayer.hand.count > 0
@@ -739,7 +739,15 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
                     firstWar = self.cardValueOfWar(second_column)
                     secondWar = self.cardValueOfWar(third_column)
                     
-                    if firstWar >= secondWar
+                    let cluster1 = self.playerHandStackView.arrangedSubviews[1]
+                    let cluster2 = self.playerHandStackView.arrangedSubviews[2]
+                    
+                    let cluster1z = cluster1.layer.zPosition
+                    let cluster2z = cluster2.layer.zPosition
+                    
+                    //if firstWar is greater or equal to second war
+                    //if one of the wars is already on their second card...
+                    if firstWar >= secondWar && cluster1z >= cluster2z
                     {
                         self.prepForWar(second_column)
                     }
@@ -752,7 +760,13 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
                     firstWar = self.cardValueOfWar(first_column)
                     secondWar = self.cardValueOfWar(third_column)
                     
-                    if firstWar >= secondWar
+                    let cluster1 = self.playerHandStackView.arrangedSubviews[0]
+                    let cluster2 = self.playerHandStackView.arrangedSubviews[2]
+                    
+                    let cluster1z = cluster1.layer.zPosition
+                    let cluster2z = cluster2.layer.zPosition
+                    
+                    if firstWar >= secondWar && cluster1z >= cluster2z
                     {
                         self.prepForWar(first_column)
                     }
@@ -765,7 +779,13 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
                     firstWar = self.cardValueOfWar(first_column)
                     secondWar = self.cardValueOfWar(second_column)
                     
-                    if firstWar >= secondWar
+                    let cluster1 = self.playerHandStackView.arrangedSubviews[0]
+                    let cluster2 = self.playerHandStackView.arrangedSubviews[1]
+                    
+                    let cluster1z = cluster1.layer.zPosition
+                    let cluster2z = cluster2.layer.zPosition
+                    
+                    if firstWar >= secondWar && cluster1z >= cluster2z
                     {
                         self.prepForWar(first_column)
                     }
@@ -1089,6 +1109,9 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
             
             
             //I think I should make all self.isWar# false here
+            self.isWar1 = false
+            self.isWar2 = false
+            self.isWar3 = false
         }
         else
         {
@@ -1113,9 +1136,9 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
 //        self.skipWarButton.hidden = true
 //        self.resolveWarGuideLabel.hidden = true
         
-        self.isWar1 = false
-        self.isWar2 = false
-        self.isWar3 = false
+//        self.isWar1 = false
+//        self.isWar2 = false
+//        self.isWar3 = false
         
         print("Player saves \(self.savePlayerCards.count) cards and discards \(self.discardPlayerCards.count) cards, AI saves \(self.saveAICards.count) cards and discards \(self.discardAICards.count) cards.")
         
