@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HrA-ET-muD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HrA-ET-muD">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -407,19 +407,19 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="❌" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hsd-8X-Wol">
                                                 <rect key="frame" x="0.0" y="5" width="22" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="👑" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I0O-e5-GKK">
                                                 <rect key="frame" x="117" y="5" width="22" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="⚔" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q7H-mP-zdZ">
                                                 <rect key="frame" x="233" y="5" width="22" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -544,7 +544,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YjE-Y7-9Mm" userLabel="Player Hand Stack View">
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YjE-Y7-9Mm" userLabel="Player Hand Stack View" customClass="HorizontallyReorderableStackView" customModule="Wither" customModuleProvider="target">
                                 <rect key="frame" x="15" y="324" width="369" height="164"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="krD-nP-8lR" customClass="CardCluster" customModule="Wither" customModuleProvider="target">
@@ -611,12 +611,10 @@
                         <outlet property="aiDiscardView" destination="F2S-5b-BRa" id="OJg-o1-qbw"/>
                         <outlet property="centerGameView" destination="Nzy-eM-plK" id="dOw-o8-oNY"/>
                         <outlet property="playGameButton" destination="Exq-K6-GRb" id="ZNe-3u-XP9"/>
-                        <outlet property="player1ClusterView" destination="krD-nP-8lR" id="PaT-4x-htO"/>
-                        <outlet property="player2ClusterView" destination="deM-9S-HpO" id="cvX-g8-mnL"/>
-                        <outlet property="player3ClusterView" destination="gdp-up-KSr" id="1NJ-ZM-wrB"/>
                         <outlet property="playerCardsRemainingInDeckLabel" destination="bGG-3c-ahj" id="jbu-HE-5jh"/>
                         <outlet property="playerDeckView" destination="aFP-4u-sQS" id="hlN-fd-Uei"/>
                         <outlet property="playerDiscardView" destination="acK-wd-xOS" id="ZMi-3c-aYN"/>
+                        <outlet property="playerHandStackView" destination="YjE-Y7-9Mm" id="TLn-Xw-a2V"/>
                         <outlet property="war1ResultLabel" destination="hsd-8X-Wol" id="RAr-dJ-Pvl"/>
                         <outlet property="war2ResultLabel" destination="I0O-e5-GKK" id="Q1g-2I-3A8"/>
                         <outlet property="war3ResultLabel" destination="q7H-mP-zdZ" id="rd8-cM-mgt"/>

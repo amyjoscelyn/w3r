@@ -31,7 +31,7 @@ let game_over_string = "GAME OVER"
 let corner_radius: CGFloat = 8
 let border_width: CGFloat = 2
 
-class GameViewController: UIViewController
+class GameViewController: UIViewController, HorizontallyReorderableStackViewDelegate
 {
     var lastLocation: CGPoint = CGPointMake(0, 0)
     var deckOriginalCenter: CGPoint = CGPointMake(0, 0)
@@ -49,9 +49,8 @@ class GameViewController: UIViewController
     var discardPlayerCards: [Card] = []
     var discardAICards: [Card] = []
     
-    @IBOutlet weak var player1ClusterView: CardCluster!
-    @IBOutlet weak var player2ClusterView: CardCluster!
-    @IBOutlet weak var player3ClusterView: CardCluster!
+    @IBOutlet weak var playerHandStackView: HorizontallyReorderableStackView!
+    
     @IBOutlet weak var ai1ClusterView: AICardCluster!
     @IBOutlet weak var ai2ClusterView: AICardCluster!
     @IBOutlet weak var ai3ClusterView: AICardCluster!
@@ -91,9 +90,11 @@ class GameViewController: UIViewController
         self.cardViews.appendContentsOf(self.playerDiscardView.getViews())
         self.cardViews.appendContentsOf(self.aiDiscardView.getViews())
         
-        self.cardViews.appendContentsOf(self.player1ClusterView.getCardViews())
-        self.cardViews.appendContentsOf(self.player2ClusterView.getCardViews())
-        self.cardViews.appendContentsOf(self.player3ClusterView.getCardViews())
+        for subview in self.playerHandStackView.arrangedSubviews
+        {
+            let cardCluster = subview as! CardCluster
+            self.cardViews.appendContentsOf(cardCluster.getCardViews())
+        }
         
         self.cardViews.appendContentsOf(self.ai1ClusterView.getCardViews())
         self.cardViews.appendContentsOf(self.ai2ClusterView.getCardViews())
@@ -148,9 +149,17 @@ class GameViewController: UIViewController
     
     func setCardClusters()
     {
-        self.player1ClusterView.setColumn(first_column)
-        self.player2ClusterView.setColumn(second_column)
-        self.player3ClusterView.setColumn(third_column)
+        let columnsArray = [first_column, second_column, third_column]
+        
+        for i in 0..<3
+        {
+            let subview = self.playerHandStackView.arrangedSubviews[i]
+            let cardCluster = subview as! CardCluster
+            
+            let column = columnsArray[i]
+            
+            cardCluster.setColumn(column)
+        }
         
         self.ai1ClusterView.setColumn(first_column)
         self.ai2ClusterView.setColumn(second_column)
@@ -161,9 +170,11 @@ class GameViewController: UIViewController
     
     func populateCardClusters()
     {
-        self.player1ClusterView.populateCardViews()
-        self.player2ClusterView.populateCardViews()
-        self.player3ClusterView.populateCardViews()
+        for subview in self.playerHandStackView.arrangedSubviews
+        {
+            let cardCluster = subview as! CardCluster
+            cardCluster.populateCardViews()
+        }
         
         self.ai1ClusterView.populateCardViews()
         self.ai2ClusterView.populateCardViews()
@@ -258,7 +269,9 @@ class GameViewController: UIViewController
             let translation = panGesture.translationInView(self.view!)
             self.playerDeckView.center = CGPointMake(lastLocation.x + translation.x, lastLocation.y + translation.y)
             
-            if self.playerDeckView.center.y <= 450.0 && self.player2ClusterView.baseCardView.hidden == true && self.roundHasBegun == false
+            let cardCluster2 = self.playerHandStackView.arrangedSubviews[1] as! CardCluster
+            
+            if self.playerDeckView.center.y <= 450.0 && cardCluster2.baseCardView.hidden == true && self.roundHasBegun == false
             {
                 self.newRound()
             }
@@ -267,6 +280,26 @@ class GameViewController: UIViewController
         {
             self.playerDeckView.center = self.deckOriginalCenter
         }
+    }
+    
+    func didReorderArrangedSubviews(arrangedSubviews: Array<UIView>)
+    {
+        var rearrangedBaseCards = Array<Card>()
+        for subview in arrangedSubviews {
+            let cardCluster = subview as! CardCluster
+            if let card = cardCluster.baseCardView.card {
+                rearrangedBaseCards.append(card)
+            }
+        }
+        //reassign the basecards array on the datasource
+    }
+    
+    func canReorderSubview(subview: UIView) -> Bool
+    {
+        //here is where I tell it that I can/'t reorder the subviews
+        print("canReorderSubview called!!!!!")
+        
+        return true
     }
     
     func newRound()
@@ -287,6 +320,8 @@ class GameViewController: UIViewController
             self.prepButtonWithTitle(ready_string)
             
             self.playerDeckView.userInteractionEnabled = false
+            
+            self.playerHandStackView.reorderingEnabled = false
             
             //***************************************
             //for testing purposes, this code can be commented out
@@ -350,9 +385,16 @@ class GameViewController: UIViewController
     func populateHandWithCards()
     {
         //        print("#9 (populateHandWithCards)")
-        self.player1ClusterView.addCard(self.game.player.hand[0])
-        self.player2ClusterView.addCard(self.game.player.hand[1])
-        self.player3ClusterView.addCard(self.game.player.hand[2])
+        
+        for i in 0..<3
+        {
+            let subview = self.playerHandStackView.arrangedSubviews[i]
+            let cardCluster = subview as! CardCluster
+            
+            let card = self.game.player.hand[i]
+            
+            cardCluster.addCard(card)
+        }
         
         self.ai1ClusterView.addCard(self.game.aiPlayer.hand[0])
         self.ai2ClusterView.addCard(self.game.aiPlayer.hand[1])
@@ -376,7 +418,9 @@ class GameViewController: UIViewController
         //        print("#10 (populateHandWithSingleCard)")
         print("[populateHandWithSingleCard] player has \(self.game.player.deck.cards.count) cards in deck, AI has \(self.game.aiPlayer.deck.cards.count) cards")
         
-        self.player2ClusterView.addCard(self.game.player.hand[0])
+        let cardCluster2 = self.playerHandStackView.arrangedSubviews[1] as! CardCluster
+        
+        cardCluster2.addCard(self.game.player.hand[0])
         self.ai2ClusterView.addCard(self.game.aiPlayer.hand[0])
         
         self.populateCardClusters()
@@ -429,7 +473,9 @@ class GameViewController: UIViewController
     func judgeRound()
     {
         //        print("#14 (judgeRound)")
-        if !self.player1ClusterView.baseCardView.hidden
+        let cardCluster1 = self.playerHandStackView.arrangedSubviews[0] as! CardCluster
+        
+        if !cardCluster1.baseCardView.hidden
         {
             let cardsToJudge1 = self.cardsToJudge(first_column)
             let cardsToJudge2 = self.cardsToJudge(second_column)
@@ -463,16 +509,18 @@ class GameViewController: UIViewController
         var playerCard: Card = Card.init(suit: "X", rank: "0")
         var aiCard: Card = Card.init(suit: "X", rank: "0")
         
+        let clusters = self.arrangedCardClusters()
+        
         switch column
         {
         case first_column:
-            playerCard = self.player1ClusterView.cardToJudge()
+            playerCard = clusters[0].cardToJudge()
             aiCard = self.ai1ClusterView.cardToJudge()
         case second_column:
-            playerCard = self.player2ClusterView.cardToJudge()
+            playerCard = clusters[1].cardToJudge()
             aiCard = self.ai2ClusterView.cardToJudge()
         default:
-            playerCard = self.player3ClusterView.cardToJudge()
+            playerCard = clusters[2].cardToJudge()
             aiCard = self.ai3ClusterView.cardToJudge()
         }
         return [ playerCard, aiCard ]
@@ -514,6 +562,18 @@ class GameViewController: UIViewController
         self.prepButtonWithTitle("")
         
         self.roundSpoils()
+    }
+    
+    func arrangedCardClusters() -> [CardCluster]
+    {
+        var clusters: [CardCluster] = []
+        
+        for subview in self.playerHandStackView.arrangedSubviews
+        {
+            let cardCluster = subview as! CardCluster
+            clusters.append(cardCluster)
+        }
+        return clusters
     }
     
     func roundSpoils()
@@ -746,10 +806,11 @@ class GameViewController: UIViewController
         
         if player == player_string
         {
-            cardsToSave.appendContentsOf(self.player1ClusterView.removeCards())
-            cardsToSave.appendContentsOf(self.player2ClusterView.removeCards())
-            cardsToSave.appendContentsOf(self.player3ClusterView.removeCards())
-            
+            for subview in self.playerHandStackView.arrangedSubviews
+            {
+                let cardCluster = subview as! CardCluster
+                cardsToSave.appendContentsOf(cardCluster.removeCards())
+            }
             self.savePlayerCards.appendContentsOf(cardsToSave)
         }
         else if player == ai_string
@@ -772,10 +833,11 @@ class GameViewController: UIViewController
             //cardsToDiscard.appendContentsOf(self.game.player.warCards)
             //WHAT AM I USING THIS GAME.WARCARDS METHOD FOR THEN?!?!?!?!
 
-            cardsToDiscard.appendContentsOf(self.player1ClusterView.removeCards())
-            cardsToDiscard.appendContentsOf(self.player2ClusterView.removeCards())
-            cardsToDiscard.appendContentsOf(self.player3ClusterView.removeCards())
-            
+            for subview in self.playerHandStackView.arrangedSubviews
+            {
+                let cardCluster = subview as! CardCluster
+                cardsToDiscard.appendContentsOf(cardCluster.removeCards())
+            }
             self.discardPlayerCards.appendContentsOf(cardsToDiscard)
         }
         else if player == ai_string
@@ -870,16 +932,21 @@ class GameViewController: UIViewController
     func saveSingleCard(player: String, column: String)
     {
         //        print("#23 (saveSingleCard)")
+        let clusters = self.arrangedCardClusters()
+        
         if player == player_string
         {
             switch column
             {
             case first_column:
-                self.savePlayerCards.appendContentsOf(self.player1ClusterView.removeCards())
+                let playerCluster1 = clusters[0]
+                self.savePlayerCards.appendContentsOf(playerCluster1.removeCards())
             case second_column:
-                self.savePlayerCards.appendContentsOf(self.player2ClusterView.removeCards())
+                let playerCluster2 = clusters[1]
+                self.savePlayerCards.appendContentsOf(playerCluster2.removeCards())
             default:
-                self.savePlayerCards.appendContentsOf(self.player3ClusterView.removeCards())
+                let playerCluster3 = clusters[2]
+                self.savePlayerCards.appendContentsOf(playerCluster3.removeCards())
             }
         }
         else if player == ai_string
@@ -899,16 +966,21 @@ class GameViewController: UIViewController
     func discardSingleCard(player: String, column: String)
     {
         //        print("#24 (discardSingleCard)")
+        let clusters = self.arrangedCardClusters()
+        
         if player == player_string
         {
             switch column
             {
             case first_column:
-                self.discardPlayerCards.appendContentsOf(self.player1ClusterView.removeCards())
+                let playerCluster1 = clusters[0]
+                self.discardPlayerCards.appendContentsOf(playerCluster1.removeCards())
             case second_column:
-                self.discardPlayerCards.appendContentsOf(self.player2ClusterView.removeCards())
+                let playerCluster2 = clusters[1]
+                self.discardPlayerCards.appendContentsOf(playerCluster2.removeCards())
             default:
-                self.discardPlayerCards.appendContentsOf(self.player3ClusterView.removeCards())
+                let playerCluster3 = clusters[2]
+                self.discardPlayerCards.appendContentsOf(playerCluster3.removeCards())
             }
         }
         else if player == ai_string
@@ -982,26 +1054,28 @@ class GameViewController: UIViewController
         {
             self.game.war()
             
+            let clusters = self.arrangedCardClusters()
+            
             let playerCardCluster: CardCluster
             let aiCardCluster: AICardCluster
             
             if self.isWar1
             {
-                playerCardCluster = self.player1ClusterView
+                playerCardCluster = clusters[0]
                 aiCardCluster = self.ai1ClusterView
                 
                 self.isWar1 = false
             }
             else if self.isWar2
             {
-                playerCardCluster = self.player2ClusterView
+                playerCardCluster = clusters[1]
                 aiCardCluster = self.ai2ClusterView
                 
                 self.isWar2 = false
             }
             else //self.isWar3
             {
-                playerCardCluster = self.player3ClusterView
+                playerCardCluster = clusters[2]
                 aiCardCluster = self.ai3ClusterView
                 
                 self.isWar3 = false

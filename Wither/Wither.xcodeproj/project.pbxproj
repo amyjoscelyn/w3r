@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3D3F07B21D42AE8A00ABF59A /* CardCluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F07B11D42AE8A00ABF59A /* CardCluster.swift */; };
 		3D3F07B41D42B3CC00ABF59A /* CardCluster.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D3F07B31D42B3CC00ABF59A /* CardCluster.xib */; };
+		3D4D98701D652BA20052B49E /* HorizontallyReorderableStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4D986F1D652BA20052B49E /* HorizontallyReorderableStackView.swift */; };
 		3DA3676E1D47B7EF00BA7144 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3676D1D47B7EF00BA7144 /* GameViewController.swift */; };
 		3DAF0AD41D4A9A1700CF848F /* AICardCluster.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DAF0AD31D4A9A1700CF848F /* AICardCluster.xib */; };
 		3DAF0AD61D4A9AC100CF848F /* AICardCluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAF0AD51D4A9AC100CF848F /* AICardCluster.swift */; };
@@ -50,6 +51,7 @@
 /* Begin PBXFileReference section */
 		3D3F07B11D42AE8A00ABF59A /* CardCluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCluster.swift; sourceTree = "<group>"; };
 		3D3F07B31D42B3CC00ABF59A /* CardCluster.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardCluster.xib; sourceTree = "<group>"; };
+		3D4D986F1D652BA20052B49E /* HorizontallyReorderableStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontallyReorderableStackView.swift; sourceTree = "<group>"; };
 		3DA3676D1D47B7EF00BA7144 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		3DAF0AD31D4A9A1700CF848F /* AICardCluster.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AICardCluster.xib; sourceTree = "<group>"; };
 		3DAF0AD51D4A9AC100CF848F /* AICardCluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AICardCluster.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				3D3F07B11D42AE8A00ABF59A /* CardCluster.swift */,
 				3DAF0AD51D4A9AC100CF848F /* AICardCluster.swift */,
 				3DAF0AD71D4AC09B00CF848F /* DiscardPile.swift */,
+				3D4D986F1D652BA20052B49E /* HorizontallyReorderableStackView.swift */,
 				3DFAFA011D2482E7009D80B3 /* Card.swift */,
 				3DFAFA031D257072009D80B3 /* Deck.swift */,
 				3DFAFA051D25738D009D80B3 /* Player.swift */,
@@ -310,6 +313,7 @@
 				3DFAFA0C1D258C70009D80B3 /* CardView.swift in Sources */,
 				3DFAFA041D257072009D80B3 /* Deck.swift in Sources */,
 				3DFAFA081D257A94009D80B3 /* Game.swift in Sources */,
+				3D4D98701D652BA20052B49E /* HorizontallyReorderableStackView.swift in Sources */,
 				3DFAF9D61D248139009D80B3 /* ViewController.swift in Sources */,
 				3DFAFA021D2482E7009D80B3 /* Card.swift in Sources */,
 				3D3F07B21D42AE8A00ABF59A /* CardCluster.swift in Sources */,

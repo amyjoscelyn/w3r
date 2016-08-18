@@ -11,10 +11,10 @@ import UIKit
 class CardCluster: UIView
 {   
     @IBOutlet private var contentView: UIView?
-    @IBOutlet weak var baseCardView: CardView!
-    @IBOutlet weak var cardViewA: CardView!
-    @IBOutlet weak var cardViewB: CardView!
-    @IBOutlet weak var cardViewC: CardView!
+    @IBOutlet var baseCardView: CardView!
+    @IBOutlet var cardViewA: CardView!
+    @IBOutlet var cardViewB: CardView!
+    @IBOutlet var cardViewC: CardView!
     
     private var cards: [Card] = []
     private var column: String = ""
@@ -66,7 +66,6 @@ class CardCluster: UIView
     {
         let arrayOfCards = self.cards
         self.cards.removeAll()
-//        self.populateCardViews()
         
         return arrayOfCards
     }
