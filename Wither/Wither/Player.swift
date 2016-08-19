@@ -14,8 +14,8 @@ class Player
 {
     var deck: Deck
     var hand: [Card] = []
+    var handValues: [Int] = []
     var discard: [Card] = []
-//    var warCard: Card?
     var warCards: [Card] = []
     
     init()
@@ -31,6 +31,15 @@ class Player
             {
                 self.hand.append(self.deck.drawCard())
             }
+        }
+        self.findHandValues()
+    }
+    
+    func findHandValues()
+    {
+        for card in self.hand
+        {
+            self.handValues.append(card.cardValue)
         }
     }
     

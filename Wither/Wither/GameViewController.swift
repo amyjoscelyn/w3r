@@ -62,7 +62,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     @IBOutlet weak var playerCardsRemainingInDeckLabel: UILabel!
     @IBOutlet weak var aiCardsRemainingInDeckLabel: UILabel!
     
-    //settings button, swap buttons, resolveWarGuide and skipWarButton
+    //settings button, resolveWarGuide and skipWarButton
     @IBOutlet weak var centerGameView: UIView!
     
     var columnOfWar: String = ""
@@ -70,8 +70,11 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     var isWar2 = false
     var isWar3 = false
     var roundHasBegun = false
+    var firstTimeJudgingHand = true
     
     let game = Game.init()
+    
+    //# MARK: - Game Setup
     
     override func viewDidLoad()
     {
@@ -82,11 +85,14 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         self.startGame()
     }
     
+    override func prefersStatusBarHidden() -> Bool
+    {
+        return true
+    }
+    
     func cardViewArray()
     {
-        self.cardViews = [
-            self.playerDeckView,
-            self.aiDeckView ]
+        self.cardViews = [ self.playerDeckView, self.aiDeckView ]
         self.cardViews.appendContentsOf(self.playerDiscardView.getViews())
         self.cardViews.appendContentsOf(self.aiDiscardView.getViews())
         
@@ -99,11 +105,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         self.cardViews.appendContentsOf(self.ai1ClusterView.getCardViews())
         self.cardViews.appendContentsOf(self.ai2ClusterView.getCardViews())
         self.cardViews.appendContentsOf(self.ai3ClusterView.getCardViews())
-    }
-    
-    override func prefersStatusBarHidden() -> Bool
-    {
-        return true
     }
     
     func createGameSpace()
@@ -121,11 +122,8 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         self.aiDiscardView.rotateViews()
         
         self.customizeButton(self.playGameButton)
-//        self.customizeButton(self.settingsButton)
-//        self.customizeButton(self.swapCards1And2Button)
-//        self.customizeButton(self.swapCards2And3Button)
-//        self.customizeButton(self.swapCards1And3Button)
-//        self.customizeButton(self.skipWarButton)
+        //        self.customizeButton(self.settingsButton)
+        //        self.customizeButton(self.skipWarButton)
         
         self.war1ResultLabel.font = UIFont.systemFontOfSize(CardView.fontSizeForScreenWidth() * 19/22)
         self.war2ResultLabel.font = UIFont.systemFontOfSize(CardView.fontSizeForScreenWidth() * 19/22)
@@ -209,7 +207,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     }
     
     
-            //Everything above here is game setup.
+    //# MARK: - New Game
     
     
     func startGame()
@@ -232,11 +230,8 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         self.war1ResultLabel.hidden = true
         self.war2ResultLabel.hidden = true
         self.war3ResultLabel.hidden = true
-//        self.resolveWarGuideLabel.hidden = true
-//        self.skipWarButton.hidden = true
-//        self.swapCards1And2Button.hidden = true
-//        self.swapCards2And3Button.hidden = true
-//        self.swapCards1And3Button.hidden = true
+        //        self.resolveWarGuideLabel.hidden = true
+        //        self.skipWarButton.hidden = true
     }
     
     func clearAllWarCardViewsAndTempHands()
@@ -253,7 +248,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     }
     
     
-            //Above here is how to start a new game.
+    //# MARK: - User Interaction
     
     
     func handleDeckPanGesture(panGesture: UIPanGestureRecognizer)
@@ -291,7 +286,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
                 rearrangedBaseCards.append(card)
             }
         }
-        //reassign the basecards array on the datasource
     }
     
     func canReorderSubview(subview: UIView) -> Bool
@@ -301,6 +295,10 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         
         return true
     }
+    
+    
+    //# MARK: - New Round
+    
     
     func newRound()
     {
@@ -313,10 +311,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         {
             self.populateHandWithCards()
             
-//            self.swapCards1And2Button.hidden = false
-//            self.swapCards2And3Button.hidden = false
-//            self.swapCards1And3Button.hidden = false
-            
             self.prepButtonWithTitle(ready_string)
             
             self.playerDeckView.userInteractionEnabled = false
@@ -325,9 +319,9 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
             
             //***************************************
             //for testing purposes, this code can be commented out
-//            self.ai1ClusterView.faceDown()
-//            self.ai2ClusterView.faceDown()
-//            self.ai3ClusterView.faceDown()
+            //            self.ai1ClusterView.faceDown()
+            //            self.ai2ClusterView.faceDown()
+            //            self.ai3ClusterView.faceDown()
             //***************************************
         }
         else if self.game.player.hand.count > 0 || self.game.aiPlayer.hand.count > 0
@@ -430,7 +424,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     }
     
     
-            //Above handles a new round
+    //# MARK: - Pivot Point
     
     
     @IBAction func playGameButtonTapped(button: UIButton)
@@ -443,16 +437,21 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         }
         else if label == ready_string
         {
+            //helper method?
             self.ai1ClusterView.showCard()
             self.ai2ClusterView.showCard()
             self.ai3ClusterView.showCard()
             
-            self.judgeRound()
+            if self.firstTimeJudgingHand
+            {
+                self.firstTimeThroughHand()
+            }
+            self.determineWinnerOfHand()
         }
         else if label == war_string
         {
-//            self.skipWarButton.hidden = true
-//            self.resolveWarGuideLabel.hidden = true
+            //            self.skipWarButton.hidden = true
+            //            self.resolveWarGuideLabel.hidden = true
             self.hideWarLabel(self.columnOfWar)
             self.playWarInColumn(self.columnOfWar)
         }
@@ -467,41 +466,60 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     }
     
     
-    //Above is the pivot point of the game, methodically going through the different sections of the game
+    //# MARK: - Round Gameplay (Heart of each round, judging)
     
     
-    func judgeRound()
+    
+    func firstTimeThroughHand()
     {
-        //        print("#14 (judgeRound)")
+        //track column of max player card here
+        print("first time judging hand!!")
+        
+        self.firstTimeJudgingHand = false
+    }
+    
+    func determineWinnerOfHand()
+    {
         let cardCluster1 = self.playerHandStackView.arrangedSubviews[0] as! CardCluster
         
         if !cardCluster1.baseCardView.hidden
         {
-            let cardsToJudge1 = self.cardsToJudge(first_column)
-            let cardsToJudge2 = self.cardsToJudge(second_column)
-            let cardsToJudge3 = self.cardsToJudge(third_column)
-            
-            let winnerOf1 = self.resolveWar(cardsToJudge1)
-            let winnerOf2 = self.resolveWar(cardsToJudge2)
-            let winnerOf3 = self.resolveWar(cardsToJudge3)
-            
-            //            print("\(winnerOf1) won 1, \(winnerOf2) won 2, \(winnerOf3) won 3")
-            
-            self.awardRoundWithResult(winnerOf1, cardResult2: winnerOf2, cardResult3: winnerOf3)
+            self.judgeRound()
         }
         else
         {
-            //there is only one card up, #2
-            
-            print("~~~~~~~~cards in player hand: \(self.game.player.hand.count) \n ~~~~~~~~cards in ai hand: \(self.game.aiPlayer.hand.count)")
-            
-            let cardsToJudge = self.cardsToJudge(second_column)
-            let winner = self.resolveWar(cardsToJudge)
-            
-            print("\(winner) won!!")
-            
-            self.awardFinalRoundWithResult(winner)
+            self.judgeFinalRound()
         }
+    }
+    
+    func judgeRound()
+    {
+        //        print("#14 (judgeRound)")
+        let cardsToJudge1 = self.cardsToJudge(first_column)
+        let cardsToJudge2 = self.cardsToJudge(second_column)
+        let cardsToJudge3 = self.cardsToJudge(third_column)
+        
+        let winnerOf1 = self.resolveWar(cardsToJudge1)
+        let winnerOf2 = self.resolveWar(cardsToJudge2)
+        let winnerOf3 = self.resolveWar(cardsToJudge3)
+        
+        //            print("\(winnerOf1) won 1, \(winnerOf2) won 2, \(winnerOf3) won 3")
+        
+        self.awardRoundWithResult(winnerOf1, cardResult2: winnerOf2, cardResult3: winnerOf3)
+    }
+    
+    func judgeFinalRound()
+    {
+        //there is only one card up, #2
+        
+        print("~~~~~~~~cards in player hand: \(self.game.player.hand.count) \n ~~~~~~~~cards in ai hand: \(self.game.aiPlayer.hand.count)")
+        
+        let cardsToJudge = self.cardsToJudge(second_column)
+        let winner = self.resolveWar(cardsToJudge)
+        
+        print("\(winner) won!!")
+        
+        self.awardFinalRoundWithResult(winner)
     }
     
     func cardsToJudge(column: String) -> [Card]
@@ -524,6 +542,18 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
             aiCard = self.ai3ClusterView.cardToJudge()
         }
         return [ playerCard, aiCard ]
+    }
+    
+    func arrangedCardClusters() -> [CardCluster]
+    {
+        var clusters: [CardCluster] = []
+        
+        for subview in self.playerHandStackView.arrangedSubviews
+        {
+            let cardCluster = subview as! CardCluster
+            clusters.append(cardCluster)
+        }
+        return clusters
     }
     
     func resolveWar(cards: [Card]) -> String
@@ -564,24 +594,9 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         self.roundSpoils()
     }
     
-    func arrangedCardClusters() -> [CardCluster]
-    {
-        var clusters: [CardCluster] = []
-        
-        for subview in self.playerHandStackView.arrangedSubviews
-        {
-            let cardCluster = subview as! CardCluster
-            clusters.append(cardCluster)
-        }
-        return clusters
-    }
-    
     func roundSpoils()
     {
         //        print("#18 (roundSpoils)")
-//        self.swapCards1And2Button.hidden = true
-//        self.swapCards2And3Button.hidden = true
-//        self.swapCards1And3Button.hidden = true
         
         let resultsArray = [self.war1ResultLabel, self.war2ResultLabel, self.war3ResultLabel]
         
@@ -605,209 +620,185 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
             }
         }
         
-//        print("crowns: \(winCount), X's: \(lossCount), swords: \(warCount)")
-        
-        var column = ""
-        
         if winCount == 3
         {
-            print("case #1 (player wins all!)")
-            self.saveAllCards(player_string)
-            self.discardAllCards(ai_string)
-            
-            self.prepButtonWithTitle(end_round_string)
+            self.outcomeOne()
         }
         else if lossCount == 3
         {
-            print("case #2 (AI wins all)")
-            self.discardAllCards(player_string)
-            self.saveAllCards(ai_string)
-            
-            self.prepButtonWithTitle(end_round_string)
+            self.outcomeTwo()
         }
         else if winCount == 2
         {
-            print("case #3 (player wins two)")
             if lossCount == 1
             {
-                column = self.columnOfResult(loss_emoji)
-                
-                switch column
-                {
-                case first_column:
-                    self.playerHandActions([ discard_string, save_string, save_string ])
-                case second_column:
-                    self.playerHandActions([ save_string, discard_string, save_string ])
-                default:
-                    self.playerHandActions([ save_string, save_string, discard_string ])
-                }
-                
-                self.discardAllCards(ai_string)
-                
-                self.prepButtonWithTitle(end_round_string)
+                self.outcomeThree()
             }
-            else //war
+            else
             {
-                column = self.columnOfResult(war_emoji)
-                let warValue = self.cardValueOfWar(column)
-//                print("AI has lost, but gets to pass on the war.")
-                let willResolveWar = self.game.aiPlayer.shouldResolveWar(warValue)
-                
-                if willResolveWar
-                {
-//                    self.columnOfWar = column
-                    self.prepForWar(column)
-                }
-                else
-                {
-//                    print("AI PASSES ON WAR.")
-                    
-                    self.saveAllCards(player_string)
-                    
-                    switch column
-                    {
-                    case first_column:
-                        self.aiHandActions([ save_string, discard_string, discard_string ])
-                    case second_column:
-                        self.aiHandActions([ discard_string, save_string, discard_string ])
-                    default:
-                        self.aiHandActions([ discard_string, discard_string, save_string ])
-                    }
-                    
-                    self.prepButtonWithTitle(end_round_string)
-                }
+                self.outcomeFour()
             }
         }
         else if lossCount == 2
         {
-            print("case #4 (player loses 2)")
+            if winCount == 1
+            {
+                self.outcomeFive()
+            }
+            else
+            {
+                self.outcomeSix()
+            }
+        }
+        else
+        {
+            self.outcomeSeven(warCount, winCount: winCount)
+        }
+        
+        //        print("crowns: \(winCount), X's: \(lossCount), swords: \(warCount)")
+    }
+    
+    
+    //# MARK: - Hand Outcomes
+    
+    
+    func outcomeOne()
+    {
+        print("case #1 (player wins all!)")
+        self.saveAllCards(player_string)
+        self.discardAllCards(ai_string)
+        
+        self.prepButtonWithTitle(end_round_string)
+    }
+    
+    func outcomeTwo()
+    {
+        print("case #2 (AI wins all)")
+        self.discardAllCards(player_string)
+        self.saveAllCards(ai_string)
+        
+        self.prepButtonWithTitle(end_round_string)
+    }
+    
+    func outcomeThree()
+    {
+        let column = self.columnOfResult(loss_emoji)
+        
+        switch column
+        {
+        case first_column:
+            self.playerHandActions([ discard_string, save_string, save_string ])
+        case second_column:
+            self.playerHandActions([ save_string, discard_string, save_string ])
+        default:
+            self.playerHandActions([ save_string, save_string, discard_string ])
+        }
+        
+        self.discardAllCards(ai_string)
+        
+        self.prepButtonWithTitle(end_round_string)
+    }
+    
+    func outcomeFour()
+    {
+        let column = self.columnOfResult(war_emoji)
+        let warValue = self.cardValueOfWar(column)
+        //                print("AI has lost, but gets to pass on the war.")
+        let willResolveWar = self.game.aiPlayer.shouldResolveWar(warValue)
+        
+        if willResolveWar
+        {
+            self.prepForWar(column)
+        }
+        else
+        {
+            print("AI PASSES ON WAR.")
+            
+            self.saveAllCards(player_string)
+            
+            switch column
+            {
+            case first_column:
+                self.aiHandActions([ save_string, discard_string, discard_string ])
+            case second_column:
+                self.aiHandActions([ discard_string, save_string, discard_string ])
+            default:
+                self.aiHandActions([ discard_string, discard_string, save_string ])
+            }
+            
+            self.prepButtonWithTitle(end_round_string)
+        }
+    }
+    
+    func outcomeFive()
+    {
+        let column = self.columnOfResult(winning_emoji)
+        
+        switch column
+        {
+        case first_column:
+            self.aiHandActions([ discard_string, save_string, save_string ])
+        case second_column:
+            self.aiHandActions([ save_string, discard_string, save_string ])
+        default:
+            self.aiHandActions([ save_string, save_string, discard_string ])
+        }
+        
+        self.discardAllCards(player_string)
+        
+        self.prepButtonWithTitle(end_round_string)
+    }
+    
+    func outcomeSix()
+    {
+        //                print("playing the war now...")
+        let column = self.columnOfResult(war_emoji)
+        
+        //                self.skipWarButton.hidden = false
+        //                self.resolveWarGuideLabel.hidden = false
+        
+        self.prepForWar(column)
+    }
+    
+    func outcomeSeven(warCount: Int, winCount: Int)
+    {
+        var column = ""
+        
+        if warCount == 1
+        {
+            column = self.columnOfResult(war_emoji)
+            self.prepForWar(column)
+        }
+        else if warCount == 2
+        {
             if winCount == 1
             {
                 column = self.columnOfResult(winning_emoji)
-                
-                switch column
-                {
-                case first_column:
-                    self.aiHandActions([ discard_string, save_string, save_string ])
-                case second_column:
-                    self.aiHandActions([ save_string, discard_string, save_string ])
-                default:
-                    self.aiHandActions([ save_string, save_string, discard_string ])
-                }
-                
-                self.discardAllCards(player_string)
-                
-                self.prepButtonWithTitle(end_round_string)
             }
-            else //war
+            else
             {
-//                print("playing the war now...")
-                column = self.columnOfResult(war_emoji)
-                
-//                self.skipWarButton.hidden = false
-//                self.resolveWarGuideLabel.hidden = false
-                
-                self.prepForWar(column)
+                column = self.columnOfResult(loss_emoji)
             }
-        }
-        else //there is at least one war that needs to be resolved in order to determine a clear winner
-        {
-            //            print("case #5 (no clear winner... yet)")
-            if warCount == 1
+            
+            var firstWar = 0
+            var secondWar = 0
+            
+            switch column
             {
-                column = self.columnOfResult(war_emoji)
-                self.prepForWar(column)
-            }
-            else if warCount == 2
-            {
-                if winCount == 1
-                {
-                    column = self.columnOfResult(winning_emoji)
-                }
-                else
-                {
-                    column = self.columnOfResult(loss_emoji)
-                }
+            case first_column:
+                //wars are 2 and 3
+                firstWar = self.cardValueOfWar(second_column)
+                secondWar = self.cardValueOfWar(third_column)
                 
-                var firstWar = 0
-                var secondWar = 0
+                let cluster1 = self.playerHandStackView.arrangedSubviews[1]
+                let cluster2 = self.playerHandStackView.arrangedSubviews[2]
                 
-                switch column
-                {
-                case first_column:
-                    //wars are 2 and 3
-                    firstWar = self.cardValueOfWar(second_column)
-                    secondWar = self.cardValueOfWar(third_column)
-                    
-                    let cluster1 = self.playerHandStackView.arrangedSubviews[1]
-                    let cluster2 = self.playerHandStackView.arrangedSubviews[2]
-                    
-                    let cluster1z = cluster1.layer.zPosition
-                    let cluster2z = cluster2.layer.zPosition
-                    
-                    //if firstWar is greater or equal to second war
-                    //if one of the wars is already on their second card...
-                    if firstWar >= secondWar && cluster1z >= cluster2z
-                    {
-                        self.prepForWar(second_column)
-                    }
-                    else
-                    {
-                        self.prepForWar(third_column)
-                    }
-                case second_column:
-                    //wars are 1 and 3
-                    firstWar = self.cardValueOfWar(first_column)
-                    secondWar = self.cardValueOfWar(third_column)
-                    
-                    let cluster1 = self.playerHandStackView.arrangedSubviews[0]
-                    let cluster2 = self.playerHandStackView.arrangedSubviews[2]
-                    
-                    let cluster1z = cluster1.layer.zPosition
-                    let cluster2z = cluster2.layer.zPosition
-                    
-                    if firstWar >= secondWar && cluster1z >= cluster2z
-                    {
-                        self.prepForWar(first_column)
-                    }
-                    else
-                    {
-                        self.prepForWar(third_column)
-                    }
-                default:
-                    //wars are 1 and 2
-                    firstWar = self.cardValueOfWar(first_column)
-                    secondWar = self.cardValueOfWar(second_column)
-                    
-                    let cluster1 = self.playerHandStackView.arrangedSubviews[0]
-                    let cluster2 = self.playerHandStackView.arrangedSubviews[1]
-                    
-                    let cluster1z = cluster1.layer.zPosition
-                    let cluster2z = cluster2.layer.zPosition
-                    
-                    if firstWar >= secondWar && cluster1z >= cluster2z
-                    {
-                        self.prepForWar(first_column)
-                    }
-                    else
-                    {
-                        self.prepForWar(second_column)
-                    }
-                }
-            }
-            else //there are three wars!  how rare :)
-            {
-                let firstWar = self.cardValueOfWar(first_column)
-                let secondWar = self.cardValueOfWar(second_column)
-                let thirdWar = self.cardValueOfWar(third_column)
+                let cluster1z = cluster1.layer.zPosition
+                let cluster2z = cluster2.layer.zPosition
                 
-                let warValues = [ firstWar, secondWar, thirdWar ]
-                
-                if warValues.maxElement() == firstWar
-                {
-                    self.prepForWar(first_column)
-                }
-                else if warValues.maxElement() == secondWar
+                //if firstWar is greater or equal to second war
+                //if one of the wars is already on their second card...
+                if firstWar >= secondWar && cluster1z >= cluster2z
                 {
                     self.prepForWar(second_column)
                 }
@@ -815,9 +806,72 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
                 {
                     self.prepForWar(third_column)
                 }
+            case second_column:
+                //wars are 1 and 3
+                firstWar = self.cardValueOfWar(first_column)
+                secondWar = self.cardValueOfWar(third_column)
+                
+                let cluster1 = self.playerHandStackView.arrangedSubviews[0]
+                let cluster2 = self.playerHandStackView.arrangedSubviews[2]
+                
+                let cluster1z = cluster1.layer.zPosition
+                let cluster2z = cluster2.layer.zPosition
+                
+                if firstWar >= secondWar && cluster1z >= cluster2z
+                {
+                    self.prepForWar(first_column)
+                }
+                else
+                {
+                    self.prepForWar(third_column)
+                }
+            default:
+                //wars are 1 and 2
+                firstWar = self.cardValueOfWar(first_column)
+                secondWar = self.cardValueOfWar(second_column)
+                
+                let cluster1 = self.playerHandStackView.arrangedSubviews[0]
+                let cluster2 = self.playerHandStackView.arrangedSubviews[1]
+                
+                let cluster1z = cluster1.layer.zPosition
+                let cluster2z = cluster2.layer.zPosition
+                
+                if firstWar >= secondWar && cluster1z >= cluster2z
+                {
+                    self.prepForWar(first_column)
+                }
+                else
+                {
+                    self.prepForWar(second_column)
+                }
+            }
+        }
+        else //there are three wars!  how rare :)
+        {
+            let firstWar = self.cardValueOfWar(first_column)
+            let secondWar = self.cardValueOfWar(second_column)
+            let thirdWar = self.cardValueOfWar(third_column)
+            
+            let warValues = [ firstWar, secondWar, thirdWar ]
+            
+            if warValues.maxElement() == firstWar
+            {
+                self.prepForWar(first_column)
+            }
+            else if warValues.maxElement() == secondWar
+            {
+                self.prepForWar(second_column)
+            }
+            else
+            {
+                self.prepForWar(third_column)
             }
         }
     }
+    
+    
+    //# MARK: - Fate of Cards
+    
     
     func saveAllCards(player: String)
     {
@@ -852,7 +906,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         {
             //cardsToDiscard.appendContentsOf(self.game.player.warCards)
             //WHAT AM I USING THIS GAME.WARCARDS METHOD FOR THEN?!?!?!?!
-
+            
             for subview in self.playerHandStackView.arrangedSubviews
             {
                 let cardCluster = subview as! CardCluster
@@ -1017,6 +1071,10 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         }
     }
     
+    
+    //# MARK: - Wars
+    
+    
     func cardValueOfWar(column: String) -> Int
     {
         //        print("#25 (cardValueOfWar)")
@@ -1048,10 +1106,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         
         self.prepButtonWithTitle(war_string)
     }
-    
-    
-            //Above contains the heart of each round
-    
     
     func hideWarLabel(column: String)
     {
@@ -1122,7 +1176,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     }
     
     
-            //Above deals with wars
+    //# MARK: - End of Round
     
     
     func endRound()
@@ -1133,12 +1187,12 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         self.war3ResultLabel.text = ""
         
         //        self.warSkippedByPlayer = false
-//        self.skipWarButton.hidden = true
-//        self.resolveWarGuideLabel.hidden = true
+        //        self.skipWarButton.hidden = true
+        //        self.resolveWarGuideLabel.hidden = true
         
-//        self.isWar1 = false
-//        self.isWar2 = false
-//        self.isWar3 = false
+        //        self.isWar1 = false
+        //        self.isWar2 = false
+        //        self.isWar3 = false
         
         print("Player saves \(self.savePlayerCards.count) cards and discards \(self.discardPlayerCards.count) cards, AI saves \(self.saveAICards.count) cards and discards \(self.discardAICards.count) cards.")
         
@@ -1249,7 +1303,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     }
     
     
-            //Above handles the round's end
+    //# MARK: - End of Game
     
     
     func endGame()
@@ -1281,10 +1335,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     }
     
     
-            //Above wraps up an individual game
+    //# MARK: - IBAction
     
     
-    /*
-     HERE GO ALL OF THE @IBACTION METHODS
- */
 }

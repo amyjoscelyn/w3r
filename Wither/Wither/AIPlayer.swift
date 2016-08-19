@@ -15,6 +15,23 @@ let half_deck_count = 26
 
 class AIPlayer: Player
 {
+    override func fillHand()
+    {
+        super.fillHand()
+        //orderCards()
+    }
+    
+    func orderCards()
+    {
+        let minCardValue = self.handValues.minElement()
+        let column = self.handValues.indexOf(minCardValue!)
+        
+        let card = self.hand.removeAtIndex(column!)
+//        self.hand.insert(card, atIndex: <#T##Int#>)
+        
+        //so I know the column of the minValue...
+    }
+    
     func shouldResolveWar(cardValue: Int) -> Bool
     {
         if self.deck.cards.count > 40
