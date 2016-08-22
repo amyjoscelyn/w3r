@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3D3F07B21D42AE8A00ABF59A /* CardCluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F07B11D42AE8A00ABF59A /* CardCluster.swift */; };
 		3D3F07B41D42B3CC00ABF59A /* CardCluster.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D3F07B31D42B3CC00ABF59A /* CardCluster.xib */; };
+		3D42CCD91D676AE600570BB7 /* GameDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D42CCD81D676AE600570BB7 /* GameDataStore.swift */; };
 		3D4D98701D652BA20052B49E /* HorizontallyReorderableStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4D986F1D652BA20052B49E /* HorizontallyReorderableStackView.swift */; };
 		3DA3676E1D47B7EF00BA7144 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3676D1D47B7EF00BA7144 /* GameViewController.swift */; };
 		3DAF0AD41D4A9A1700CF848F /* AICardCluster.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DAF0AD31D4A9A1700CF848F /* AICardCluster.xib */; };
@@ -51,6 +52,7 @@
 /* Begin PBXFileReference section */
 		3D3F07B11D42AE8A00ABF59A /* CardCluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCluster.swift; sourceTree = "<group>"; };
 		3D3F07B31D42B3CC00ABF59A /* CardCluster.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardCluster.xib; sourceTree = "<group>"; };
+		3D42CCD81D676AE600570BB7 /* GameDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDataStore.swift; sourceTree = "<group>"; };
 		3D4D986F1D652BA20052B49E /* HorizontallyReorderableStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontallyReorderableStackView.swift; sourceTree = "<group>"; };
 		3DA3676D1D47B7EF00BA7144 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		3DAF0AD31D4A9A1700CF848F /* AICardCluster.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AICardCluster.xib; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			children = (
 				3DFAF9D31D248139009D80B3 /* AppDelegate.swift */,
 				3DFAF9D51D248139009D80B3 /* ViewController.swift */,
+				3D42CCD81D676AE600570BB7 /* GameDataStore.swift */,
 				3DA3676D1D47B7EF00BA7144 /* GameViewController.swift */,
 				3DFAFA0B1D258C70009D80B3 /* CardView.swift */,
 				3D3F07B11D42AE8A00ABF59A /* CardCluster.swift */,
@@ -307,6 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DAF0AD81D4AC09B00CF848F /* DiscardPile.swift in Sources */,
+				3D42CCD91D676AE600570BB7 /* GameDataStore.swift in Sources */,
 				3DA3676E1D47B7EF00BA7144 /* GameViewController.swift in Sources */,
 				3DD6B0001D28A19600297E60 /* AIPlayer.swift in Sources */,
 				3DAF0AD61D4A9AC100CF848F /* AICardCluster.swift in Sources */,

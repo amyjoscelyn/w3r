@@ -25,7 +25,6 @@ class CardView: UIView
     
     class func fontSizeForScreenWidth() -> CGFloat
     {
-        print("\(UIScreen.mainScreen().bounds.size.width / 19)")
         return UIScreen.mainScreen().bounds.size.width / 19
     }
     

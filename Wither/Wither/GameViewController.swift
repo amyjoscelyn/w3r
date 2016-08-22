@@ -65,6 +65,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     //settings button, resolveWarGuide and skipWarButton
     @IBOutlet weak var centerGameView: UIView!
     
+    var warsToBeResolved: [String] = []
     var columnOfWar: String = ""
     var isWar1 = false
     var isWar2 = false
@@ -72,6 +73,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     var roundHasBegun = false
     var firstTimeJudgingHand = true
     
+    let gameDataStore = GameDataStore.sharedInstance
     let game = Game.init()
     
     //# MARK: - Game Setup
@@ -216,7 +218,10 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         self.playGameButton.enabled = false
         
         self.resetGame()
-        self.game.startGame()
+        //***************************************
+        //for testing purposes, this code can be commented out
+        //self.game.startGame()
+        //***************************************
     }
     
     func resetGame()
@@ -472,8 +477,18 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     
     func firstTimeThroughHand()
     {
-        //track column of max player card here
         print("first time judging hand!!")
+        
+        //track here
+        /*
+         look at player handvalue, find max, index of
+         index of translates to column
+         save column in gamedatastore
+         */
+        
+        let column = self.game.player.columnOfHighestCard()
+        print("GameVC column with highest card: \(column)")
+        self.gameDataStore.playerCardTrackerArray.append(column)
         
         self.firstTimeJudgingHand = false
     }
@@ -591,7 +606,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         
         self.prepButtonWithTitle("")
         
-        self.roundSpoils()
+        self.roundSpoils() //I need a much better name for this method
     }
     
     func roundSpoils()
@@ -635,7 +650,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
                 self.outcomeThree()
             }
             else
-            {
+            {//has 1 war
                 self.outcomeFour()
             }
         }
@@ -646,7 +661,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
                 self.outcomeFive()
             }
             else
-            {
+            {//has 1 war
                 self.outcomeSix()
             }
         }
@@ -664,7 +679,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     
     func outcomeOne()
     {
-        print("case #1 (player wins all!)")
+//        print("case #1 (player wins all!)")
         self.saveAllCards(player_string)
         self.discardAllCards(ai_string)
         
@@ -673,7 +688,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     
     func outcomeTwo()
     {
-        print("case #2 (AI wins all)")
+//        print("case #2 (AI wins all)")
         self.discardAllCards(player_string)
         self.saveAllCards(ai_string)
         
@@ -790,15 +805,9 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
                 firstWar = self.cardValueOfWar(second_column)
                 secondWar = self.cardValueOfWar(third_column)
                 
-                let cluster1 = self.playerHandStackView.arrangedSubviews[1]
-                let cluster2 = self.playerHandStackView.arrangedSubviews[2]
-                
-                let cluster1z = cluster1.layer.zPosition
-                let cluster2z = cluster2.layer.zPosition
-                
                 //if firstWar is greater or equal to second war
                 //if one of the wars is already on their second card...
-                if firstWar >= secondWar && cluster1z >= cluster2z
+                if firstWar >= secondWar || self.columnOfWar == second_column
                 {
                     self.prepForWar(second_column)
                 }
@@ -811,13 +820,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
                 firstWar = self.cardValueOfWar(first_column)
                 secondWar = self.cardValueOfWar(third_column)
                 
-                let cluster1 = self.playerHandStackView.arrangedSubviews[0]
-                let cluster2 = self.playerHandStackView.arrangedSubviews[2]
-                
-                let cluster1z = cluster1.layer.zPosition
-                let cluster2z = cluster2.layer.zPosition
-                
-                if firstWar >= secondWar && cluster1z >= cluster2z
+                if firstWar >= secondWar || self.columnOfWar == first_column
                 {
                     self.prepForWar(first_column)
                 }
@@ -830,13 +833,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
                 firstWar = self.cardValueOfWar(first_column)
                 secondWar = self.cardValueOfWar(second_column)
                 
-                let cluster1 = self.playerHandStackView.arrangedSubviews[0]
-                let cluster2 = self.playerHandStackView.arrangedSubviews[1]
-                
-                let cluster1z = cluster1.layer.zPosition
-                let cluster2z = cluster2.layer.zPosition
-                
-                if firstWar >= secondWar && cluster1z >= cluster2z
+                if firstWar >= secondWar || self.columnOfWar == first_column
                 {
                     self.prepForWar(first_column)
                 }
@@ -1092,7 +1089,10 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     func prepForWar(column: String)
     {
         //        print("#26 (prepForWar)")
-        self.columnOfWar = column
+        if self.columnOfWar != column
+        {
+            self.columnOfWar = column
+        }
         
         switch column
         {
@@ -1186,6 +1186,8 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         self.war2ResultLabel.text = ""
         self.war3ResultLabel.text = ""
         
+        self.columnOfWar = ""
+        
         //        self.warSkippedByPlayer = false
         //        self.skipWarButton.hidden = true
         //        self.resolveWarGuideLabel.hidden = true
@@ -1194,15 +1196,13 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         //        self.isWar2 = false
         //        self.isWar3 = false
         
-        print("Player saves \(self.savePlayerCards.count) cards and discards \(self.discardPlayerCards.count) cards, AI saves \(self.saveAICards.count) cards and discards \(self.discardAICards.count) cards.")
+        //print("Player saves \(self.savePlayerCards.count) cards and discards \(self.discardPlayerCards.count) cards, AI saves \(self.saveAICards.count) cards and discards \(self.discardAICards.count) cards.")
+        
+        let cardsInPlay = [ self.discardPlayerCards, self.discardAICards, self.savePlayerCards, self.saveAICards ]
         
         self.discardToPiles()
-        
-        self.game.player.discard.appendContentsOf(self.discardPlayerCards)
-        self.game.aiPlayer.discard.appendContentsOf(self.discardAICards)
-        self.game.player.deck.cards.appendContentsOf(self.savePlayerCards)
-        self.game.aiPlayer.deck.cards.appendContentsOf(self.saveAICards)
-        
+        self.game.endRound(cardsInPlay)
+
         self.clearAllWarCardViewsAndTempHands()
         self.cardsRemaining()
         
@@ -1211,6 +1211,8 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         
         self.roundHasBegun = false
         self.playerDeckView.userInteractionEnabled = true
+        
+        self.firstTimeJudgingHand = true
     }
     
     func discardToPiles()

@@ -43,6 +43,19 @@ class Player
         }
     }
     
+    func clearHandValues()
+    {
+        self.handValues.removeAll()
+    }
+    
+    func columnOfHighestCard() -> Int
+    {
+        let highestCardValue = self.handValues.maxElement()
+        let column = self.handValues.indexOf(highestCardValue!)
+        
+        return column!
+    }
+    
     func fillHandWithSingleCard()
     {
         self.hand.append(self.deck.drawCard())
