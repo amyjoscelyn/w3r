@@ -12,6 +12,12 @@ class Game
 {
     let player: Player
     let aiPlayer: AIPlayer
+    let gameDataStore = GameDataStore.sharedInstance
+    
+    var savePlayerCards: [Card] = []
+    var saveAICards: [Card] = []
+    var discardPlayerCards: [Card] = []
+    var discardAICards: [Card] = []
     
     init()
     {
@@ -69,6 +75,13 @@ class Game
         return cardWinner
     }
     
+    func trackCard()
+    {
+        let column = self.player.columnOfHighestCard()
+        print("GameVC column with highest card: \(column)")
+        self.gameDataStore.playerCardTrackerArray.append(column)
+    }
+    
     func war()
     {//what happens when there are no more cards left to draw?
         self.player.dealCardForWar()
@@ -81,30 +94,30 @@ class Game
         self.aiPlayer.clearCardsForWar()
     }
     
-    //I don't think this is how you define an array of arrays...
-    func endRound(cardsInPlay: [[Card]])
+    func endRound()
     {
         self.player.clearHandValues()
         self.aiPlayer.clearHandValues()
         
-        let discardPlayerCards = cardsInPlay[0]
-        let discardAICards = cardsInPlay[1]
-        let savePlayerCards = cardsInPlay[2]
-        let saveAICards = cardsInPlay[3]
+        self.discardCards()
+        self.saveCards()   
+    }
+    
+    func discardCards()
+    {
+        self.player.discard.appendContentsOf(self.discardPlayerCards)
+        self.aiPlayer.discard.appendContentsOf(self.discardAICards)
         
-        self.discardCards(discardPlayerCards, discardAICards: discardAICards)
-        self.saveCards(savePlayerCards, saveAICards: saveAICards)
+        self.discardPlayerCards.removeAll()
+        self.discardAICards.removeAll()
     }
     
-    func discardCards(discardPlayerCards: [Card], discardAICards: [Card])
+    func saveCards()
     {
-        self.player.discard.appendContentsOf(discardPlayerCards)
-        self.aiPlayer.discard.appendContentsOf(discardAICards)
-    }
-    
-    func saveCards(savePlayerCards: [Card], saveAICards: [Card])
-    {
-        self.player.deck.cards.appendContentsOf(savePlayerCards)
-        self.aiPlayer.deck.cards.appendContentsOf(saveAICards)
+        self.player.deck.cards.appendContentsOf(self.savePlayerCards)
+        self.aiPlayer.deck.cards.appendContentsOf(self.saveAICards)
+        
+        self.savePlayerCards.removeAll()
+        self.saveAICards.removeAll()
     }
 }
