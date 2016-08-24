@@ -315,9 +315,9 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
             
             //***************************************
             //for testing purposes, this code can be commented out
-            //            self.ai1ClusterView.faceDown()
-            //            self.ai2ClusterView.faceDown()
-            //            self.ai3ClusterView.faceDown()
+            self.ai1ClusterView.faceDown()
+            self.ai2ClusterView.faceDown()
+            self.ai3ClusterView.faceDown()
             //***************************************
         }
         else if self.game.player.hand.count > 0 || self.game.aiPlayer.hand.count > 0
@@ -493,8 +493,27 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     func firstTimeThroughHand()
     {
         print("first time judging hand!!")
-        self.game.trackCard()
+        self.trackCards()
         self.firstTimeJudgingHand = false
+    }
+    
+    func trackCards()
+    {
+        let cardClusters = self.arrangedCardClusters()
+        var cardValues: [Int] = []
+        
+        for cluster in cardClusters
+        {
+            let cardValue = cluster.baseCardView.card?.cardValue
+            cardValues.append(cardValue!)
+        }
+        
+        let maxCardValue = cardValues.maxElement()
+        let columnOfMaxCardValue = cardValues.indexOf(maxCardValue!)
+        
+        print("GameVC column with highest card: \(columnOfMaxCardValue!)")
+        
+        self.gameDataStore.playerCardTrackerArray.append(columnOfMaxCardValue!)
     }
     
     func determineWinnerOfHand()

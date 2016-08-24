@@ -75,13 +75,6 @@ class Game
         return cardWinner
     }
     
-    func trackCard()
-    {
-        let column = self.player.columnOfHighestCard()
-        print("GameVC column with highest card: \(column)")
-        self.gameDataStore.playerCardTrackerArray.append(column)
-    }
-    
     func war()
     {//what happens when there are no more cards left to draw?
         self.player.dealCardForWar()
@@ -96,7 +89,7 @@ class Game
     
     func endRound()
     {
-        self.player.clearHandValues()
+//        self.player.clearHandValues()
         self.aiPlayer.clearHandValues()
         
         self.discardCards()
