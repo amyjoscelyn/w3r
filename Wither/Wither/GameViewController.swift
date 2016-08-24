@@ -25,6 +25,7 @@ let discard_string = "Discard"
 let play_game_string = "BEGIN GAME"
 let ready_string = "READY"
 let ready2_string = "READY!"
+let ready3_string = "READY!!"
 let war_string = "WAR"
 let war2_string = "WAR!"
 let end_round_string = "END ROUND"
@@ -325,7 +326,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
             //just draw a single card--fight down to the last
             self.populateHandWithSingleCard()
             
-            self.prepButtonWithTitle(ready_string)
+            self.prepButtonWithTitle(ready3_string)
         }
         else
         {
@@ -362,14 +363,14 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
             self.aiDeckView.hidden = true
         }
         
-        //        let playerDeckAndHandCount = playerDeckCount + self.game.player.hand.count
-        //        let aiDeckAndHandCount = aiDeckCount + self.game.aiPlayer.hand.count
-        //
-        //        if playerDeckAndHandCount == 0 || aiDeckAndHandCount == 0
-        //        {
-        //            print("cardsRemaining deemed this game OVER!!!!!!!")
-        //            self.prepButtonWithTitle(game_over_string)
-        //        }
+        let playerDeckAndHandCount = playerDeckCount + self.game.player.hand.count
+        let aiDeckAndHandCount = aiDeckCount + self.game.aiPlayer.hand.count
+        
+        if playerDeckAndHandCount == 0 || aiDeckAndHandCount == 0
+        {
+            print("cardsRemaining deemed this game OVER!!!!!!!")
+            self.prepButtonWithTitle(game_over_string)
+        }
     }
     
     func populateHandWithCards()
@@ -442,10 +443,10 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
             {
                 self.firstTimeThroughHand()
             }
-            self.determineWinnerOfHand()
+            self.determineWinnerOfHand() //if this method is going to be called in different places at different times, then maybe the methods it called should just be called straightaway instead.  This would be judgeRound()
         }
         else if label == ready2_string
-        {
+        { //the difference between ready, 2, and 3 can probably be switched to properties--you know, like new (standard) round, currently playing war, and final round.  or it's a number of case statements, like the ready2_string, but the property can be gameStatus: standard_round, or resolving_war, or final_round.  I like that.
             let cardsToJudge = self.cardsToJudge(self.currentWarColumnToResolve)
             let result = self.faceOffCards(cardsToJudge)
             
@@ -456,8 +457,13 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
             else
             {
                 self.currentWarColumnToResolve = ""
-                self.determineWinnerOfHand()
+                self.determineWinnerOfHand() //if this method is going to be called in different places at different times, then maybe the methods it called should just be called straightaway instead.  This would be judgeRound()
             }
+        }
+        else if label == ready3_string
+        {
+            self.ai2ClusterView.showCard()
+            self.determineWinnerOfHand() //if this method is going to be called in different places at different times, then maybe the methods it called should just be called straightaway instead.  This would be judgeFinalRound()
         }
         else if label == war_string
         {
@@ -518,6 +524,8 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     
     func determineWinnerOfHand()
     {
+        self.playerHandStackView.reorderingEnabled = false
+        
         let cardCluster1 = self.playerHandStackView.arrangedSubviews[0] as! CardCluster
         
         if !cardCluster1.baseCardView.hidden
@@ -1307,10 +1315,10 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         
         self.prepButtonWithTitle("")
         
-        self.finalRoundSpoils(cardResult)
+        self.finalOutcome(cardResult)
     }
     
-    func finalRoundSpoils(result: String)
+    func finalOutcome(result: String)
     {
         //        print("#19 (finalRoundSpoils)")
         switch result
@@ -1318,9 +1326,13 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         case winning_emoji:
             self.saveSingleCard(player_string, column: second_column)
             self.discardSingleCard(ai_string, column: second_column)
+            
+            self.prepButtonWithTitle(game_over_string)
         case loss_emoji:
             self.saveSingleCard(ai_string, column: second_column)
             self.discardSingleCard(player_string, column: second_column)
+            
+            self.prepButtonWithTitle(game_over_string)
         default:
             if self.game.player.deck.cards.count > 1 && self.game.aiPlayer.deck.cards.count > 1
             {
