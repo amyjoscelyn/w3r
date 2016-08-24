@@ -446,11 +446,9 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         }
         else if label == ready2_string
         {
-            print("IN ready2_string: \(self.currentWarColumnToResolve)")
             let cardsToJudge = self.cardsToJudge(self.currentWarColumnToResolve)
             let result = self.faceOffCards(cardsToJudge)
             
-            print(result)
             if result != player_string && result != ai_string
             {
                 self.playCurrentWar()
@@ -471,11 +469,10 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         }
         else if label == war2_string
         {
-            print("~~~war2_string")
             //set up for hand with multiple wars
             //            self.skipWarButton.hidden = true
             //            self.resolveWarGuideLabel.hidden = true
-            print("IN war2_string: \(self.currentWarColumnToResolve)")
+            
             self.hideWarLabel(self.currentWarColumnToResolve)
             self.playCurrentWar()
         }
@@ -516,7 +513,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     
     func judgeRound()
     {
-        print("~~~judgeRound")
         //        print("#14 (judgeRound)")
         let cardsToJudge1 = self.cardsToJudge(first_column)
         let cardsToJudge2 = self.cardsToJudge(second_column)
@@ -548,13 +544,10 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     
     func cardsToJudge(column: String) -> [Card]
     {
-        print("~~~cardsToJudge")
         var playerCard: Card = Card.init(suit: "X", rank: "0")
         var aiCard: Card = Card.init(suit: "X", rank: "0")
         
         let clusters = self.arrangedCardClusters()
-        
-        print("IN cardsToJudge: \(self.currentWarColumnToResolve)")
         
         switch column
         {
@@ -691,7 +684,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     
     func outcomeOne()
     {
-//        print("case #1 (player wins all!)")
         self.saveAllCards(player_string)
         self.discardAllCards(ai_string)
         
@@ -700,7 +692,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     
     func outcomeTwo()
     {
-//        print("case #2 (AI wins all)")
         self.discardAllCards(player_string)
         self.saveAllCards(ai_string)
         
@@ -1118,8 +1109,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     {
         self.currentWarColumnToResolve = column
         
-        print("IN prepForSelectedWar: \(self.currentWarColumnToResolve)")
-        
         self.isWar1 = false
         self.isWar2 = false
         self.isWar3 = false
@@ -1129,7 +1118,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     
     func hideWarLabel(column: String)
     {
-        print("~~~hideWarLabel")
         //        print("#13 (hideWarLabel)")
         switch column
         {
@@ -1199,7 +1187,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     
     func playCurrentWar()
     {
-        print("~~~playCurrentWar")
         if self.game.player.deck.cards.count > 0 && self.game.aiPlayer.deck.cards.count > 0
         {
             self.game.war()
@@ -1208,8 +1195,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
             
             let playerCardCluster: CardCluster
             let aiCardCluster: AICardCluster
-            
-            print("IN playCurrentWar: \(self.currentWarColumnToResolve)")
             
             switch self.currentWarColumnToResolve
             {
