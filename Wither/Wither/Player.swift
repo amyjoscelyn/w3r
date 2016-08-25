@@ -9,6 +9,7 @@
 import Foundation
 
 let max_hand_size = 3
+let deck_count = 52
 
 class Player
 {
@@ -69,5 +70,17 @@ class Player
     func clearCardsForWar()
     {
         self.warCards.removeAll()
+    }
+    
+    func replenishDeck()
+    {
+        self.deck.cards.appendContentsOf(self.discard)
+        
+        if !(self.deck.cards.count == deck_count)
+        {
+            print("There aren't 52 cards in this new deck!!")
+        }
+        
+        self.deck.shuffle()
     }
 }

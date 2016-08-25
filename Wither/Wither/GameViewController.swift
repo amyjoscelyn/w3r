@@ -157,11 +157,17 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
             let column = columnsArray[i]
             
             cardCluster.setColumn(column)
+            
+            cardCluster.rotateCardViews()
         }
         
         self.ai1ClusterView.setColumn(first_column)
         self.ai2ClusterView.setColumn(second_column)
         self.ai3ClusterView.setColumn(third_column)
+        
+        self.ai1ClusterView.rotateCardViews()
+        self.ai2ClusterView.rotateCardViews()
+        self.ai3ClusterView.rotateCardViews()
         
         self.populateCardClusters()
     }
@@ -215,14 +221,14 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         self.playGameButton.setTitle("", forState: UIControlState.Normal)
         self.playGameButton.enabled = false
         
-        self.resetGame()
+        self.prepGame()
         //***************************************
         //for testing purposes, this code can be commented out
         self.game.startGame()
         //***************************************
     }
     
-    func resetGame()
+    func prepGame()
     {
         //        print("#6 (resetGame)")
         self.aiDeckView.faceUp = false
@@ -366,10 +372,16 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         let playerDeckAndHandCount = playerDeckCount + self.game.player.hand.count
         let aiDeckAndHandCount = aiDeckCount + self.game.aiPlayer.hand.count
         
-        if playerDeckAndHandCount == 0 || aiDeckAndHandCount == 0
+        let cardCluster2 = self.playerHandStackView.arrangedSubviews[1] as! CardCluster
+        
+        if playerDeckAndHandCount == 0 || aiDeckAndHandCount == 0 && cardCluster2.baseCardView.hidden
         {
             print("cardsRemaining deemed this game OVER!!!!!!!")
-            self.prepButtonWithTitle(game_over_string)
+//            self.prepButtonWithTitle(game_over_string)
+            
+            //there are no cards to save or discard here... right?
+            print("ASSUMPTION: no cards need to be saved or discarded here, because there are none on the tableau... right?")
+            self.finalOutcomeZero()
         }
     }
     
@@ -430,6 +442,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         //        print("#12 (playGameButtonTapped)")
         if label == play_game_string
         {
+            self.resetForNewGame()
             self.startGame()
         }
         else if label == ready_string
@@ -580,13 +593,19 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         {
         case first_column:
             playerCard = clusters[0].cardToJudge()
+            print("crash caused here, cardsToJudge, first_column, playerCard");
             aiCard = self.ai1ClusterView.cardToJudge()
+            print("crash caused here, cardsToJudge, first_column, aiCard");
         case second_column:
             playerCard = clusters[1].cardToJudge()
+            print("crash caused here, cardsToJudge, second_column, playerCard");
             aiCard = self.ai2ClusterView.cardToJudge()
+            print("crash caused here, cardsToJudge, second_column, aiCard");
         default:
             playerCard = clusters[2].cardToJudge()
+            print("crash caused here, cardsToJudge, third_column, playerCard");
             aiCard = self.ai3ClusterView.cardToJudge()
+            print("crash caused here, cardsToJudge, third_column, aiCard");
         }
         return [ playerCard, aiCard ]
     }
@@ -979,23 +998,23 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         switch action1
         {
         case save_string:
-            saveSingleCard(player_string, column: first_column)
+            self.saveSingleCard(player_string, column: first_column)
         default:
-            discardSingleCard(player_string, column: first_column)
+            self.discardSingleCard(player_string, column: first_column)
         }
         switch action2
         {
         case save_string:
-            saveSingleCard(player_string, column: second_column)
+            self.saveSingleCard(player_string, column: second_column)
         default:
-            discardSingleCard(player_string, column: second_column)
+            self.discardSingleCard(player_string, column: second_column)
         }
         switch action3
         {
         case save_string:
-            saveSingleCard(player_string, column: third_column)
+            self.saveSingleCard(player_string, column: third_column)
         default:
-            discardSingleCard(player_string, column: third_column)
+            self.discardSingleCard(player_string, column: third_column)
         }
     }
     
@@ -1106,6 +1125,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         switch column
         {
         case first_column:
+            print("crash caused here, cardValueOfWar, first_column")
             return self.ai1ClusterView.cardToJudge().cardValue
         case second_column:
             return self.ai2ClusterView.cardToJudge().cardValue
@@ -1197,19 +1217,22 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
             
             self.playGameButton.setTitle(ready_string, forState: UIControlState.Normal) //why is this, and it's partner in playCurrentWar(), not the prepButtonWithTitle method?  is it just because of the enable clause at the end?
             
-            
             //I think I should make all self.isWar# false here
             //but I also have them set as false right above
             self.isWar1 = false
             self.isWar2 = false
             self.isWar3 = false
+            
+            self.cardsRemaining()
         }
         else
         {
             print("playWar deemed this game OVER!!!!!!!!!")
-            self.prepButtonWithTitle(game_over_string)
+//            self.prepButtonWithTitle(game_over_string)
+            
+            //we have an entire war here we were in the midst of!  plenty of cards to save or discard
+            self.finalOutcomeZero()
         }
-        self.cardsRemaining()
     }
     
     func playCurrentWar()
@@ -1245,7 +1268,10 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         else
         {
             print("playCurrentWar deemed this game OVER!!!!!!!!!")
-            self.prepButtonWithTitle(game_over_string)
+            
+            //involved in big war, can't resolve!!
+            self.finalOutcomeZero()
+//            self.prepButtonWithTitle(game_over_string)
         }
         self.cardsRemaining()
     }
@@ -1257,23 +1283,10 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     func endRound()
     {
         //        print("#28 (endRound)")
-        self.war1ResultLabel.text = ""
-        self.war2ResultLabel.text = ""
-        self.war3ResultLabel.text = ""
-        
-        self.columnOfWar = ""
-        
-        //        self.warSkippedByPlayer = false
-        //        self.skipWarButton.hidden = true
-        //        self.resolveWarGuideLabel.hidden = true
         
         //print("Player saves \(self.savePlayerCards.count) cards and discards \(self.discardPlayerCards.count) cards, AI saves \(self.saveAICards.count) cards and discards \(self.discardAICards.count) cards.")
         
-        self.discardToPiles()
-        self.game.endRound()
-
-        self.clearAllWarCardViewsAndTempHands()
-        self.cardsRemaining()
+        self.clearView()
         
         self.playGameButton.setTitle("", forState: UIControlState.Normal)
         self.playGameButton.enabled = false
@@ -1282,6 +1295,19 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         self.playerDeckView.userInteractionEnabled = true
         
         self.firstTimeJudgingHand = true
+    }
+    
+    func clearView()
+    {
+        self.war1ResultLabel.text = ""
+        self.war2ResultLabel.text = ""
+        self.war3ResultLabel.text = ""
+        self.columnOfWar = ""
+        
+        self.discardToPiles()
+        self.game.endRound()
+        self.clearAllWarCardViewsAndTempHands()
+        self.cardsRemaining()
     }
     
     func discardToPiles()
@@ -1315,65 +1341,145 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         
         self.prepButtonWithTitle("")
         
-        self.finalOutcome(cardResult)
+        self.determineFinalOutcome(cardResult)
     }
     
-    func finalOutcome(result: String)
+    func determineFinalOutcome(result: String)
     {
-        //        print("#19 (finalRoundSpoils)")
         switch result
         {
         case winning_emoji:
-            self.saveSingleCard(player_string, column: second_column)
-            self.discardSingleCard(ai_string, column: second_column)
-            
-            self.prepButtonWithTitle(game_over_string)
+            self.finalOutcomeOne()
         case loss_emoji:
-            self.saveSingleCard(ai_string, column: second_column)
-            self.discardSingleCard(player_string, column: second_column)
-            
-            self.prepButtonWithTitle(game_over_string)
+            self.finalOutcomeTwo()
         default:
+            self.finalOutcomeThree()
             if self.game.player.deck.cards.count > 1 && self.game.aiPlayer.deck.cards.count > 1
             {
-                self.prepForSingleWar(second_column)
+                //play can proceed
+                self.finalOutcomeThree()
                 //repeat this method!!
             }
-            if self.game.player.deck.cards.count == 1 && self.game.aiPlayer.deck.cards.count == 1
+            else if self.game.player.deck.cards.count == 1 && self.game.aiPlayer.deck.cards.count == 1
             {
-                self.saveSingleCard(player_string, column: second_column)
-                self.saveSingleCard(ai_string, column: second_column)
-                //tie!  retreat or both lose?  I like the thought of them shaking hands and suspending the war
-                print("Both soldiers shake hands, knowing there is no backup.  The war has been suspended.")
-                //GAME IS OVER
-                print("GAME IS OVER. NO BACKUP FOR WAR BY BOTH PLAYERS.  TIE!")
-                print("finalRoundSpoils deemed this game OVER!!!!!!!!")
-                //                self.prepButtonWithTitle(game_over_string)
+                //no cards left, war can't be resolved/tie
+                self.finalOutcomeFour()
             }
-            if self.game.player.deck.cards.count == 1
+            else if self.game.player.deck.cards.count == 1
             {
-                //automatically lose
-                self.saveSingleCard(player_string, column: second_column)
-                self.discardSingleCard(ai_string, column: second_column)
-                //GAME IS OVER
-                print("GAME IS OVER. PLAYER ONLY HAS ONE CARD LEFT.")
-                print("finalRoundSpoils deemed this game OVER!!!!!!!!")
-                self.prepButtonWithTitle(game_over_string)
+                //player can't resolve war, no cards left
+                self.finalOutcomeFive()
             }
-            if self.game.aiPlayer.deck.cards.count == 1
+            else if self.game.aiPlayer.deck.cards.count == 1
             {
-                //automatically win
-                self.saveSingleCard(ai_string, column: second_column)
-                self.discardSingleCard(player_string, column: second_column)
-                //GAME IS OVER
-                print("GAME IS OVER.  AI ONLY HAS ONE CARD LEFT.")
-                print("finalRoundSpoils deemed this game OVER!!!!!!!!")
-                self.prepButtonWithTitle(game_over_string)
+                //ai can't resolve war, no cards left
+                self.finalOutcomeSix()
             }
+        }
+    }
+    
+    func finalOutcomeZero()
+    {
+        //no cards left to play!
+        //discard and save cards as appropriate
+        self.fateOfCardsDuringFinalRound()
+        
+        self.prepButtonWithTitle(game_over_string)
+    }
+    
+    func finalOutcomeOne()
+    {
+        self.saveSingleCard(player_string, column: second_column)
+        self.discardSingleCard(ai_string, column: second_column)
+        
+        self.prepButtonWithTitle(game_over_string)
+    }
+    
+    func finalOutcomeTwo()
+    {
+        self.saveSingleCard(ai_string, column: second_column)
+        self.discardSingleCard(player_string, column: second_column)
+        
+        self.prepButtonWithTitle(game_over_string)
+    }
+    
+    func finalOutcomeThree()
+    {
+        self.prepForSingleWar(second_column)
+    }
+    
+    func finalOutcomeFour()
+    {
+        self.saveSingleCard(player_string, column: second_column)
+        self.saveSingleCard(ai_string, column: second_column)
+        //tie!  retreat or both lose?  I like the thought of them shaking hands and suspending the war
+        print("Both soldiers shake hands, knowing there is no backup.  The war has been suspended.")
+        //GAME IS OVER
+        print("GAME IS OVER. NO BACKUP FOR WAR BY BOTH PLAYERS.  TIE!")
+        print("finalOutcomeFour deemed this game OVER!!!!!!!!")
+        //                self.prepButtonWithTitle(game_over_string)
+    }
+    
+    func finalOutcomeFive()
+    {
+        //automatically lose
+        self.saveSingleCard(player_string, column: second_column)
+        self.discardSingleCard(ai_string, column: second_column)
+        //GAME IS OVER
+        print("GAME IS OVER. PLAYER ONLY HAS ONE CARD LEFT.")
+        print("finalOutcomeFive deemed this game OVER!!!!!!!!")
+        self.prepButtonWithTitle(game_over_string)
+    }
+    
+    func finalOutcomeSix()
+    {
+        //automatically win
+        self.saveSingleCard(ai_string, column: second_column)
+        self.discardSingleCard(player_string, column: second_column)
+        //GAME IS OVER
+        print("GAME IS OVER.  AI ONLY HAS ONE CARD LEFT.")
+        print("finalOutcomeSix deemed this game OVER!!!!!!!!")
+        self.prepButtonWithTitle(game_over_string)
+    }
+    
+    func fateOfCardsDuringFinalRound()
+    {
+        let cardCluster1 = self.playerHandStackView.arrangedSubviews[0] as! CardCluster
+        
+        if !cardCluster1.baseCardView.hidden //we have three columns in play
+        {
+//            let playerCardClusters = self.playerHandStackView.arrangedSubviews
+//            let aiCardClusters = [ self.ai1ClusterView, self.ai2ClusterView, self.ai3ClusterView ]
+            let columnResultLabels = [ self.war1ResultLabel, self.war2ResultLabel, self.war3ResultLabel ]
             
-            //war!  if you have at least 2 cards, put down the card for the war and repeat this method
-            //if you have only one card, you immediately lose
-            //if AI has only one card, they immediately lose
+            let columns = [ first_column, second_column, third_column ]
+            
+            for i in 0..<columns.count
+            {
+//                let playerCluster = playerCardClusters[i] as! CardCluster
+//                let aiCluster = aiCardClusters[i]
+                let result = columnResultLabels[i]
+                let column = columns[i]
+                
+                if result == winning_emoji
+                {
+                    self.saveSingleCard(player_string, column: column)
+                    self.discardSingleCard(ai_string, column: column)
+                }
+                else if result == loss_emoji
+                {
+                    self.discardSingleCard(player_string, column: column)
+                    self.saveSingleCard(ai_string, column: column)
+                }
+                else
+                {
+                    //... it depends on the state of remaining cards
+                }
+            }
+        }
+        else
+        {
+            //we only have one column in play
         }
     }
     
@@ -1386,6 +1492,15 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         //        print("#31 (endGame)")
         print("The game is over.")
         
+        self.calculateScoreAndWinner()
+        
+        self.clearView()
+        
+        self.prepButtonWithTitle(play_game_string)
+    }
+    
+    func calculateScoreAndWinner() //tally points
+    {
         let playerPoints = self.game.player.deck.cards.count
         let aiPoints = self.game.aiPlayer.deck.cards.count
         
@@ -1405,8 +1520,12 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         }
         
         print("Player has \(playerPoints) points, AI has \(aiPoints) points.  The winner is: \(winner)")
-        
-        self.prepButtonWithTitle(play_game_string)
+    }
+    
+    func resetForNewGame()
+    {
+        self.clearView()
+        self.game.resetGame()        
     }
     
     

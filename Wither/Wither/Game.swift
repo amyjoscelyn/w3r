@@ -113,4 +113,10 @@ class Game
         self.savePlayerCards.removeAll()
         self.saveAICards.removeAll()
     }
+    
+    func resetGame()
+    {
+        self.player.replenishDeck()
+        self.aiPlayer.replenishDeck()
+    }
 }
