@@ -13,6 +13,18 @@ class GameDataStore
     static let sharedInstance = GameDataStore()
     private init() {}
     
+    var totalPlayerScore = 0
+    var totalAIScore = 0
+    
+    func updateScores(scores: [Int])
+    {
+        let playerScore = scores.first!
+        let aiScore = scores.last!
+        
+        totalPlayerScore += playerScore
+        totalAIScore += aiScore
+    }
+    
     var playerCardTrackerArray: [Int] = []
     
 //    func trackColumn(column: Int)

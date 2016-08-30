@@ -16,6 +16,8 @@
 		3DAF0AD61D4A9AC100CF848F /* AICardCluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAF0AD51D4A9AC100CF848F /* AICardCluster.swift */; };
 		3DAF0AD81D4AC09B00CF848F /* DiscardPile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAF0AD71D4AC09B00CF848F /* DiscardPile.swift */; };
 		3DAF0ADA1D4AC0A500CF848F /* DiscardPile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DAF0AD91D4AC0A500CF848F /* DiscardPile.xib */; };
+		3DCE4B711D76227200E6D695 /* GameOver.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DCE4B701D76227200E6D695 /* GameOver.xib */; };
+		3DCE4B731D76244B00E6D695 /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCE4B721D76244B00E6D695 /* GameOver.swift */; };
 		3DD6B0001D28A19600297E60 /* AIPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD6AFFF1D28A19600297E60 /* AIPlayer.swift */; };
 		3DFAF9D41D248139009D80B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFAF9D31D248139009D80B3 /* AppDelegate.swift */; };
 		3DFAF9D61D248139009D80B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFAF9D51D248139009D80B3 /* ViewController.swift */; };
@@ -59,6 +61,8 @@
 		3DAF0AD51D4A9AC100CF848F /* AICardCluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AICardCluster.swift; sourceTree = "<group>"; };
 		3DAF0AD71D4AC09B00CF848F /* DiscardPile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscardPile.swift; sourceTree = "<group>"; };
 		3DAF0AD91D4AC0A500CF848F /* DiscardPile.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiscardPile.xib; sourceTree = "<group>"; };
+		3DCE4B701D76227200E6D695 /* GameOver.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameOver.xib; sourceTree = "<group>"; };
+		3DCE4B721D76244B00E6D695 /* GameOver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOver.swift; sourceTree = "<group>"; };
 		3DD6AFFF1D28A19600297E60 /* AIPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIPlayer.swift; sourceTree = "<group>"; };
 		3DFAF9D01D248139009D80B3 /* Wither.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wither.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DFAF9D31D248139009D80B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 				3D3F07B11D42AE8A00ABF59A /* CardCluster.swift */,
 				3DAF0AD51D4A9AC100CF848F /* AICardCluster.swift */,
 				3DAF0AD71D4AC09B00CF848F /* DiscardPile.swift */,
+				3DCE4B721D76244B00E6D695 /* GameOver.swift */,
 				3D4D986F1D652BA20052B49E /* HorizontallyReorderableStackView.swift */,
 				3DFAFA011D2482E7009D80B3 /* Card.swift */,
 				3DFAFA031D257072009D80B3 /* Deck.swift */,
@@ -147,6 +152,7 @@
 				3D3F07B31D42B3CC00ABF59A /* CardCluster.xib */,
 				3DAF0AD31D4A9A1700CF848F /* AICardCluster.xib */,
 				3DAF0AD91D4AC0A500CF848F /* DiscardPile.xib */,
+				3DCE4B701D76227200E6D695 /* GameOver.xib */,
 				3DFAF9DA1D248139009D80B3 /* Assets.xcassets */,
 				3DFAF9DC1D248139009D80B3 /* LaunchScreen.storyboard */,
 				3DFAF9DF1D248139009D80B3 /* Info.plist */,
@@ -281,6 +287,7 @@
 				3DAF0AD41D4A9A1700CF848F /* AICardCluster.xib in Resources */,
 				3DFAF9DE1D248139009D80B3 /* LaunchScreen.storyboard in Resources */,
 				3D3F07B41D42B3CC00ABF59A /* CardCluster.xib in Resources */,
+				3DCE4B711D76227200E6D695 /* GameOver.xib in Resources */,
 				3DFAF9DB1D248139009D80B3 /* Assets.xcassets in Resources */,
 				3DAF0ADA1D4AC0A500CF848F /* DiscardPile.xib in Resources */,
 				3DFAFA0A1D258B7F009D80B3 /* CardView.xib in Resources */,
@@ -312,6 +319,7 @@
 				3DAF0AD81D4AC09B00CF848F /* DiscardPile.swift in Sources */,
 				3D42CCD91D676AE600570BB7 /* GameDataStore.swift in Sources */,
 				3DA3676E1D47B7EF00BA7144 /* GameViewController.swift in Sources */,
+				3DCE4B731D76244B00E6D695 /* GameOver.swift in Sources */,
 				3DD6B0001D28A19600297E60 /* AIPlayer.swift in Sources */,
 				3DAF0AD61D4A9AC100CF848F /* AICardCluster.swift in Sources */,
 				3DFAFA0C1D258C70009D80B3 /* CardView.swift in Sources */,

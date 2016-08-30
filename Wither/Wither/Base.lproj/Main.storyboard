@@ -571,6 +571,13 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="exz-aZ-4Nh" customClass="GameOver" customModule="Wither" customModuleProvider="target">
+                                <rect key="frame" x="66" y="193" width="267" height="213"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="exz-aZ-4Nh" secondAttribute="height" multiplier="5:4" id="cHa-p3-mga"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -578,13 +585,16 @@
                             <constraint firstItem="EWb-wJ-gh8" firstAttribute="centerY" secondItem="Siu-Tt-bQv" secondAttribute="centerY" id="1V3-Ro-DJh"/>
                             <constraint firstItem="Nzy-eM-plK" firstAttribute="width" secondItem="Siu-Tt-bQv" secondAttribute="width" multiplier="0.75" id="2yL-cW-6pe"/>
                             <constraint firstItem="EWb-wJ-gh8" firstAttribute="width" secondItem="Siu-Tt-bQv" secondAttribute="width" id="6sR-hb-fT0"/>
+                            <constraint firstItem="exz-aZ-4Nh" firstAttribute="centerY" secondItem="Siu-Tt-bQv" secondAttribute="centerY" id="8Ei-fJ-7f6"/>
                             <constraint firstItem="acK-wd-xOS" firstAttribute="width" secondItem="krD-nP-8lR" secondAttribute="width" multiplier="5/6" id="Dv4-O4-DP6"/>
                             <constraint firstItem="yhm-d6-z2x" firstAttribute="width" secondItem="Siu-Tt-bQv" secondAttribute="width" multiplier="0.75" id="GDG-OJ-IJ6"/>
                             <constraint firstAttribute="trailing" secondItem="YjE-Y7-9Mm" secondAttribute="trailing" constant="16" id="HQe-iw-YbN"/>
                             <constraint firstItem="vLL-8V-IAo" firstAttribute="width" secondItem="qJu-qg-Tfs" secondAttribute="width" multiplier="0.5" id="HTQ-H6-Vnz"/>
                             <constraint firstItem="aFP-4u-sQS" firstAttribute="width" secondItem="krD-nP-8lR" secondAttribute="width" multiplier="0.5" id="Imt-nf-OJh"/>
                             <constraint firstItem="c1t-7k-M7B" firstAttribute="bottom" secondItem="Siu-Tt-bQv" secondAttribute="centerY" constant="-24" id="M7n-HR-72j"/>
+                            <constraint firstItem="exz-aZ-4Nh" firstAttribute="width" secondItem="EWb-wJ-gh8" secondAttribute="width" multiplier="2/3" id="OWo-4T-UXQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pgG-Y9-oiB" secondAttribute="trailing" constant="8" id="PrX-Dn-Bbw"/>
+                            <constraint firstItem="exz-aZ-4Nh" firstAttribute="centerX" secondItem="Siu-Tt-bQv" secondAttribute="centerX" id="QyA-3O-gsQ"/>
                             <constraint firstItem="pgG-Y9-oiB" firstAttribute="top" secondItem="goF-0T-WFI" secondAttribute="bottom" constant="12" id="Rya-Qe-uSb"/>
                             <constraint firstItem="YjE-Y7-9Mm" firstAttribute="centerX" secondItem="Siu-Tt-bQv" secondAttribute="centerX" id="Tu9-I3-s41"/>
                             <constraint firstItem="Nzy-eM-plK" firstAttribute="centerY" secondItem="Siu-Tt-bQv" secondAttribute="centerY" id="W0I-v5-G9f"/>
@@ -610,6 +620,7 @@
                         <outlet property="aiDeckView" destination="vLL-8V-IAo" id="Cwv-Bk-PD4"/>
                         <outlet property="aiDiscardView" destination="F2S-5b-BRa" id="OJg-o1-qbw"/>
                         <outlet property="centerGameView" destination="Nzy-eM-plK" id="dOw-o8-oNY"/>
+                        <outlet property="gameOverView" destination="exz-aZ-4Nh" id="RfD-Xa-ZrZ"/>
                         <outlet property="playGameButton" destination="Exq-K6-GRb" id="ZNe-3u-XP9"/>
                         <outlet property="playerCardsRemainingInDeckLabel" destination="bGG-3c-ahj" id="jbu-HE-5jh"/>
                         <outlet property="playerDeckView" destination="aFP-4u-sQS" id="hlN-fd-Uei"/>

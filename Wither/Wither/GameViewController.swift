@@ -63,15 +63,17 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     
     //settings button, resolveWarGuide and skipWarButton
     @IBOutlet weak var centerGameView: UIView!
+    @IBOutlet weak var gameOverView: GameOver!
     
-    var currentWarColumnToResolve: String = ""
-    var columnOfWar: String = ""
-    var isWar1 = false
-    var isWar2 = false
-    var isWar3 = false
+//    var currentWarColumnToResolve: String = ""
+//    var columnOfWar: String = ""
+//    var isWar1 = false
+//    var isWar2 = false
+//    var isWar3 = false
     var roundHasBegun = false
     var firstTimeJudgingHand = true
     var winnerOfHand = ""
+    var gameIsOver = false
     
     let gameDataStore = GameDataStore.sharedInstance
     let game = Game.init()
@@ -124,6 +126,8 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         
         self.centerGameView.layer.cornerRadius = corner_radius
         self.centerGameView.clipsToBounds = true
+        
+        self.gameOverView.hidden = true
         
         self.cardViewArray()
         
@@ -221,7 +225,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     {
         card.layer.cornerRadius = 6
         card.layer.borderWidth = 3
-        //        card.layer.borderColor =
+        card.layer.borderColor = UIColor.darkGrayColor().CGColor
         card.clipsToBounds = true
     }
     
@@ -256,19 +260,16 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         
         //***************************************
         //for testing purposes, this code can be commented out
-//        self.ai1ClusterView.faceDown()
-//        self.ai2ClusterView.faceDown()
-//        self.ai3ClusterView.faceDown()
+        self.ai1ClusterView.faceDown()
+        self.ai2ClusterView.faceDown()
+        self.ai3ClusterView.faceDown()
         //***************************************
         
         //a tap now should call self.winningConditions()
     }
     
     func playGame()
-    {
-        //does player have 3 or more cards? **  does AI have 3 or more cards? **  deal hand--maybe this can be called when the player swipes the deck to deal
-        //** If a player does not have 3 or more cards... right now game is over.  Later I can turn play into single card hands.
-        
+    {       
         //if cards haven't been dealt to hand yet, nothing happens
         if self.ai1ClusterView.baseCardView.hidden == true
         {
@@ -348,15 +349,16 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
             return
         }
         
-        
         //save/discard all cards
         self.endRound()
         
-        
+        //ending the game
         let isGameOver = self.game.isGameOver()
-        if isGameOver == true
+        if isGameOver == true || self.gameIsOver == true
         {
             //game is over!
+            self.endGame()
+            return
         }
     }
     
@@ -369,7 +371,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         let columnCards = self.cardsToJudge(column)
         let result = self.game.resultOfColumnResolution(columnCards)
         
-        var i = 4 //will cause crash if it runs
+        var i = 4
         
         if column == first_column
         {
@@ -416,7 +418,9 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
             
             if !canPlayWar
             {
-                //game is over
+//                game is over
+//                self.endGame()
+                self.gameIsOver = true
             }
         }
         
@@ -461,6 +465,8 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         else
         {
             //game over?
+            self.endGame()
+//            self.gameIsOver = true
         }
     }
     
@@ -548,6 +554,19 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         
         self.populateCardClusters()
         self.game.warIsDone()
+    }
+    
+    func endGame()
+    {
+        print("Game is over!")
+        self.view.userInteractionEnabled = false
+        
+        //score here!!!
+        let scores = self.game.getScores()
+        self.gameDataStore.updateScores(scores)
+        
+        self.gameOverView.displayLabelsWithInfo()
+        self.gameOverView.hidden = false
     }
 //
 //    

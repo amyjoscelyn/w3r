@@ -199,6 +199,14 @@ class Game
         return gameIsOver
     }
     
+    func getScores() -> [Int]
+    {
+        let playerScore = self.player.deck.cards.count
+        let aiScore = self.aiPlayer.deck.cards.count
+        
+        return [ playerScore, aiScore ]
+    }
+    
     func resetGame()
     {
         self.player.replenishDeck()

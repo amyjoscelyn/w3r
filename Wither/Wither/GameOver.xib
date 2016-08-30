@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GameOver" customModule="Wither" customModuleProvider="target">
+            <connections>
+                <outlet property="aiPlayerScoreLabel" destination="7pW-Oh-bgz" id="W1F-IK-XSU"/>
+                <outlet property="playAgainButton" destination="W2Y-xb-OfF" id="ZE0-K3-pGy"/>
+                <outlet property="playerScoreLabel" destination="Mrj-tj-at8" id="apo-eS-PvW"/>
+                <outlet property="winnerLabel" destination="gxC-lY-2TJ" id="UO0-nE-Yqd"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="160"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TableBackgroundC" translatesAutoresizingMaskIntoConstraints="NO" id="JEc-EZ-TcF">
+                    <rect key="frame" x="0.0" y="0.0" width="200" height="160"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W2Y-xb-OfF">
+                    <rect key="frame" x="33" y="113" width="133" height="34"/>
+                    <color key="backgroundColor" red="0.40694346749999999" green="0.5739182692" blue="0.42716160330000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                    <state key="normal" title="PLAY AGAIN!">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="playAgainButtonTapped:" destination="-1" eventType="touchUpInside" id="gJi-Co-vj9"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mrj-tj-at8">
+                    <rect key="frame" x="16" y="24" width="133" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opponent:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7pW-Oh-bgz">
+                    <rect key="frame" x="16" y="57" width="133" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player won!!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxC-lY-2TJ">
+                    <rect key="frame" x="0.0" y="90" width="200" height="21"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="7pW-Oh-bgz" firstAttribute="top" secondItem="Mrj-tj-at8" secondAttribute="bottom" constant="12" id="BBx-PA-te4"/>
+                <constraint firstItem="JEc-EZ-TcF" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="I4w-6X-9KX"/>
+                <constraint firstItem="W2Y-xb-OfF" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="2/3" id="LgG-EK-8pT"/>
+                <constraint firstAttribute="bottom" secondItem="W2Y-xb-OfF" secondAttribute="bottom" constant="13" id="MPN-PO-CbT"/>
+                <constraint firstItem="7pW-Oh-bgz" firstAttribute="width" secondItem="Mrj-tj-at8" secondAttribute="width" id="P0y-YM-NfM"/>
+                <constraint firstItem="gxC-lY-2TJ" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="PJ4-BH-GIs"/>
+                <constraint firstItem="gxC-lY-2TJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="RJz-EF-s7d"/>
+                <constraint firstItem="7pW-Oh-bgz" firstAttribute="leading" secondItem="Mrj-tj-at8" secondAttribute="leading" id="Vez-Nq-m2K"/>
+                <constraint firstItem="Mrj-tj-at8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="24" id="b07-Pk-Njj"/>
+                <constraint firstItem="gxC-lY-2TJ" firstAttribute="top" secondItem="7pW-Oh-bgz" secondAttribute="bottom" constant="12" id="dFD-TA-78I"/>
+                <constraint firstItem="Mrj-tj-at8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="fjR-PT-dGf"/>
+                <constraint firstItem="W2Y-xb-OfF" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="j2o-Y5-wUC"/>
+                <constraint firstItem="JEc-EZ-TcF" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ld0-ok-WUm"/>
+                <constraint firstItem="JEc-EZ-TcF" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="lzp-D9-SSe"/>
+                <constraint firstItem="Mrj-tj-at8" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="2/3" id="oUQ-Dj-YdG"/>
+                <constraint firstItem="JEc-EZ-TcF" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="uXC-kH-Mzk"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="198" y="480"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="TableBackgroundC" width="600" height="600"/>
+    </resources>
+</document>
