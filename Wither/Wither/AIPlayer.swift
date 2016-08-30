@@ -20,10 +20,10 @@ class AIPlayer: Player
     override func fillHand()
     {
         super.fillHand()
-        orderCards()
+//        orderCards()
     }
     
-    func orderCards()
+    /*func orderCards()
     {
         print("=================================== \n order of cards: \(self.hand[0].rank) \(self.hand[1].rank) \(self.hand[2].rank)")
         let trackedArray = gameDataStore.playerCardTrackerArray
@@ -86,7 +86,7 @@ class AIPlayer: Player
             
         }
         return column
-    }
+    }*/
     
     func shouldResolveWar(cardValue: Int) -> Bool
     {

@@ -8,6 +8,10 @@
 
 import Foundation
 
+let win_result_string = "Win"
+let loss_result_string = "Loss"
+let war_result_string = "War"
+
 class Game
 {
     let player: Player
@@ -18,6 +22,8 @@ class Game
     var saveAICards: [Card] = []
     var discardPlayerCards: [Card] = []
     var discardAICards: [Card] = []
+    
+    var playerColumnWins: Int = 0
     
     init()
     {
@@ -55,6 +61,30 @@ class Game
         }
     }
     
+    //resultOfBattle? Skirmish? ColumnWar?
+    func resultOfColumnResolution(cards: [Card]) -> String
+    {
+        var result = ""
+        
+        let playerCard = cards.first!
+        let aiPlayerCard = cards.last!
+        
+        if playerCard.cardValue > aiPlayerCard.cardValue
+        {
+            result = win_result_string
+        }
+        else if playerCard.cardValue < aiPlayerCard.cardValue
+        {
+            result = loss_result_string
+        }
+        else
+        {
+            result = war_result_string
+        }
+        
+        return result
+    }
+    
     func twoCardFaceOff(playerCard: Card, aiPlayerCard: Card) -> String
     {
         var cardWinner = ""
@@ -62,6 +92,7 @@ class Game
         if playerCard.cardValue > aiPlayerCard.cardValue
         {
             cardWinner = "Player"
+            self.playerColumnWins += 1
         }
         else if playerCard.cardValue < aiPlayerCard.cardValue
         {
@@ -87,10 +118,32 @@ class Game
         self.aiPlayer.clearCardsForWar()
     }
     
+    func winnerOfHand() -> String
+    {
+        if self.playerColumnWins >= 2
+        {
+            //player wins hand
+            self.discardAICards.appendContentsOf(self.saveAICards)
+            self.saveAICards.removeAll()
+            
+            return player_string
+        }
+        else
+        {
+            //AI wins hand
+            self.discardPlayerCards.appendContentsOf(self.savePlayerCards)
+            self.savePlayerCards.removeAll()
+            
+            return ai_string
+        }
+    }
+    
     func endRound()
     {
 //        self.player.clearHandValues()
-        self.aiPlayer.clearHandValues()
+        self.aiPlayer.clearHandValues() //not using this right now...
+        
+        self.playerColumnWins = 0
         
         self.discardCards()
         self.saveCards()   
@@ -112,6 +165,38 @@ class Game
         
         self.savePlayerCards.removeAll()
         self.saveAICards.removeAll()
+    }
+    
+    func canPlayWar() -> Bool
+    {
+        var canPlayWar = true
+        
+        let playerDeck = self.player.deck.cards
+        let aiDeck = self.aiPlayer.deck.cards
+        
+        if playerDeck.count < 1 || aiDeck.count < 1
+        {
+            //game is over
+            canPlayWar = false
+        }
+        
+        return canPlayWar
+    }
+    
+    func isGameOver() -> Bool
+    {
+        var gameIsOver = false
+        
+        let playerDeck = self.player.deck.cards
+        let aiDeck = self.aiPlayer.deck.cards
+        
+        if playerDeck.count < 3 || aiDeck.count < 3
+        {
+            //game is over
+            gameIsOver = true
+        }
+        
+        return gameIsOver
     }
     
     func resetGame()

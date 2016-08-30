@@ -349,6 +349,11 @@ class ViewController: UIViewController
         }
     }
     
+    func handleGeneralTapGesture(tapGesture: UITapGestureRecognizer)
+    {
+        
+    }
+    
     func newRound()
     {
 //        print("#8 (newRound)")
