@@ -71,6 +71,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     var isWar3 = false
     var roundHasBegun = false
     var firstTimeJudgingHand = true
+    var winnerOfHand = ""
     
     let gameDataStore = GameDataStore.sharedInstance
     let game = Game.init()
@@ -112,10 +113,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         self.war1ResultLabel.font = UIFont.systemFontOfSize(CardView.fontSizeForScreenWidth() * 19/22) //magic number
         self.war2ResultLabel.font = UIFont.systemFontOfSize(CardView.fontSizeForScreenWidth() * 19/22)
         self.war3ResultLabel.font = UIFont.systemFontOfSize(CardView.fontSizeForScreenWidth() * 19/22)
-        
-        self.war1ResultLabel.text = blank_emoji
-        self.war2ResultLabel.text = blank_emoji
-        self.war3ResultLabel.text = blank_emoji
         
         self.deckOriginalCenter = self.playerDeckView.center
         
@@ -259,41 +256,34 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         
         //***************************************
         //for testing purposes, this code can be commented out
-        self.ai1ClusterView.faceDown()
-        self.ai2ClusterView.faceDown()
-        self.ai3ClusterView.faceDown()
+//        self.ai1ClusterView.faceDown()
+//        self.ai2ClusterView.faceDown()
+//        self.ai3ClusterView.faceDown()
         //***************************************
         
         //a tap now should call self.winningConditions()
     }
     
-    func winningConditions()
+    func playGame()
     {
         //does player have 3 or more cards? **  does AI have 3 or more cards? **  deal hand--maybe this can be called when the player swipes the deck to deal
         //** If a player does not have 3 or more cards... right now game is over.  Later I can turn play into single card hands.
         
-        //if hand is dealt, flip cards over
-        //this is getting called every single time this method is called after the cards have already been flipped
+        //if cards haven't been dealt to hand yet, nothing happens
         if self.ai1ClusterView.baseCardView.hidden == true
         {
             return
         }
         
+        //if hand is dealt, flip cards over
         if self.ai1ClusterView.baseCardView.faceUp == false
         {
             self.ai1ClusterView.showCard()
             self.ai2ClusterView.showCard()
             self.ai3ClusterView.showCard()
         }
-        else
-        {
-            return
-        }
         
-        //judging the round, one column at a time
-        //right now, tapping sets off this judging round part, and if tapped after judging has begun, it causes a crash
-        //we need a check, so that once a column has a successful result (win or lose), then it passes over and doesn't judge it again--so that it goes straight to the column that has a war, or past the judging entirely
-        
+        //judge the round, one column at a time
         if self.war1ResultLabel.text == blank_emoji
         {
             print("Column 1 needs to be judged")
@@ -308,6 +298,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         else if self.war1ResultLabel.text == war_emoji
         {
             self.playWar(first_column)
+            self.war1ResultLabel.text = blank_emoji
             return
         }
         
@@ -325,6 +316,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         else if self.war2ResultLabel.text == war_emoji
         {
             self.playWar(second_column)
+            self.war2ResultLabel.text = blank_emoji
             return
         }
         
@@ -342,20 +334,24 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         else if self.war3ResultLabel.text == war_emoji
         {
             self.playWar(third_column)
+            self.war3ResultLabel.text = blank_emoji
+            return
+        }
+        
+        //who wins the hand?
+        if self.winnerOfHand == ""
+        {
+            let winner = self.game.winnerOfHand()
+            print(winner)
+            self.winnerOfHand = winner
+            //winner is either player_string or ai_string
             return
         }
         
         
-        
-        //who wins the hand?
-        let winner = self.game.winnerOfHand()
-        print(winner)
-        //winner is either player_string or ai_string
-        
         //save/discard all cards
-        self.game.endRound()
+        self.endRound()
         
-        self.cardsRemaining()
         
         let isGameOver = self.game.isGameOver()
         if isGameOver == true
@@ -366,8 +362,8 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     
     func judgeColumn(column: String) -> String
     {
-        let playerClusters = self.arrangedCardClusters()
-        let aiClusters = [ self.ai1ClusterView, self.ai2ClusterView, self.ai3ClusterView ]
+//        let playerClusters = self.arrangedCardClusters()
+//        let aiClusters = [ self.ai1ClusterView, self.ai2ClusterView, self.ai3ClusterView ]
         let resultLabels = [ self.war1ResultLabel, self.war2ResultLabel, self.war3ResultLabel ]
         
         let columnCards = self.cardsToJudge(column)
@@ -395,8 +391,10 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
             //discard AI cards
             resultLabels[i].text = winning_emoji
             
-            self.game.savePlayerCards.appendContentsOf(playerClusters[i].removeCards())
-            self.game.discardAICards.appendContentsOf(aiClusters[i].removeCards())
+//            self.game.savePlayerCards.appendContentsOf(playerClusters[i].cards)
+//            self.game.discardAICards.appendContentsOf(aiClusters[i].cards)
+//            self.game.savePlayerCards.appendContentsOf(playerClusters[i].removeCards())
+//            self.game.discardAICards.appendContentsOf(aiClusters[i].removeCards())
         }
         else if result == loss_result_string
         {
@@ -405,8 +403,8 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
             //discard player cards
             resultLabels[i].text = loss_emoji
             
-            self.game.discardPlayerCards.appendContentsOf(playerClusters[i].removeCards())
-            self.game.saveAICards.appendContentsOf(aiClusters[i].removeCards())
+//            self.game.discardPlayerCards.appendContentsOf(playerClusters[i].cards)
+//            self.game.saveAICards.appendContentsOf(aiClusters[i].cards)
         }
         else if result == war_result_string
         {
@@ -466,12 +464,53 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         }
     }
     
-    //tapping: if the cluster views are hidden, then round hasn't begun.  drag deck to deal.
-    //if cluster views are not hidden, but the main method has been interrupted, there's a war that needs to be resolved
-    //if cluster views are not hidden, and there are no wars, figure out who wins the hand, then clear the tableau to begin again
+    func endRound()
+    {
+        self.playerDeckView.userInteractionEnabled = true
+        
+        self.discardOrSaveCards()
+        self.discardToPiles()
+        self.game.endRound()
+        
+        self.roundHasBegun = false
+        self.winnerOfHand = ""
+        
+        self.clearAllWarCardViewsAndTempHands()
+        self.cardsRemaining()
+    }
     
-    //if a player runs out of cards ever, or if they need to deal but have less than 3 cards, game is over
-    //tally points, and name the winner of the game
+    func discardOrSaveCards()
+    {
+        let playerClusters = self.arrangedCardClusters()
+        let aiClusters = [ self.ai1ClusterView, self.ai2ClusterView, self.ai3ClusterView ]
+        let resultLabels = [ self.war1ResultLabel, self.war2ResultLabel, self.war3ResultLabel ]
+        
+        for i in 0..<resultLabels.count
+        {
+            let result = resultLabels[i]
+            
+            if result.text == winning_emoji
+            {
+                //player wins!
+                //save player cards
+                //discard AI cards
+//                result.text = blank_emoji
+                
+                self.game.savePlayerCards.appendContentsOf(playerClusters[i].removeCards())
+                self.game.discardAICards.appendContentsOf(aiClusters[i].removeCards())
+            }
+            else if result.text == loss_emoji
+            {
+                //AI wins!
+                //save AI cards
+                //discard player cards
+//                result.text = blank_emoji
+                
+                self.game.discardPlayerCards.appendContentsOf(playerClusters[i].removeCards())
+                self.game.saveAICards.appendContentsOf(aiClusters[i].removeCards())
+            }
+        }
+    }
     
     
 //    func startGame()
@@ -503,7 +542,10 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
 //
     func clearAllWarCardViewsAndTempHands()
     {
-        //        print("#7 (clearAllWarCardViewsAndTempHands)")
+        self.war1ResultLabel.text = blank_emoji
+        self.war2ResultLabel.text = blank_emoji
+        self.war3ResultLabel.text = blank_emoji
+        
         self.populateCardClusters()
         self.game.warIsDone()
     }
@@ -543,7 +585,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     {
         print("Tap!")
         
-        self.winningConditions()
+        self.playGame()
         
         //this should address where something is stilted in the winningConditions method... and later on it can show hints to people who get lost in the game ("Do this now!")
         //if waiting on war, play war
@@ -1597,21 +1639,21 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
 //        self.cardsRemaining()
 //    }
 //    
-//    func discardToPiles()
-//    {
-//        if self.game.discardPlayerCards.count > 0
-//        {
-//            self.playerDiscardView.addCards(self.game.discardPlayerCards)
-//            self.playerDiscardView.populateCardViews()
-//        }
-//        
-//        if self.game.discardAICards.count > 0
-//        {
-//            self.aiDiscardView.addCards(self.game.discardAICards)
-//            self.aiDiscardView.populateCardViews()
-//        }
-//    }
-//    
+    func discardToPiles()
+    {
+        if self.game.discardPlayerCards.count > 0
+        {
+            self.playerDiscardView.addCards(self.game.discardPlayerCards)
+            self.playerDiscardView.populateCardViews()
+        }
+        
+        if self.game.discardAICards.count > 0
+        {
+            self.aiDiscardView.addCards(self.game.discardAICards)
+            self.aiDiscardView.populateCardViews()
+        }
+    }
+//
 //    func awardFinalRoundWithResult(cardResult: String)
 //    {
 //        //        print("#17 (awardFinalRoundWithResult)")
