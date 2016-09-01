@@ -97,6 +97,12 @@ class DiscardPile: UIView
         }
     }
     
+    func emptyDiscardPile()
+    {
+        self.cards.removeAll()
+        self.clearCards()
+    }
+    
     override init(frame: CGRect)
     {
         super.init(frame: frame)

@@ -14,7 +14,6 @@ class GameOver: UIView
     @IBOutlet weak var winnerLabel: UILabel!
     @IBOutlet weak var aiPlayerScoreLabel: UILabel!
     @IBOutlet weak var playerScoreLabel: UILabel!
-    @IBOutlet weak var playAgainButton: UIButton!
     
     let gameDataStore = GameDataStore.sharedInstance
     
@@ -48,11 +47,6 @@ class GameOver: UIView
         self.playerScoreLabel.text = "You: \(playerScore)"
         self.aiPlayerScoreLabel.text = "Opponent: \(aiPlayerScore)"
         self.winnerLabel.text = "\(winnerMessage)"
-    }
-    
-    @IBAction func playAgainButtonTapped(sender: AnyObject)
-    {
-        //perform selector?  or some kind of protocol?
     }
     
     override init(frame: CGRect)

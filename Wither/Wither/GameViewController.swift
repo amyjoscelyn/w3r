@@ -34,7 +34,7 @@ let end_round_string = "END ROUND"
 let game_over_string = "GAME OVER"
 
 let corner_radius: CGFloat = 8
-let border_width: CGFloat = 2
+let border_width: CGFloat = 1.5
 
 class GameViewController: UIViewController, HorizontallyReorderableStackViewDelegate
 {
@@ -71,7 +71,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
 //    var isWar2 = false
 //    var isWar3 = false
     var roundHasBegun = false
-    var firstTimeJudgingHand = true
+//    var firstTimeJudgingHand = true
     var winnerOfHand = ""
     var gameIsOver = false
     
@@ -119,7 +119,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         self.deckOriginalCenter = self.playerDeckView.center
         
         self.panGestures()
-        self.tapGesture()
+        self.tapGestures()
         
         self.playGameButton.setTitle("", forState: UIControlState.Normal)
         self.playGameButton.enabled = false //hopefully won't need this
@@ -127,6 +127,10 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         self.centerGameView.layer.cornerRadius = corner_radius
         self.centerGameView.clipsToBounds = true
         
+        self.gameOverView.layer.cornerRadius = 6
+        self.gameOverView.layer.borderWidth = 3
+        self.gameOverView.layer.borderColor = UIColor.darkGrayColor().CGColor
+        self.gameOverView.clipsToBounds = true
         self.gameOverView.hidden = true
         
         self.cardViewArray()
@@ -213,12 +217,17 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         self.playerDeckView.userInteractionEnabled = true
     }
     
-    func tapGesture()
+    func tapGestures()
     {
         let generalTapGesture = UITapGestureRecognizer(target: self, action: #selector(GameViewController.handleGeneralTapGesture))
         generalTapGesture.numberOfTapsRequired = 1
         self.view.addGestureRecognizer(generalTapGesture)
         self.view.userInteractionEnabled = true
+        
+        let gameOverTapGesture = UITapGestureRecognizer(target: self, action: #selector(GameViewController.handleGameOverTapGesture))
+        gameOverTapGesture.numberOfTapsRequired = 1
+        self.gameOverView.addGestureRecognizer(gameOverTapGesture)
+        self.gameOverView.userInteractionEnabled = true
     }
     
     func customizeCardView(card: CardView)
@@ -515,6 +524,13 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
                 self.game.discardPlayerCards.appendContentsOf(playerClusters[i].removeCards())
                 self.game.saveAICards.appendContentsOf(aiClusters[i].removeCards())
             }
+            else if self.gameIsOver == true
+            {
+                //result text has not been assigned, but it still needs to get shuffled back into the deck
+                //it's automatically discarding now
+                self.game.discardPlayerCards.appendContentsOf(playerClusters[i].removeCards())
+                self.game.discardAICards.appendContentsOf(aiClusters[i].removeCards())
+            }
         }
     }
     
@@ -559,7 +575,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     func endGame()
     {
         print("Game is over!")
-        self.view.userInteractionEnabled = false
         
         //score here!!!
         let scores = self.game.getScores()
@@ -567,6 +582,20 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         
         self.gameOverView.displayLabelsWithInfo()
         self.gameOverView.hidden = false
+    }
+    
+    func resetTableau()
+    {
+        print("Tableau will be reset!!!")
+        
+        self.endRound()
+
+        self.game.resetGame()
+        
+        self.gameIsOver = false
+        self.gameOverView.hidden = true
+        
+        self.cardsRemaining()
     }
 //
 //    
@@ -610,6 +639,13 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         //if waiting on war, play war
         //or maybe wars should be played when you tap on the column's card?
         //or maybe it should call winningConditions()?
+    }
+    
+    func handleGameOverTapGesture(tapGesture: UITapGestureRecognizer)
+    {
+        print("Tapped!!")
+        
+        self.resetTableau()
     }
     
 //    func didReorderArrangedSubviews(arrangedSubviews: Array<UIView>)
@@ -1670,6 +1706,12 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         {
             self.aiDiscardView.addCards(self.game.discardAICards)
             self.aiDiscardView.populateCardViews()
+        }
+        
+        if self.gameIsOver == true
+        {
+            self.playerDiscardView.emptyDiscardPile()
+            self.aiDiscardView.emptyDiscardPile()
         }
     }
 //
