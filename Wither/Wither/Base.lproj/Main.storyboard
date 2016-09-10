@@ -573,7 +573,7 @@
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="exz-aZ-4Nh" customClass="GameOver" customModule="Wither" customModuleProvider="target">
                                 <rect key="frame" x="66" y="193" width="267" height="213"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="exz-aZ-4Nh" secondAttribute="height" multiplier="5:4" id="cHa-p3-mga"/>
                                 </constraints>

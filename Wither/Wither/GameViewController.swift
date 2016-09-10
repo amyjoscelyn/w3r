@@ -614,10 +614,13 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         {
             let translation = panGesture.translationInView(self.view!)
             self.playerDeckView.center = CGPointMake(lastLocation.x + translation.x, lastLocation.y + translation.y)
+            print(self.playerDeckView.center)
             
             let cardCluster2 = self.playerHandStackView.arrangedSubviews[1] as! CardCluster
             
-            if self.playerDeckView.center.y <= 450.0 && cardCluster2.baseCardView.hidden == true && self.roundHasBegun == false
+            let yPoint: CGFloat = 450.0 //when it reaches -100 on the 6s+ then it's closer to the center, but it jumps weirdly back to its original position as the hand is dealt.
+            
+            if self.playerDeckView.center.y <= yPoint && cardCluster2.baseCardView.hidden == true && self.roundHasBegun == false
             {
 //                self.newRound()
                 self.dealHand()
