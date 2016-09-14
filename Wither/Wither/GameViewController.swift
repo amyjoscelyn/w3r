@@ -23,7 +23,6 @@ let ai_string = "AI"
 let save_string = "Save"
 let discard_string = "Discard"
 
-//hopefully I won't need any of these
 let play_game_string = "BEGIN GAME"
 let ready_string = "READY"
 let ready2_string = "READY!"
@@ -39,7 +38,6 @@ let border_width: CGFloat = 1.5
 class GameViewController: UIViewController, HorizontallyReorderableStackViewDelegate
 {
     var lastLocation: CGPoint = CGPointMake(0, 0)
-    var deckOriginalCenter: CGPoint = CGPointMake(0, 0)
     
     @IBOutlet weak var playerDeckView: CardView!
     @IBOutlet weak var playerDiscardView: DiscardPile!
@@ -61,17 +59,12 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     @IBOutlet weak var playerCardsRemainingInDeckLabel: UILabel!
     @IBOutlet weak var aiCardsRemainingInDeckLabel: UILabel!
     
-    //settings button, resolveWarGuide and skipWarButton
     @IBOutlet weak var centerGameView: UIView!
     @IBOutlet weak var gameOverView: GameOver!
     
-//    var currentWarColumnToResolve: String = ""
-//    var columnOfWar: String = ""
-//    var isWar1 = false
-//    var isWar2 = false
-//    var isWar3 = false
+    private var temporaryView: UIView!
+    
     var roundHasBegun = false
-//    var firstTimeJudgingHand = true
     var winnerOfHand = ""
     var gameIsOver = false
     
@@ -115,8 +108,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         self.war1ResultLabel.font = UIFont.systemFontOfSize(CardView.fontSizeForScreenWidth() * 19/22) //magic number
         self.war2ResultLabel.font = UIFont.systemFontOfSize(CardView.fontSizeForScreenWidth() * 19/22)
         self.war3ResultLabel.font = UIFont.systemFontOfSize(CardView.fontSizeForScreenWidth() * 19/22)
-        
-        self.deckOriginalCenter = self.playerDeckView.center
         
         self.panGestures()
         self.tapGestures()
@@ -261,8 +252,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         self.cardsRemaining()
         self.populateHandWithCards()
         
-        //            self.prepButtonWithTitle(ready_string)
-        
         self.playerDeckView.userInteractionEnabled = false
         
         self.playerHandStackView.reorderingEnabled = true
@@ -273,8 +262,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         self.ai2ClusterView.faceDown()
         self.ai3ClusterView.faceDown()
         //***************************************
-        
-        //a tap now should call self.winningConditions()
     }
     
     func playGame()
@@ -585,31 +572,47 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     
     func handleDeckPanGesture(panGesture: UIPanGestureRecognizer)
     {
-        //        print("#5 (handlePanGesture)")
         if panGesture.state == UIGestureRecognizerState.Began
         {
-            self.view.bringSubviewToFront(self.playerDeckView)
-            self.lastLocation = self.playerDeckView.center
+            self.lastLocation = panGesture.locationInView(self.view!)
+            
+            //self.prepareForPan
+            // Configure the temporary view
+            self.temporaryView = self.playerDeckView.snapshotViewAfterScreenUpdates(true)
+            self.temporaryView.frame = self.playerDeckView.frame
+            self.temporaryView.center = self.lastLocation
+            
+            //if there are no cards remaining in deck when dealing:
+            //make sure if there are cards after the round is over, the alpha = 1
+            if !self.hasCardsInDeck()
+            {
+                self.playerDeckView.alpha = 0
+            }
+            
+            self.temporaryView.alpha = 1.0
+            self.temporaryView.layer.cornerRadius = corner_radius
+            self.temporaryView.clipsToBounds = true
+            
+            self.view.addSubview(self.temporaryView)
         }
         if panGesture.state == UIGestureRecognizerState.Changed
         {
+            //Drag the temporaryView
             let translation = panGesture.translationInView(self.view!)
-            self.playerDeckView.center = CGPointMake(lastLocation.x + translation.x, lastLocation.y + translation.y)
-            print(self.playerDeckView.center)
+            self.temporaryView.center = CGPointMake(self.lastLocation.x + translation.x, self.lastLocation.y + translation.y)
             
             let cardCluster2 = self.playerHandStackView.arrangedSubviews[1] as! CardCluster
             
-            let yPoint: CGFloat = 450.0 //when it reaches -100 on the 6s+ then it's closer to the center, but it jumps weirdly back to its original position as the hand is dealt.
+            let yPoint: CGFloat = 450.0
             
-            if self.playerDeckView.center.y <= yPoint && cardCluster2.baseCardView.hidden == true && self.roundHasBegun == false
+            if self.temporaryView.center.y <= yPoint && cardCluster2.baseCardView.hidden == true && self.roundHasBegun == false
             {
-//                self.newRound()
                 self.dealHand()
             }
         }
         if panGesture.state == UIGestureRecognizerState.Ended
         {
-            self.playerDeckView.center = self.deckOriginalCenter
+            self.temporaryView.removeFromSuperview()
         }
     }
     
@@ -632,11 +635,18 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         self.resetTableau()
     }
     
-    //# MARK: - New Round    
+    //# MARK: - New Round  
+    
+    func hasCardsInDeck() -> Bool
+    {
+        let playerDeckCount = self.game.player.deck.cards.count
+        let cardsRemaining = playerDeckCount - 3
+        
+        return cardsRemaining > 0
+    }
     
     func cardsRemaining()
     {
-        //        print("#11 (cardsRemaining)")
         let playerDeckCount = self.game.player.deck.cards.count
         let aiDeckCount = self.game.aiPlayer.deck.cards.count
         
@@ -649,6 +659,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         }
         else
         {
+            self.playerDeckView.alpha = 1
             self.playerDeckView.hidden = true
         }
         if aiDeckCount > 0
