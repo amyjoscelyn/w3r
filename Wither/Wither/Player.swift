@@ -75,11 +75,13 @@ class Player
     func replenishDeck()
     {
         self.deck.cards.appendContentsOf(self.discard)
+        self.discard.removeAll()
         
         if !(self.deck.cards.count == deck_count)
         {
             print("There aren't 52 cards in this new deck!!")
         }
+        print("There are currently \(self.discard.count) cards in the discard pile.")
         
         self.deck.shuffle()
     }

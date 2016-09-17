@@ -120,6 +120,7 @@ class Game
     
     func winnerOfHand() -> String
     {
+        print("playerColumnWins: \(self.playerColumnWins)")
         if self.playerColumnWins >= 2
         {
             //player wins hand

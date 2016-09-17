@@ -33,7 +33,7 @@ let end_round_string = "END ROUND"
 let game_over_string = "GAME OVER"
 
 let corner_radius: CGFloat = 8
-let border_width: CGFloat = 1.5
+let border_width: CGFloat = 1
 
 class GameViewController: UIViewController, HorizontallyReorderableStackViewDelegate
 {
@@ -90,8 +90,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     
     func createGameSpace()
     {
-        //        print("#2 (createGameSpace)")
-        
         self.setCardClusters()
         
         self.playerDiscardView.setPlayer(player_string)
@@ -202,7 +200,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     
     func panGestures()
     {
-        //        print("#4 (panGestures)")
         let deckPanGesture = UIPanGestureRecognizer(target: self, action: #selector(GameViewController.handleDeckPanGesture))
         self.playerDeckView.addGestureRecognizer(deckPanGesture)
         self.playerDeckView.userInteractionEnabled = true
@@ -283,12 +280,12 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         //judge the round, one column at a time
         if self.war1ResultLabel.text == blank_emoji
         {
-            print("Column 1 needs to be judged")
+//            print("Column 1 needs to be judged")
             let result = self.judgeColumn(first_column)
             
             if result == war_result_string
             {
-                print("Column 1 has a war!")
+//                print("Column 1 has a war!")
                 return
             }
         }
@@ -301,12 +298,12 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         
         if self.war2ResultLabel.text == blank_emoji
         {
-            print("Column 2 needs to be judged")
+//            print("Column 2 needs to be judged")
             let result = self.judgeColumn(second_column)
             
             if result == war_result_string
             {
-                print("Column 2 has a war!")
+//                print("Column 2 has a war!")
                 return
             }
         }
@@ -319,12 +316,12 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         
         if self.war3ResultLabel.text == blank_emoji
         {
-            print("Column 3 needs to be judged")
+//            print("Column 3 needs to be judged")
             let result = self.judgeColumn(third_column)
             
             if result == war_result_string
             {
-                print("Column 3 has a war!")
+//                print("Column 3 has a war!")
                 return
             }
         }
@@ -336,12 +333,14 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         }
         
         //who wins the hand?
+        //for some reason, this chunk of code doesn't work correctly, but it is necessary in order to make the emoji results appear... hm.
         if self.winnerOfHand == ""
         {
             let winner = self.game.winnerOfHand()
-            print(winner)
+            print("Winner of hand: \(winner)")
             self.winnerOfHand = winner
             //winner is either player_string or ai_string
+            //except it's always ai_string, because the amount of columns a player has won is always 0
             return
         }
         
@@ -350,7 +349,12 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         
         //ending the game
         let isGameOver = self.game.isGameOver()
-        if isGameOver == true || self.gameIsOver == true
+        if isGameOver == true
+        {
+            self.gameIsOver = isGameOver
+        }
+        
+        if self.gameIsOver == true
         {
             //game is over!
             self.endGame()
@@ -462,7 +466,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         {
             //game over?
             self.endGame()
-//            self.gameIsOver = true
+            self.gameIsOver = true
         }
     }
     
@@ -542,7 +546,9 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     
     func endGame()
     {
-        print("Game is over!")
+        print("Game is over! (\(self.gameIsOver))")
+        print("Player cards remaining: \(self.game.player.deck.cards.count)")
+        print("AI cards remaining: \(self.game.aiPlayer.deck.cards.count)")
         
         //score here!!!
         let scores = self.game.getScores()
@@ -557,7 +563,10 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         print("Tableau will be reset!!!")
         
         self.endRound()
-
+        
+        //move all cards in deck to discard
+        //discard them
+        
         self.game.resetGame()
         
         self.gameIsOver = false
@@ -618,7 +627,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     
     func handleGeneralTapGesture(tapGesture: UITapGestureRecognizer)
     {
-        print("Tap!")
+//        print("Tap!")
         
         self.playGame()
         
@@ -630,7 +639,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     
     func handleGameOverTapGesture(tapGesture: UITapGestureRecognizer)
     {
-        print("Tapped!!")
+//        print("Tapped!!")
         
         self.resetTableau()
     }
