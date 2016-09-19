@@ -221,7 +221,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     func customizeCardView(card: CardView)
     {
         card.layer.cornerRadius = 6
-        card.layer.borderWidth = 3
+        card.layer.borderWidth = border_width
         card.layer.borderColor = UIColor.darkGrayColor().CGColor
         card.clipsToBounds = true
     }
@@ -640,11 +640,20 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     func handleGameOverTapGesture(tapGesture: UITapGestureRecognizer)
     {
 //        print("Tapped!!")
-        
-        self.resetTableau()
+        if self.gameDataStore.hasDisplayedScores != true
+        {
+            self.gameOverView.displayScores()
+        }
+        else
+        {
+            self.resetTableau()
+            self.gameDataStore.hasDisplayedScores = false
+        }
     }
     
-    //# MARK: - New Round  
+    
+    //# MARK: - New Round
+    
     
     func hasCardsInDeck() -> Bool
     {

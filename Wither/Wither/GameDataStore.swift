@@ -15,14 +15,18 @@ class GameDataStore
     
     var totalPlayerScore = 0
     var totalAIScore = 0
+    var currentPlayerScore = 0
+    var currentAIScore = 0
+    
+    var hasDisplayedScores = false
     
     func updateScores(scores: [Int])
     {
-        let playerScore = scores.first!
-        let aiScore = scores.last!
+        self.currentPlayerScore = scores.first!
+        self.currentAIScore = scores.last!
         
-        totalPlayerScore += playerScore
-        totalAIScore += aiScore
+        totalPlayerScore += self.currentPlayerScore
+        totalAIScore += self.currentAIScore
     }
     
     var playerCardTrackerArray: [Int] = []
