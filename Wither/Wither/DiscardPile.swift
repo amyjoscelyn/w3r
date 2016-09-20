@@ -48,7 +48,7 @@ class DiscardPile: UIView
         {
             self.discardCardViewA.transform = CGAffineTransformMakeRotation(1.5)
             self.discardCardViewB.transform = CGAffineTransformMakeRotation(5.1)
-            self.discardCardViewC.transform = CGAffineTransformMakeRotation(2)
+            self.discardCardViewC.transform = CGAffineTransformMakeRotation(0.2)
             self.discardCardViewD.transform = CGAffineTransformMakeRotation(0.9)
             self.discardCardViewE.transform = CGAffineTransformMakeRotation(0)
         }

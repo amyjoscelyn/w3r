@@ -90,6 +90,8 @@ class GameOver: UIView
         let currentPlayerScore = self.gameDataStore.currentPlayerScore
         let currentAIPlayerScore = self.gameDataStore.currentAIScore
         
+        print("Us: \(currentPlayerScore) || Them: \(currentAIPlayerScore)")
+        
         self.currentPlayerScoreLabel.text = "\(currentPlayerScore)"
         self.currentAIPlayerScoreLabel.text = "\(currentAIPlayerScore)"
         
@@ -101,7 +103,7 @@ class GameOver: UIView
             winnerMessage = "We won!"
             winnerEmoji = "👑"
         }
-        if currentAIPlayerScore > currentPlayerScore
+        else if currentAIPlayerScore > currentPlayerScore
         {
             winnerMessage = "They won."
             winnerEmoji = "🤕"
