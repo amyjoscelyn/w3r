@@ -18,6 +18,7 @@ class GameDataStore
     var currentPlayerScore = 0
     var currentAIScore = 0
     
+    var pageOfRulesDisplayed = 0
     var hasDisplayedScores = false
     
     func updateScores(scores: [Int])

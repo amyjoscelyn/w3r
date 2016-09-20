@@ -578,6 +578,13 @@
                                     <constraint firstAttribute="width" secondItem="exz-aZ-4Nh" secondAttribute="height" multiplier="5:4" id="cHa-p3-mga"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3nz-HY-dm1" customClass="Rules" customModule="Wither" customModuleProvider="target">
+                                <rect key="frame" x="50" y="137" width="300" height="325"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="3nz-HY-dm1" secondAttribute="height" multiplier="12:13" id="NUu-xv-RCH"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -585,11 +592,13 @@
                             <constraint firstItem="EWb-wJ-gh8" firstAttribute="centerY" secondItem="Siu-Tt-bQv" secondAttribute="centerY" id="1V3-Ro-DJh"/>
                             <constraint firstItem="Nzy-eM-plK" firstAttribute="width" secondItem="Siu-Tt-bQv" secondAttribute="width" multiplier="0.75" id="2yL-cW-6pe"/>
                             <constraint firstItem="EWb-wJ-gh8" firstAttribute="width" secondItem="Siu-Tt-bQv" secondAttribute="width" id="6sR-hb-fT0"/>
+                            <constraint firstItem="3nz-HY-dm1" firstAttribute="width" secondItem="Siu-Tt-bQv" secondAttribute="width" multiplier="3/4" id="7ec-mj-fg3"/>
                             <constraint firstItem="exz-aZ-4Nh" firstAttribute="centerY" secondItem="Siu-Tt-bQv" secondAttribute="centerY" id="8Ei-fJ-7f6"/>
                             <constraint firstItem="acK-wd-xOS" firstAttribute="width" secondItem="krD-nP-8lR" secondAttribute="width" multiplier="5/6" id="Dv4-O4-DP6"/>
                             <constraint firstItem="yhm-d6-z2x" firstAttribute="width" secondItem="Siu-Tt-bQv" secondAttribute="width" multiplier="0.75" id="GDG-OJ-IJ6"/>
                             <constraint firstAttribute="trailing" secondItem="YjE-Y7-9Mm" secondAttribute="trailing" constant="16" id="HQe-iw-YbN"/>
                             <constraint firstItem="vLL-8V-IAo" firstAttribute="width" secondItem="qJu-qg-Tfs" secondAttribute="width" multiplier="0.5" id="HTQ-H6-Vnz"/>
+                            <constraint firstItem="3nz-HY-dm1" firstAttribute="centerY" secondItem="Siu-Tt-bQv" secondAttribute="centerY" id="HuJ-DX-NDp"/>
                             <constraint firstItem="aFP-4u-sQS" firstAttribute="width" secondItem="krD-nP-8lR" secondAttribute="width" multiplier="0.5" id="Imt-nf-OJh"/>
                             <constraint firstItem="c1t-7k-M7B" firstAttribute="bottom" secondItem="Siu-Tt-bQv" secondAttribute="centerY" constant="-24" id="M7n-HR-72j"/>
                             <constraint firstItem="exz-aZ-4Nh" firstAttribute="width" secondItem="EWb-wJ-gh8" secondAttribute="width" multiplier="2/3" id="OWo-4T-UXQ"/>
@@ -607,6 +616,7 @@
                             <constraint firstItem="pgG-Y9-oiB" firstAttribute="height" secondItem="yhm-d6-z2x" secondAttribute="height" id="mOx-Z3-9Iz"/>
                             <constraint firstItem="c1t-7k-M7B" firstAttribute="centerX" secondItem="Siu-Tt-bQv" secondAttribute="centerX" id="nxN-NS-5Gj"/>
                             <constraint firstItem="8OH-dq-qO6" firstAttribute="top" secondItem="yhm-d6-z2x" secondAttribute="bottom" constant="24" id="oNE-9y-XZb"/>
+                            <constraint firstItem="3nz-HY-dm1" firstAttribute="centerX" secondItem="Siu-Tt-bQv" secondAttribute="centerX" id="qDC-JD-juI"/>
                             <constraint firstItem="Nzy-eM-plK" firstAttribute="centerX" secondItem="Siu-Tt-bQv" secondAttribute="centerX" id="rTl-e8-gcd"/>
                         </constraints>
                     </view>
@@ -626,6 +636,7 @@
                         <outlet property="playerDeckView" destination="aFP-4u-sQS" id="hlN-fd-Uei"/>
                         <outlet property="playerDiscardView" destination="acK-wd-xOS" id="ZMi-3c-aYN"/>
                         <outlet property="playerHandStackView" destination="YjE-Y7-9Mm" id="TLn-Xw-a2V"/>
+                        <outlet property="rulesView" destination="3nz-HY-dm1" id="aiR-BR-9MT"/>
                         <outlet property="war1ResultLabel" destination="hsd-8X-Wol" id="RAr-dJ-Pvl"/>
                         <outlet property="war2ResultLabel" destination="I0O-e5-GKK" id="Q1g-2I-3A8"/>
                         <outlet property="war3ResultLabel" destination="q7H-mP-zdZ" id="rd8-cM-mgt"/>

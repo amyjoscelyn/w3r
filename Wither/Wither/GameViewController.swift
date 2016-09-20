@@ -60,6 +60,7 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     @IBOutlet weak var aiCardsRemainingInDeckLabel: UILabel!
     
     @IBOutlet weak var centerGameView: UIView!
+    @IBOutlet weak var rulesView: Rules!
     @IBOutlet weak var gameOverView: GameOver!
     
     private var temporaryView: UIView!
@@ -76,6 +77,8 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        self.rulesView.displayFirstSetOfRules()
         
 //        self.cardViewArray()
         self.createGameSpace()
@@ -115,6 +118,11 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         
         self.centerGameView.layer.cornerRadius = corner_radius
         self.centerGameView.clipsToBounds = true
+        
+        self.rulesView.layer.cornerRadius = 6
+        self.rulesView.layer.borderWidth = 3
+        self.rulesView.layer.borderColor = UIColor.darkGrayColor().CGColor
+        self.rulesView.clipsToBounds = true
         
         self.gameOverView.layer.cornerRadius = 6
         self.gameOverView.layer.borderWidth = 3
@@ -202,11 +210,16 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     {
         let deckPanGesture = UIPanGestureRecognizer(target: self, action: #selector(GameViewController.handleDeckPanGesture))
         self.playerDeckView.addGestureRecognizer(deckPanGesture)
-        self.playerDeckView.userInteractionEnabled = true
+        self.playerDeckView.userInteractionEnabled = false
     }
     
     func tapGestures()
     {
+        let rulesTapGesture = UITapGestureRecognizer(target: self, action: #selector(GameViewController.handleRulesTapGesture))
+        rulesTapGesture.numberOfTapsRequired = 1
+        self.rulesView.addGestureRecognizer(rulesTapGesture)
+        self.rulesView.userInteractionEnabled = true
+        
         let generalTapGesture = UITapGestureRecognizer(target: self, action: #selector(GameViewController.handleGeneralTapGesture))
         generalTapGesture.numberOfTapsRequired = 1
         self.view.addGestureRecognizer(generalTapGesture)
@@ -622,6 +635,27 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         if panGesture.state == UIGestureRecognizerState.Ended
         {
             self.temporaryView.removeFromSuperview()
+        }
+    }
+    
+    func handleRulesTapGesture(tapGesture: UITapGestureRecognizer)
+    {
+        if self.gameDataStore.pageOfRulesDisplayed == 1
+        {
+            self.rulesView.displaySecondSetOfRules()
+        }
+        else if self.gameDataStore.pageOfRulesDisplayed == 2
+        {
+            self.rulesView.displayThirdSetOfRules()
+        }
+        else if self.gameDataStore.pageOfRulesDisplayed == 3
+        {
+            self.rulesView.displayFourthSetOfRules()
+        }
+        else
+        {
+            self.rulesView.hidden = true
+            self.playerDeckView.userInteractionEnabled = true
         }
     }
     
