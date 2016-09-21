@@ -72,17 +72,17 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     let gameDataStore = GameDataStore.sharedInstance
     let game = Game.init()
     
+    
     //# MARK: - Game Setup
+    
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        self.rulesView.displayFirstSetOfRules()
+        self.rulesView.displayRules()
         
-//        self.cardViewArray()
         self.createGameSpace()
-//        self.startGame()
         self.newGame()
     }
     
@@ -102,10 +102,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         self.playerDiscardView.rotateViews()
         self.aiDiscardView.rotateViews()
         
-//        self.customizeButton(self.playGameButton) //hopefully I won't need this
-        //        self.customizeButton(self.settingsButton)
-        //        self.customizeButton(self.skipWarButton)
-        
         self.war1ResultLabel.font = UIFont.systemFontOfSize(CardView.fontSizeForScreenWidth() * 19/22) //magic number
         self.war2ResultLabel.font = UIFont.systemFontOfSize(CardView.fontSizeForScreenWidth() * 19/22)
         self.war3ResultLabel.font = UIFont.systemFontOfSize(CardView.fontSizeForScreenWidth() * 19/22)
@@ -113,14 +109,11 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         self.panGestures()
         self.tapGestures()
         
-        self.playGameButton.setTitle("", forState: UIControlState.Normal)
-        self.playGameButton.enabled = false //hopefully won't need this
-        
         self.centerGameView.layer.cornerRadius = corner_radius
         self.centerGameView.clipsToBounds = true
         
-        self.rulesView.layer.cornerRadius = 6
-        self.rulesView.layer.borderWidth = 3
+        self.rulesView.layer.cornerRadius = 28
+        self.rulesView.layer.borderWidth = 7
         self.rulesView.layer.borderColor = UIColor.darkGrayColor().CGColor
         self.rulesView.clipsToBounds = true
         
@@ -177,17 +170,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         self.ai2ClusterView.populateCardViews()
         self.ai3ClusterView.populateCardViews()
     }
-    
-//    func customizeButton(button: UIButton)
-//    {
-//        //        print("#3 (customizeButton)")
-//        button.layer.cornerRadius = corner_radius
-//        button.layer.borderWidth = border_width
-//        button.layer.borderColor = UIColor.whiteColor().CGColor
-//        button.clipsToBounds = true
-//        
-//        button.titleLabel?.font = UIFont.systemFontOfSize(CardView.fontSizeForScreenWidth() * 17/22)
-//    }
     
     func cardViewArray()
     {
@@ -260,8 +242,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     
     func dealHand()
     {
-        //deal hand
-        //this is pan gesture recognizer territory
         self.roundHasBegun = true
         self.game.drawHands()
         self.cardsRemaining()
@@ -298,12 +278,10 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         //judge the round, one column at a time
         if self.war1ResultLabel.text == blank_emoji
         {
-//            print("Column 1 needs to be judged")
             let result = self.judgeColumn(first_column)
             
             if result == war_result_string
             {
-//                print("Column 1 has a war!")
                 return
             }
         }
@@ -316,12 +294,10 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         
         if self.war2ResultLabel.text == blank_emoji
         {
-//            print("Column 2 needs to be judged")
             let result = self.judgeColumn(second_column)
             
             if result == war_result_string
             {
-//                print("Column 2 has a war!")
                 return
             }
         }
@@ -334,12 +310,10 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         
         if self.war3ResultLabel.text == blank_emoji
         {
-//            print("Column 3 needs to be judged")
             let result = self.judgeColumn(third_column)
             
             if result == war_result_string
             {
-//                print("Column 3 has a war!")
                 return
             }
         }
@@ -382,8 +356,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     
     func judgeColumn(column: String) -> String
     {
-//        let playerClusters = self.arrangedCardClusters()
-//        let aiClusters = [ self.ai1ClusterView, self.ai2ClusterView, self.ai3ClusterView ]
         let resultLabels = [ self.war1ResultLabel, self.war2ResultLabel, self.war3ResultLabel ]
         
         let columnCards = self.cardsToJudge(column)
@@ -406,42 +378,23 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         
         if result == win_result_string
         {
-            //player wins!
-            //save player cards
-            //discard AI cards
             resultLabels[i].text = winning_emoji
-            
-//            self.game.savePlayerCards.appendContentsOf(playerClusters[i].cards)
-//            self.game.discardAICards.appendContentsOf(aiClusters[i].cards)
-//            self.game.savePlayerCards.appendContentsOf(playerClusters[i].removeCards())
-//            self.game.discardAICards.appendContentsOf(aiClusters[i].removeCards())
         }
         else if result == loss_result_string
         {
-            //AI wins!
-            //save AI cards
-            //discard player cards
             resultLabels[i].text = loss_emoji
-            
-//            self.game.discardPlayerCards.appendContentsOf(playerClusters[i].cards)
-//            self.game.saveAICards.appendContentsOf(aiClusters[i].cards)
         }
         else if result == war_result_string
         {
-            //war... resolve!
             resultLabels[i].text = war_emoji //I might not even need this
-            //does player have at least 1 card for war?  does AI?
-            //*** if no, they lose entire hand!
+            
             let canPlayWar = self.game.canPlayWar()
             
             if !canPlayWar
             {
-//                game is over
-//                self.endGame()
                 self.gameIsOver = true
             }
         }
-        
         resultLabels[i].hidden = false
         
         return result
@@ -482,7 +435,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         }
         else
         {
-            //game over?
             self.endGame()
             self.gameIsOver = true
         }
@@ -515,28 +467,16 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
             
             if result.text == winning_emoji
             {
-                //player wins!
-                //save player cards
-                //discard AI cards
-//                result.text = blank_emoji
-                
                 self.game.savePlayerCards.appendContentsOf(playerClusters[i].removeCards())
                 self.game.discardAICards.appendContentsOf(aiClusters[i].removeCards())
             }
             else if result.text == loss_emoji
             {
-                //AI wins!
-                //save AI cards
-                //discard player cards
-//                result.text = blank_emoji
-                
                 self.game.discardPlayerCards.appendContentsOf(playerClusters[i].removeCards())
                 self.game.saveAICards.appendContentsOf(aiClusters[i].removeCards())
             }
             else if self.gameIsOver == true
             {
-                //result text has not been assigned, but it still needs to get shuffled back into the deck
-                //it's automatically discarding now
                 self.game.discardPlayerCards.appendContentsOf(playerClusters[i].removeCards())
                 self.game.discardAICards.appendContentsOf(aiClusters[i].removeCards())
             }
@@ -545,7 +485,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     
     func prepGame()
     {
-        //        print("#6 (resetGame)")
         self.aiDeckView.faceUp = false
         self.playerDeckView.faceUp = false
         
@@ -568,7 +507,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         print("Player cards remaining: \(self.game.player.deck.cards.count)")
         print("AI cards remaining: \(self.game.aiPlayer.deck.cards.count)")
         
-        //score here!!!
         let scores = self.game.getScores()
         self.gameDataStore.updateScores(scores)
         
@@ -581,9 +519,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         print("Tableau will be reset!!!")
         
         self.endRound()
-        
-        //move all cards in deck to discard
-        //discard them
         
         self.game.resetGame()
         
@@ -609,8 +544,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
             self.temporaryView.frame = self.playerDeckView.frame
             self.temporaryView.center = self.lastLocation
             
-            //if there are no cards remaining in deck when dealing:
-            //make sure if there are cards after the round is over, the alpha = 1
             if !self.hasCardsInDeck()
             {
                 self.playerDeckView.alpha = 0
@@ -645,17 +578,9 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     
     func handleRulesTapGesture(tapGesture: UITapGestureRecognizer)
     {
-        if self.gameDataStore.pageOfRulesDisplayed == 1
+        if self.gameDataStore.pageOfRulesDisplayed != 9
         {
-            self.rulesView.displaySecondSetOfRules()
-        }
-        else if self.gameDataStore.pageOfRulesDisplayed == 2
-        {
-            self.rulesView.displayThirdSetOfRules()
-        }
-        else if self.gameDataStore.pageOfRulesDisplayed == 3
-        {
-            self.rulesView.displayFourthSetOfRules()
+            self.rulesView.displayRules()
         }
         else
         {
@@ -676,8 +601,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     
     func handleGeneralTapGesture(tapGesture: UITapGestureRecognizer)
     {
-//        print("Tap!")
-        
         self.playGame()
         
         //this should address where something is stilted in the winningConditions method... and later on it can show hints to people who get lost in the game ("Do this now!")
@@ -688,7 +611,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
     
     func handleGameOverTapGesture(tapGesture: UITapGestureRecognizer)
     {
-//        print("Tapped!!")
         if self.gameDataStore.hasDisplayedScores != true
         {
             self.gameOverView.displayScores()
@@ -741,8 +663,6 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
 
     func populateHandWithCards()
     {
-        //        print("#9 (populateHandWithCards)")
-        
         for i in 0..<3
         {
             let subview = self.playerHandStackView.arrangedSubviews[i]
@@ -763,7 +683,9 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         self.game.player.hand.removeAll()
     }
     
+    
     //# MARK: - Judge Round
+    
     
     func cardsToJudge(column: String) -> [Card]
     {
@@ -802,8 +724,10 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         return clusters
     }
 
+    
     //# MARK: - End of Round
 
+    
     func discardToPiles()
     {
         if self.game.discardPlayerCards.count > 0
