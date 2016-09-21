@@ -33,7 +33,7 @@ let end_round_string = "END ROUND"
 let game_over_string = "GAME OVER"
 
 let corner_radius: CGFloat = 8
-let border_width: CGFloat = 1
+let border_width: CGFloat = 1 //not currently being used...
 
 class GameViewController: UIViewController, HorizontallyReorderableStackViewDelegate
 {
@@ -219,6 +219,11 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         rulesTapGesture.numberOfTapsRequired = 1
         self.rulesView.addGestureRecognizer(rulesTapGesture)
         self.rulesView.userInteractionEnabled = true
+        
+        let deckTapGesture = UITapGestureRecognizer(target: self, action: #selector(GameViewController.handleDeckTapGesture))
+        deckTapGesture.numberOfTapsRequired = 1
+        self.playerDeckView.addGestureRecognizer(deckTapGesture)
+        self.playerDeckView.userInteractionEnabled = false
         
         let generalTapGesture = UITapGestureRecognizer(target: self, action: #selector(GameViewController.handleGeneralTapGesture))
         generalTapGesture.numberOfTapsRequired = 1
@@ -656,6 +661,16 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         {
             self.rulesView.hidden = true
             self.playerDeckView.userInteractionEnabled = true
+        }
+    }
+    
+    func handleDeckTapGesture(tapGesture: UITapGestureRecognizer)
+    {
+        let cardCluster2 = self.playerHandStackView.arrangedSubviews[1] as! CardCluster
+        
+        if cardCluster2.baseCardView.hidden == true && self.roundHasBegun == false
+        {
+            self.dealHand()
         }
     }
     
