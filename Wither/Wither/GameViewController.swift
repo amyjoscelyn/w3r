@@ -109,6 +109,8 @@ class GameViewController: UIViewController, HorizontallyReorderableStackViewDele
         self.panGestures()
         self.tapGestures()
         
+        self.playGameButton.userInteractionEnabled = false //someday make this green bar a view, not a disabled button
+        
         self.centerGameView.layer.cornerRadius = corner_radius
         self.centerGameView.clipsToBounds = true
         
